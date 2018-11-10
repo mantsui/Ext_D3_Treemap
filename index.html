@@ -25,7 +25,8 @@
 <script src="https://d3js.org/d3.v4.min.js"></script>
 
 <script>
-
+	// Wrap everything in an anonymous function to avoid polluting the global namespace
+	(function () {
 	var dataArray = [5, 11, 18, 9];
 	var intVerticalScale = 15;
 	var intWidth = 50;
@@ -51,6 +52,7 @@
 		
 		// Invert the rectangle y-axis because html origin (0,0) starts from top left.
 		.attr("y",function(dataArray_DataPoint, dataArray_Index){ return EstimatedChartHeight - (dataArray_DataPoint * intVerticalScale); });
-	
+
+	})();		
 </script>
 	
