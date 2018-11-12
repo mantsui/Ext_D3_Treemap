@@ -58,33 +58,20 @@
 			//});
 
 			worksheet.getSummaryDataAsync().then(function (sumdata) {
-				// We will loop through our column names from our settings and save these into an array
-				// We will use this later in our datatable function.
-				// https://tableau.github.io/extensions-api/docs/interfaces/datatable.html#columns
+				// Create an empty arrays for our labels and data set.
+				var labels = [];
 				var data = [];
-				
-				console.log('get column names');
-				console.log(tableau.extensions.settings.get("column_names"));
-				
-				var column_names = tableau.extensions.settings.get("column_names").split("|");
-				for (i = 0; i < column_names.length; i++) {
-					data.push({ title: column_names[i] });
-				}
-
-				// We have created an array to match the underlying data source and then
-				// looped through to populate our array with the value data set. We also added
-				// logic to read from the column names and column order from our configiration.
-				const worksheetData = sumdata.data;
-				var column_order = tableau.extensions.settings.get("column_order").split("|");
-				var tableData = makeArray(sumdata.columns.length,sumdata.totalRowCount);
-				for (var i = 0; i < tableData.length; i++) {
-					for (var j = 0; j < tableData[i].length; j++) {
-						tableData[i][j] = worksheetData[i][column_order[j]-1].formattedValue;
-					}
+				// We get our summary data:
+				var worksheetData = sumdata.data;
+				// We loop through our summary data and hardcode which columns goes into Label
+				// and which column goes into the array.
+				for (var i = 0; i < worksheetData.length; i++) {
+					labels.push(worksheetData[i][0].formattedValue);
+					data.push(worksheetData[i][1].value);
 				}
 				
-				console.log('tableData array');
-				console.log(tableData);
+				console.log('data');
+				console.log(data);
 			})			
 		}
 
