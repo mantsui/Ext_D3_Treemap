@@ -46,19 +46,21 @@
 			const worksheets = tableau.extensions.dashboardContent.dashboard.worksheets;
 			// Finds a worksheet called worksheetData
 			var worksheet = worksheets.find(function (sheet) {
+				console.log('Worksheet: ');
+				console.log(sheet.name);
 				return sheet.name === "Sheet_ByRegion";
 			});
 			
-			console.log('Worksheet: ');
+			//console.log('Worksheet: ');
 			//console.log(worksheet.name);
 
 			// Call a function on the worksheet Object to get the Summary Data.
-			worksheet.getSummaryDataAsync().then(function (sumdata) {
+			//worksheet.getSummaryDataAsync().then(function (sumdata) {
 				// We get our summary data:
-				var worksheetData = sumdata;
-				console.log(worksheetData);
+				//var worksheetData = sumdata;
+				//console.log(worksheetData);
 
-			});
+			//});
 
 		}
 
