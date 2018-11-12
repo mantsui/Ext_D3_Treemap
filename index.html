@@ -48,22 +48,15 @@
 			var worksheet = tableau_worksheets.find(function (sheet) {
 				return sheet.name === "Sheet_ByRegion";
 			});
+			
+			console.log('Worksheet: ');
+			console.log(worksheet);
 
 			// Call a function on the worksheet Object to get the Summary Data.
 			worksheet.getSummaryDataAsync().then(function (sumdata) {
-				// Create an empty arrays for our labels and data set.
-				var labels = [];
-				var data = [];
 				// We get our summary data:
 				var worksheetData = sumdata.data;
-				// We loop through our summary data and hardcode which columns goes into Label
-				// and which column goes into the array.
-				for (var i = 0; i < worksheetData.length; i++) {
-					labels.push(worksheetData[i][0].formattedValue);
-					data.push(worksheetData[i][1].value);
-				}
-
-				console.log(data);
+				console.log(worksheetData);
 
 			});
 
