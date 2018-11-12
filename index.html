@@ -20,12 +20,7 @@
 
 </head>
 
-<h4>Static D3 Bar Chart</h4>
-
-<svg viewBox="0 0 60 55" preserveAspectRatio="xMidYMin slice"
-   style="width: 100%; padding-bottom: 92%; height: 1px; overflow: visible">
-  <!-- SVG content -->
-</svg>
+<h4>Tableau Extension API Test - Debug</h4>
 
 
 <script src="https://d3js.org/d3.v4.min.js"></script>
@@ -34,39 +29,47 @@
 	'use strict';
 	// Wrap everything in an anonymous function to avoid polluting the global namespace
 	(function () {
+		$(document).ready(function () {
+		// Initialises Tableau Data Extension
+		console.log('Initilizing Tableau Data Extension');
+		tableau.extensions.initializeAsync().then(function () {
+			// Once we initialize, call draw D3 function.
+		 	//drawD3();
+		 	get_SummaryData();
+			
 
-	var window_Width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-	var window_Height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-	console.log('Window Width: ' + window_Width);
-	console.log('Window Height: ' + window_Height);
+		}, function () { console.log('Error while Initializing: ' + err.toString()); });
+		});
 
-	var dataArray = [5, 11, 18, 9];
-	var intVerticalScale = window_Height * 0.04;
-	var intWidth = (window_Width * 0.40) / (dataArray.length + 1);
+		function get_SummaryData() {
+			// Gets all the worksheets in a Tableau Dashboard
+			const tableau_worksheets = tableau.extensions.dashboardContent.dashboard.worksheets;
+			// Finds a worksheet called worksheetData
+			var worksheet = tableau_worksheets.find(function (sheet) {
+				return sheet.name === "worksheetData";
+			});
 
-	var intBarSpacing = (window_Width * 0.10);
-	var EstimatedChartHeight = window_Height * 0.8;
+			// Call a function on the worksheet Object to get the Summary Data.
+			worksheet.getSummaryDataAsync().then(function (sumdata) {
+				// Create an empty arrays for our labels and data set.
+				var labels = [];
+				var data = [];
+				// We get our summary data:
+				var worksheetData = sumdata.data;
+				// We loop through our summary data and hardcode which columns goes into Label
+				// and which column goes into the array.
+				for (var i = 0; i &lt; worksheetData.length; i++) {
+					labels.push(worksheetData[i][0].formattedValue);
+					data.push(worksheetData[i][1].value);
+				}
+
+				console.log(data);
+
+			});
+
+		}
 
 
-	// Add svg element to html
-	var svg = d3.select("svg"),
-			width = +svg.attr("width"),
-			height = +svg.attr("height");
-		
-
-	// Add rectangle to svg element
-	svg.selectAll("rect")
-		.data(dataArray)					// Binds data to the element selection(3 element selection currently)
-		.enter().append("rect")		// Add rectangle item for each element selection
-	
-		// Setting attributes for the rectangle
-		.attr("fill","darkorchid")
-		.attr("height", function(dataArray_DataPoint, dataArray_Index){ return dataArray_DataPoint * intVerticalScale; })
-		.attr("width", intWidth)
-		.attr("x", function(dataArray_DataPoint, dataArray_Index){ return intBarSpacing * dataArray_Index; })
-		
-		// Invert the rectangle y-axis because html origin (0,0) starts from top left.
-		.attr("y",function(dataArray_DataPoint, dataArray_Index){ return EstimatedChartHeight - (dataArray_DataPoint * intVerticalScale); });
-
+		console.log('Test');
 	})();		
 </script>
