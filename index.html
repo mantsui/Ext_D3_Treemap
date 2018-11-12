@@ -62,6 +62,10 @@
 				// We will use this later in our datatable function.
 				// https://tableau.github.io/extensions-api/docs/interfaces/datatable.html#columns
 				var data = [];
+				
+				console.log('get column names');
+				console.log(tableau.extensions.settings.get("column_names"));
+				
 				var column_names = tableau.extensions.settings.get("column_names").split("|");
 				for (i = 0; i < column_names.length; i++) {
 					data.push({ title: column_names[i] });
