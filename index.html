@@ -55,7 +55,7 @@
 			// Call a function on the worksheet Object to get the Summary Data.
 			worksheet.getSummaryDataAsync().then(function (sumdata) {
 				// We get our summary data:
-				var worksheetData = sumdata.data;
+				var worksheetData = sumdata;
 				console.log(worksheetData);
 
 			});
