@@ -17,21 +17,36 @@
 	<!-- script src="./dataSources.js"></script -->
 	<script>'use strict';(function(){$(document).ready(function(){tableau.extensions.initializeAsync().then(function(){let dataSourceFetchPromises=[];let dashboardDataSources={};const dashboard=tableau.extensions.dashboardContent.dashboard;dashboard.worksheets.forEach(function(worksheet){dataSourceFetchPromises.push(worksheet.getDataSourcesAsync())});Promise.all(dataSourceFetchPromises).then(function(fetchResults){fetchResults.forEach(function(dataSourcesForWorksheet){dataSourcesForWorksheet.forEach(function(dataSource){if(!dashboardDataSources[dataSource.id]){dashboardDataSources[dataSource.id]=dataSource}})});buildDataSourcesTable(dashboardDataSources);$('#loading').addClass('hidden');$('#dataSourcesTable').removeClass('hidden').addClass('show')})},function(err){console.log('Error while Initializing: '+err.toString())})});function refreshDataSource(dataSource){dataSource.refreshAsync().then(function(){console.log(dataSource.name+': Refreshed Successfully')})}function showModal(dataSource){let modal=$('#infoModal');$('#nameDetail').text(dataSource.name);$('#idDetail').text(dataSource.id);$('#typeDetail').text((dataSource.isExtract)?'Extract':'Live');let fieldNamesStr='';dataSource.fields.forEach(function(field){fieldNamesStr+=field.name+', '});$('#fieldsDetail').text(fieldNamesStr.slice(0,-2));dataSource.getConnectionSummariesAsync().then(function(connectionSummaries){let connectionsStr='';connectionSummaries.forEach(function(summary){connectionsStr+=summary.name+': '+summary.type+', '});$('#connectionsDetail').text(connectionsStr.slice(0,-2))});dataSource.getActiveTablesAsync().then(function(activeTables){let tableStr='';activeTables.forEach(function(table){tableStr+=table.name+', '});$('#activeTablesDetail').text(tableStr.slice(0,-2))});modal.modal('show')}function buildDataSourcesTable(dataSources){$('#dataSourcesTable > tbody tr').remove();const dataSourcesTable=$('#dataSourcesTable > tbody')[0];for(let dataSourceId in dataSources){const dataSource=dataSources[dataSourceId];let newRow=dataSourcesTable.insertRow(dataSourcesTable.rows.length);let nameCell=newRow.insertCell(0);let refreshCell=newRow.insertCell(1);let infoCell=newRow.insertCell(2);let refreshButton=document.createElement('button');refreshButton.innerHTML=('Refresh Now');refreshButton.type='button';refreshButton.className='btn btn-primary';refreshButton.addEventListener('click',function(){refreshDataSource(dataSource)});let infoSpan=document.createElement('span');infoSpan.className='glyphicon glyphicon-info-sign';infoSpan.addEventListener('click',function(){showModal(dataSource)});nameCell.innerHTML=dataSource.name;refreshCell.appendChild(refreshButton);infoCell.appendChild(infoSpan)}}})()</script>
 	
+
 </head>
 
 <h4>Static D3 Bar Chart</h4>
 
-<svg width="960" height="500"></svg>
+<svg viewBox="0 0 60 55" preserveAspectRatio="xMidYMin slice"
+   style="width: 100%; padding-bottom: 92%; height: 1px; overflow: visible">
+  <!-- SVG content -->
+</svg>
+
+
 <script src="https://d3js.org/d3.v4.min.js"></script>
 
 <script>
+	'use strict';
 	// Wrap everything in an anonymous function to avoid polluting the global namespace
 	(function () {
+
+	var window_Width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+	var window_Height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+	console.log('Window Width: ' + window_Width);
+	console.log('Window Height: ' + window_Height);
+
 	var dataArray = [5, 11, 18, 9];
-	var intVerticalScale = 15;
-	var intWidth = 50;
-	var intBarSpacing = 60;
-	var EstimatedChartHeight = 300;
+	var intVerticalScale = window_Height * 0.04;
+	var intWidth = (window_Width * 0.40) / (dataArray.length + 1);
+
+	var intBarSpacing = (window_Width * 0.10);
+	var EstimatedChartHeight = window_Height * 0.8;
+
 
 	// Add svg element to html
 	var svg = d3.select("svg"),
@@ -55,4 +70,3 @@
 
 	})();		
 </script>
-	
