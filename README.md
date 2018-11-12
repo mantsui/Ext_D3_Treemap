@@ -1,3 +1,3 @@
-# TestExt_D3_static_bar02
+# TestExt_Debug01
 
-Simple Tableau Extension test for drawing D3 chart (static)
+Simple Tableau Extension test for getsummarydata
