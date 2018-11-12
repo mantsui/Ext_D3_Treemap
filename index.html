@@ -43,9 +43,9 @@
 
 		function get_SummaryData() {
 			// Gets all the worksheets in a Tableau Dashboard
-			const tableau_worksheets = tableau.extensions.dashboardContent.dashboard.worksheets;
+			const worksheets = tableau.extensions.dashboardContent.dashboard.worksheets;
 			// Finds a worksheet called worksheetData
-			var worksheet = tableau_worksheets.find(function (sheet) {
+			var worksheet = worksheets.find(function (sheet) {
 				return sheet.name === "Sheet_ByRegion";
 			});
 			
