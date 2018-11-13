@@ -1,3 +1,3 @@
-# TestExt_Debug02
+# TestExt_Debug03
 
-Simple Tableau Extension test for getsummarydata
+Simple Tableau Extension test for setting up a configuration dialog.
