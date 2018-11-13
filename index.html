@@ -34,8 +34,8 @@
 		function configure() {
 			const popupUrl = `${window.location.origin}/https://mantsui.github.io/TestExt_Debug03_ConfigDialog`;
 			let defaultPayload = "";
-			tableau.extensions.ui.displayDialogAsync(popupUrl, defaultPayload, { height:300, width:500 }).then((closePayload) =&amp;amp;gt; {
-			}).catch((error) =&amp;gt; {
+			tableau.extensions.ui.displayDialogAsync(popupUrl, defaultPayload, { height:300, width:500 }).then((closePayload) => {
+			}).catch((error) => {
 				switch (error.errorCode) {
 					case tableau.ErrorCodes.DialogClosedByUser:
 					console.log("Dialog was closed by user");
