@@ -21,55 +21,31 @@
 	// Wrap everything in an anonymous function to avoid polluting the global namespace
 	(function () {
 		$(document).ready(function () {
-		// Initialises Tableau Data Extension
-		console.log('Initilizing Tableau Data Extension');
-		tableau.extensions.initializeAsync().then(function () {
-			// Once we initialize, call draw D3 function.
-		 	//drawD3();
-		 	get_SummaryData();
-			
-
-		}, function () { console.log('Error while Initializing: ' + err.toString()); });
-		});
-
-		function get_SummaryData() {
-			// Gets all the worksheets in a Tableau Dashboard
-			const worksheets = tableau.extensions.dashboardContent.dashboard.worksheets;
-			// Finds a worksheet called worksheetData
-			var worksheet = worksheets.find(function (sheet) {
-				console.log('Worksheet: ');
-				console.log(sheet.name);
-				return sheet.name == "Sheet_ByRegion_Tab";
-			});
-			
-			// Call a function on the worksheet Object to get the Summary Data.
-			//worksheet.getSummaryDataAsync().then(function (sumdata) {
-				// We get our summary data:
-				//var worksheetData = sumdata;
-				//console.log(worksheetData);
-
-			//});
-
-			worksheet.getSummaryDataAsync().then(function (sumdata) {
-				// Create an empty arrays for our labels and data set.
-				var labels = [];
-				var data = [];
-				// We get our summary data:
-				var worksheetData = sumdata.data;
-				// We loop through our summary data and hardcode which columns goes into Label
-				// and which column goes into the array.
-				for (var i = 0; i < worksheetData.length; i++) {
-					labels.push(worksheetData[i][0].formattedValue);
-					data.push(worksheetData[i][1].value);
-				}
-				
-				console.log('labels');
-				console.log(labels);
-				console.log('data');
-				console.log(data);
-			})			
+			// Added new code here to point to the configure function.
+			tableau.extensions.initializeAsync({ 'configure':configure }).then(function () {
+				//doSomethingFunction();
+			}, function () { console.log('Error while Initializing: ' + err.toString()); });
+		});		
+		
+		function doSomethingFunction() {
+		//xxx something xxx
 		}
-
+		// This opens the configuration window.
+		function configure() {
+			const popupUrl = `${window.location.origin}/dialog.html`;
+			let defaultPayload = "";
+			tableau.extensions.ui.displayDialogAsync(popupUrl, defaultPayload, { height:300, width:500 }).then((closePayload) =&amp;amp;gt; {
+			}).catch((error) =&amp;gt; {
+				switch (error.errorCode) {
+					case tableau.ErrorCodes.DialogClosedByUser:
+					console.log("Dialog was closed by user");
+					break;
+				default:
+					console.error(error.message);
+			}
+			});
+		}
+		
 		console.log('Test');
 	})();		
 </script>
