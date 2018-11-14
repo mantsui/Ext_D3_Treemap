@@ -27,13 +27,16 @@
 			}, function () { console.log('Error while Initializing: ' + err.toString()); });
 		});		
 		
+		console.log('Window loc');
+		console.log(${window.location.origin});
+		
 		function doSomethingFunction() {
 		//xxx something xxx
 		}
 		// This opens the configuration window.
 		function configure() {
 			const popupUrl = `https://mantsui.github.io/TestExt_Debug03_ConfigDialog`;
-			//const popupUrl = `${window.location.origin}/https://mantsui.github.io/TestExt_Debug03_ConfigDialog`;
+			//const popupUrl = `${window.location.origin}/https://mantsui.github.io/TestExt_Debug03_ConfigDialog`;			
 			let defaultPayload = "";
 			tableau.extensions.ui.displayDialogAsync(popupUrl, defaultPayload, { height:300, width:500 }).then((closePayload) => {
 			}).catch((error) => {
