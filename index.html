@@ -35,8 +35,9 @@
 		}
 		// This opens the configuration window.
 		function configure() {
-			const popupUrl = `${window.location.origin}/TestExt_Debug03_ConfigDialog`;
-			//const popupUrl = `${window.location.origin}/https://mantsui.github.io/TestExt_Debug03_ConfigDialog`;			
+			//const popupUrl = `${window.location.origin}/TestExt_Debug03_ConfigDialog`;
+			//const popupUrl = `${window.location.origin}/https://mantsui.github.io/TestExt_Debug03_ConfigDialog`;
+			const popupUrl = `https://mantsui.github.io/TestExt_Debug03_ConfigDialog`;
 			let defaultPayload = "";
 			tableau.extensions.ui.displayDialogAsync(popupUrl, defaultPayload, { height:300, width:500 }).then((closePayload) => {
 			}).catch((error) => {
