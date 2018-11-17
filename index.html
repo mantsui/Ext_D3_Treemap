@@ -37,7 +37,7 @@
 		function configure() {
 			const popupUrl = `https://mantsui.github.io/TestExt_Debug03_ConfigDialog`;
 			let defaultPayload = "";
-			tableau.extensions.ui.displayDialogAsync(popupUrl, defaultPayload, { height:300, width:500 }).then((closePayload) => {
+			tableau.extensions.ui.displayDialogAsync(popupUrl, defaultPayload, { height:500, width:500 }).then((closePayload) => {
 			}).catch((error) => {
 				switch (error.errorCode) {
 					case tableau.ErrorCodes.DialogClosedByUser:
