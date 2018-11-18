@@ -23,7 +23,7 @@
 		$(document).ready(function () {
 			// Added new code here to point to the configure function.
 			tableau.extensions.initializeAsync({ 'configure':configure }).then(function () {
-				//doSomethingFunction();
+				drawD3chart();
 			}, function () { console.log('Error while Initializing: ' + err.toString()); });
 		});		
 		
@@ -33,11 +33,39 @@
 		function doSomethingFunction() {
 		//xxx something xxx
 		}
+		
+		function drawChartJS() {
+		// We are reading the values from our settings and storing as local variables.
+		var worksheetName = tableau.extensions.settings.get("worksheet");
+		var categoryColumnNumber = tableau.extensions.settings.get("categoryColumnNumber");
+		var valueColumnNumber = tableau.extensions.settings.get("valueColumnNumber");
+		const worksheets=tableau.extensions.dashboardContent.dashboard.worksheets;
+		var worksheet=worksheets.find(function (sheet) { 
+			return sheet.name===worksheetName;
+		});
+		worksheet.getSummaryDataAsync().then(function (sumdata) {
+			var labels = [];
+			var data = [];
+			var worksheetData = sumdata.data;
+
+			for (var i=0; i<worksheetData.length; i++) {
+				// we are using the saved setting values to populate our data set.
+				labels.push(worksheetData[i][categoryColumnNumber-1].formattedValue);
+				data.push(worksheetData[i][valueColumnNumber-1].value);
+			}
+			console.log('Label');
+			console.log(labels);
+			console.log('Data');
+			console.log(data);
+		});
+		}
+		
 		// This opens the configuration window.
 		function configure() {
 			const popupUrl = `https://mantsui.github.io/TestExt_Debug03_ConfigDialog`;
 			let defaultPayload = "";
 			tableau.extensions.ui.displayDialogAsync(popupUrl, defaultPayload, { height:500, width:500 }).then((closePayload) => {
+				drawD3chart();
 			}).catch((error) => {
 				switch (error.errorCode) {
 					case tableau.ErrorCodes.DialogClosedByUser:
