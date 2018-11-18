@@ -32,15 +32,18 @@
 			
 		const worksheets=tableau.extensions.dashboardContent.dashboard.worksheets;
 
+		// Use the worksheet name saved in the Settings to find and return
+		// the worksheet object.
+		var worksheet=worksheets.find(function (sheet) { 
+			return sheet.name===worksheetName;
+		});
+			
 		// We are reading the values from our settings and storing as local variables.
 		var worksheetName = tableau.extensions.settings.get("worksheet");
 		console.log('Worksheet Name: ' + worksheetName);
 		
 		var categoryColumnNumber = tableau.extensions.settings.get("categoryColumnNumber");
 		var valueColumnNumber = tableau.extensions.settings.get("valueColumnNumber");
-		var worksheet=worksheets.find(function (sheet) { 
-			return sheet.name===worksheetName;
-		});
 		worksheet.getSummaryDataAsync().then(function (sumdata) {
 			var labels = [];
 			var data = [];
