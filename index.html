@@ -33,6 +33,8 @@
 		function drawD3chart() {
 		// We are reading the values from our settings and storing as local variables.
 		var worksheetName = tableau.extensions.settings.get("worksheet");
+		console.log('Worksheet Name: ' + worksheetName);
+		
 		var categoryColumnNumber = tableau.extensions.settings.get("categoryColumnNumber");
 		var valueColumnNumber = tableau.extensions.settings.get("valueColumnNumber");
 		const worksheets=tableau.extensions.dashboardContent.dashboard.worksheets;
