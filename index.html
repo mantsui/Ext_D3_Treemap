@@ -27,17 +27,17 @@
 			}, function () { console.log('Error while Initializing: ' + err.toString()); });
 		});		
 		
-		console.log('Window loc');
-		console.log(window.location.origin);
 		
 		function drawD3chart() {
+			
+		const worksheets=tableau.extensions.dashboardContent.dashboard.worksheets;
+
 		// We are reading the values from our settings and storing as local variables.
 		var worksheetName = tableau.extensions.settings.get("worksheet");
 		console.log('Worksheet Name: ' + worksheetName);
 		
 		var categoryColumnNumber = tableau.extensions.settings.get("categoryColumnNumber");
 		var valueColumnNumber = tableau.extensions.settings.get("valueColumnNumber");
-		const worksheets=tableau.extensions.dashboardContent.dashboard.worksheets;
 		var worksheet=worksheets.find(function (sheet) { 
 			return sheet.name===worksheetName;
 		});
