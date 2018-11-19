@@ -16,11 +16,11 @@
 <body>
 <h4>Tableau Extension API Test - Simple D3 Bar</h4>
 
-<!--svg viewBox="0 0 60 55" preserveAspectRatio="xMidYMin slice"
+<svg viewBox="0 0 60 55" preserveAspectRatio="xMidYMin slice"
    style="width: 100%; padding-bottom: 92%; height: 1px; overflow: visible">
-</svg-->
+</svg>
 <!-- SVG content -->
-<div id="D3_Chart"></div>
+<!--div id="D3_Chart"></div-->
 	
 <div id="configure" hide>
 	<h3>Please Configure this custom Extension</h3>
@@ -101,8 +101,8 @@
 			var dataArray = [5, 11, 18, 9];
 			var dataLabel = ['Mon','Wed','Fri','Sat'];
 			
-			var chartWidth = window_Width * 0.4;
-			var chartHeight = window_Height * 0.8;
+			//var chartWidth = window_Width * 0.4;
+			//var chartHeight = window_Height * 0.8;
 			
 			var intVerticalScale = window_Height * 0.04;
 			var intBarWidth = (window_Width * 0.40) / (dataArray.length + 1);
@@ -122,18 +122,18 @@
 			//	height = +svg.attr("height");
 
 			// Add svg element to html
-			//var svg = d3.select("svg")
-			//	.attr("height","100%")
-			//	.attr("width","100%");
+			var svg = d3.select("svg")
+				.attr("height","100%")
+				.attr("width","100%");
 			
 			/* Create the SVG container for the visualization and define its 
 			dimensions. Within that container, add a group element (`<g>`) 
 			that can be transformed via a translation to account for the 
 			margins and to center the visualization in the container.*/
-			var svg = d3.select(document.getElementById("D3_Chart"))
-				.append("svg")
-				.attr("width", chartWidth)
-				.attr("height", chartHeight);
+			//var svg = d3.select(document.getElementById("D3_Chart"))
+			//	.append("svg")
+			//	.attr("width", chartWidth)
+			//	.attr("height", chartHeight);
 				//.append("g")
 				//.attr("transform", "translate(" + chartWidth / 2 + "," + (chartHeight / 2) + ")");			
 			
