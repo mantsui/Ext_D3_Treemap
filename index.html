@@ -103,7 +103,26 @@
 			var intBarSpacing = (window_Width * 0.10);
 			var EstimatedChartHeight = window_Height * 0.8;
 			
-			
+			// Add svg element to html
+			var svg = d3.select("svg"),
+				width = +svg.attr("width"),
+				height = +svg.attr("height");
+		
+			// Add rectangle to svg element
+			svg.selectAll("rect")
+				// Binds data to the element selection(3 element selection currently)
+				.data(dataArray)
+				// Add rectangle item for each element selection
+				.enter().append("rect")	
+
+				// Setting attributes for the rectangle
+				.attr("fill","darkorchid")
+				.attr("height", function(dataArray_DataPoint, dataArray_Index){ return dataArray_DataPoint * intVerticalScale; })
+				.attr("width", intWidth)
+				.attr("x", function(dataArray_DataPoint, dataArray_Index){ return intBarSpacing * dataArray_Index; })
+
+				// Invert the rectangle y-axis because html origin (0,0) starts from top left.
+				.attr("y",function(dataArray_DataPoint, dataArray_Index){ return EstimatedChartHeight - (dataArray_DataPoint * intVerticalScale); });
 		});
 		}
 		
