@@ -112,10 +112,15 @@
 			var xAxis = d3.axisBottom(x);
 			
 			// Add svg element to html
-			var svg = d3.select("svg"),
-				width = +svg.attr("width"),
-				height = +svg.attr("height");
-		
+			//var svg = d3.select("svg"),
+			//	width = +svg.attr("width"),
+			//	height = +svg.attr("height");
+
+			// Add svg element to html
+			var svg = d3.select("svg")
+				.attr("height","100%")
+				.attr("width","100%");
+			
 			// Add rectangle to svg element
 			svg.selectAll("rect")
 				// Binds data to the element selection(3 element selection currently)
