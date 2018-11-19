@@ -11,6 +11,19 @@
 
 	<script src="https://d3js.org/d3.v4.min.js"></script>
 
+	<style>
+		.axis path,
+		.axis line {
+		  fill: none;
+		  stroke: #000;
+		  shape-rendering: crispEdges;
+		}
+
+		.axis text {
+		  font: 10px sans-serif;
+		}
+	</style>
+	
 </head>
 
 <body>
@@ -158,6 +171,11 @@
 				.attr("class","x axis hidden")		//Hidden calls CSS style to hide tick marks
 				.attr("transform","translate(0,480)")	//Shift the x-axis item
 				.call(xAxis);
+			
+			d3.select(".axis").call(d3.svg.axis()
+				.scale(x)
+				.orient("bottom"));
+			d3.select(".axis").call(d3.axisBottom(x));
 			
 		});
 		}
