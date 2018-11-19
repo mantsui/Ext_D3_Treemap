@@ -99,7 +99,7 @@
 			console.log('Window Height: ' + window_Height);
 			var dataArray = [5, 11, 18, 9];
 			var intVerticalScale = window_Height * 0.04;
-			var intWidth = (window_Width * 0.40) / (dataArray.length + 1);
+			var intBarWidth = (window_Width * 0.40) / (dataArray.length + 1);
 			var intBarSpacing = (window_Width * 0.10);
 			var EstimatedChartHeight = window_Height * 0.8;
 			
@@ -118,7 +118,7 @@
 				// Setting attributes for the rectangle
 				.attr("fill","darkorchid")
 				.attr("height", function(dataArray_DataPoint, dataArray_Index){ return dataArray_DataPoint * intVerticalScale; })
-				.attr("width", intWidth)
+				.attr("width", intBarWidth)
 				.attr("x", function(dataArray_DataPoint, dataArray_Index){ return intBarSpacing * dataArray_Index; })
 
 				// Invert the rectangle y-axis because html origin (0,0) starts from top left.
