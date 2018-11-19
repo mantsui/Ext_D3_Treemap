@@ -39,12 +39,12 @@
 		$(document).ready(function () {
 			// Added new code here to point to the configure function.
 			tableau.extensions.initializeAsync({ 'configure':configure }).then(function () {
-				drawD3chart();
+				getData_to_D3();
 			}, function () { console.log('Error while Initializing: ' + err.toString()); });
 		});		
 		
 		
-		function drawD3chart() {
+		function getData_to_D3() {
 			
 		const worksheets=tableau.extensions.dashboardContent.dashboard.worksheets;
 
