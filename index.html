@@ -79,19 +79,19 @@
 		var categoryColumnNumber = tableau.extensions.settings.get("categoryColumnNumber");
 		var valueColumnNumber = tableau.extensions.settings.get("valueColumnNumber");
 		worksheet.getSummaryDataAsync().then(function (sumdata) {
-			var labels = [];
-			var data = [];
+			var inputMeasures = [];
+			var inputData = [];
 			var worksheetData = sumdata.data;
 
 			for (var i=0; i<worksheetData.length; i++) {
 				// we are using the saved setting values to populate our data set.
-				labels.push(worksheetData[i][categoryColumnNumber-1].formattedValue);
-				data.push(worksheetData[i][valueColumnNumber-1].value);
+				inputMeasureslabels.push(worksheetData[i][categoryColumnNumber-1].formattedValue);
+				inputData.push(worksheetData[i][valueColumnNumber-1].value);
 			}
-			console.log('Label');
-			console.log(labels);
+			console.log('Measures');
+			console.log(inputMeasures);
 			console.log('Data');
-			console.log(data);
+			console.log(inputData);
 			
 			var window_Width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 			var window_Height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
