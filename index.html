@@ -100,6 +100,10 @@
 			console.log('Window Height: ' + window_Height);
 			var dataArray = [5, 11, 18, 9];
 			var dataLabel = ['Mon','Wed','Fri','Sat'];
+			
+			var chartWidth = 400;
+			var chartHeight = 400;
+			
 			var intVerticalScale = window_Height * 0.04;
 			var intBarWidth = (window_Width * 0.40) / (dataArray.length + 1);
 			var intBarSpacing = (window_Width * 0.10);
@@ -118,9 +122,20 @@
 			//	height = +svg.attr("height");
 
 			// Add svg element to html
-			var svg = d3.select("svg")
-				.attr("height","100%")
-				.attr("width","100%");
+			//var svg = d3.select("svg")
+			//	.attr("height","100%")
+			//	.attr("width","100%");
+			
+			/* Create the SVG container for the visualization and define its 
+			dimensions. Within that container, add a group element (`<g>`) 
+			that can be transformed via a translation to account for the 
+			margins and to center the visualization in the container.*/
+			var svg = d3.select(document.getElementById("D3_Chart"))
+				.append("svg")
+				.attr("width", chartWidth)
+				.attr("height", chartHeight);
+				//.append("g")
+				//.attr("transform", "translate(" + chartWidth / 2 + "," + (chartHeight / 2) + ")");			
 			
 			// Add rectangle to svg element
 			svg.selectAll("rect")
