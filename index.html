@@ -92,7 +92,7 @@
 		
 		// This opens the configuration window.
 		function configure() {
-			const popupUrl = `https://mantsui.github.io/TestExt_Debug03_ConfigDialog`;
+			const popupUrl = `https://mantsui.github.io/Ext_D3_SimpleBar01_ConfigDialog`;
 			let defaultPayload = "";
 			tableau.extensions.ui.displayDialogAsync(popupUrl, defaultPayload, { height:500, width:500 }).then((closePayload) => {
 				drawD3chart();
