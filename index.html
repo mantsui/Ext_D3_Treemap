@@ -167,11 +167,11 @@
 				.attr("y",function(dataArray_DataPoint, dataArray_Index){ return EstimatedChartHeight - (dataArray_DataPoint * intVerticalScale); });
 			
 			// Add x-axis item to svg element
-			svg.append("g")
-				.attr("class","x axis hidden")		//Hidden calls CSS style to hide tick marks
-				.attr("transform","translate(0,480)")	//Shift the x-axis item
-				.call(xAxis);
-			
+			//svg.append("g")
+			//	.attr("class","x axis hidden")		//Hidden calls CSS style to hide tick marks
+			//	.attr("transform","translate(0,480)")	//Shift the x-axis item
+			//	.call(xAxis);
+			// Add x-axis item to svg element
 			d3.select(".axis").call(d3.svg.axis()
 				.scale(x)
 				.orient("bottom"));
