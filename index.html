@@ -182,14 +182,14 @@
 			
 			// Add x-axis item to svg element
 			//svg.append("g")
-			//	.attr("class","x axis hidden")		//Hidden calls CSS style to hide tick marks
-			//	.attr("transform","translate(0,480)")	//Shift the x-axis item
-			//	.call(xAxis);
+				.attr("class","x axis hidden")		//Hidden calls CSS style to hide tick marks
+				.attr("transform","translate(0,480)")	//Shift the x-axis item
+				.call(xAxis);
 			// Add x-axis item to svg element
-			d3.select(".axis").call(d3.svg.axis()
-				.scale(x)
-				.orient("bottom"));
-			d3.select(".axis").call(d3.axisBottom(x));
+			//d3.select(".axis").call(d3.svg.axis()
+			//	.scale(x)
+			//	.orient("bottom"));
+			//d3.select(".axis").call(d3.axisBottom(x));
 			
 		});
 		}
