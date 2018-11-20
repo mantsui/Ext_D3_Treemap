@@ -181,7 +181,7 @@
 				.attr("y",function(dataArray_DataPoint, dataArray_Index){ return EstimatedChartHeight - (dataArray_DataPoint * intVerticalScale); });
 			
 			// Add x-axis item to svg element
-			//svg.append("g")
+			svg.append("g")
 				.attr("class","x axis hidden")		//Hidden calls CSS style to hide tick marks
 				.attr("transform","translate(0,480)")	//Shift the x-axis item
 				.call(xAxis);
