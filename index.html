@@ -138,7 +138,7 @@
 			
 			// Set label for the horizontal x-axis
 			var x = d3.scalePoint()
-					.domain(dataLabel)
+					.domain(['Mon','Wed','Fri','Sat'])
 					.range([15, 400]);			
 			// Declare generator for horizontal x-axis
 			var xAxis = d3.axisBottom(x);
