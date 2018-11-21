@@ -136,33 +136,10 @@
 			var intBarSpacing = (window_Width * 0.10);
 			var EstimatedChartHeight = window_Height * 0.8;
 			
-			// Set label for the horizontal x-axis
-			var x = d3.scalePoint()
-					.domain(['Mon','Wed','Fri','Sat'])
-					.range([15, 400]);			
-			// Declare generator for horizontal x-axis
-			var xAxis = d3.axisBottom(x);
-			
-			// Add svg element to html
-			//var svg = d3.select("svg"),
-			//	width = +svg.attr("width"),
-			//	height = +svg.attr("height");
-
 			// Add svg element to html
 			var svg = d3.select("svg")
 				.attr("height","100%")
 				.attr("width","100%");
-			
-			/* Create the SVG container for the visualization and define its 
-			dimensions. Within that container, add a group element (`<g>`) 
-			that can be transformed via a translation to account for the 
-			margins and to center the visualization in the container.*/
-			//var svg = d3.select(document.getElementById("D3_Chart"))
-			//	.append("svg")
-			//	.attr("width", chartWidth)
-			//	.attr("height", chartHeight);
-				//.append("g")
-				//.attr("transform", "translate(" + chartWidth / 2 + "," + (chartHeight / 2) + ")");			
 			
 			// Add rectangle to svg element
 			svg.selectAll("rect")
@@ -179,17 +156,6 @@
 
 				// Invert the rectangle y-axis because html origin (0,0) starts from top left.
 				.attr("y",function(dataArray_DataPoint, dataArray_Index){ return EstimatedChartHeight - (dataArray_DataPoint * intVerticalScale); });
-			
-			// Add x-axis item to svg element
-			svg.append("g")
-				.attr("class","x axis hidden")		//Hidden calls CSS style to hide tick marks
-				.attr("transform","translate(0,480)")	//Shift the x-axis item
-				.call(xAxis);
-			// Add x-axis item to svg element
-			//d3.select(".axis").call(d3.svg.axis()
-			//	.scale(x)
-			//	.orient("bottom"));
-			//d3.select(".axis").call(d3.axisBottom(x));
 			
 		});
 		}
