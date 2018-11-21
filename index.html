@@ -157,6 +157,17 @@
 				// Invert the rectangle y-axis because html origin (0,0) starts from top left.
 				.attr("y",function(dataArray_DataPoint, dataArray_Index){ return EstimatedChartHeight - (dataArray_DataPoint * intVerticalScale); });
 			
+			var axis_length = window_Width * 0.40;
+			var scale = d3.scalePoint()
+				.domain(['Mon','Wed','Fri','Sat'])
+				.rangeRound([0,axis_length])
+				.padding(.1)
+				.align(0.1);
+			var axis = d3.axisBottom()
+				.scale(scale);
+			svg.append("g").call(axis)
+				.attr("transform","translate("+ (padding.left) +","+(EstimatedChartHeight - 100)+")");
+			
 		});
 		}
 		
