@@ -166,7 +166,8 @@
 				.padding(0.0)
 				.align(-0.1);
 			var axis = d3.axisBottom()
-				.scale(scale);
+				.scale(scale)
+				.ticks(4);
 			
 			svg.append("g").call(axis)
 				.attr("transform","translate("+ (padding.left) +","+(EstimatedChartHeight + 10)+")");
