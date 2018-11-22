@@ -157,11 +157,11 @@
 				// Invert the rectangle y-axis because html origin (0,0) starts from top left.
 				.attr("y",function(dataArray_DataPoint, dataArray_Index){ return EstimatedChartHeight - (dataArray_DataPoint * intVerticalScale); });
 			
-			var padding = {left:20,right:20};
-			var axis_length = window_Width * 0.40;
+			var padding = {left:0,right:20};
+			var xAxis_Length = window_Width * 0.40;
 			var scale = d3.scalePoint()
 				.domain(['Mon','Wed','Fri','Sat'])
-				.rangeRound([0,axis_length])
+				.rangeRound([0, xAxis_Length])
 				.padding(.1)
 				.align(0.1);
 			var axis = d3.axisBottom()
