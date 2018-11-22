@@ -144,7 +144,8 @@
 			// Add rectangle to svg element
 			svg.selectAll("rect")
 				// Binds data to the element selection(3 element selection currently)
-				.data(dataArray)
+				//.data(dataArray)
+				.data(inputData)
 				// Add rectangle item for each element selection
 				.enter().append("rect")	
 
@@ -160,7 +161,8 @@
 			var padding = {left: (intBarWidth / 2), right:20};
 			var xAxis_Length = window_Width * 0.40;
 			var scale = d3.scalePoint()
-				.domain(dataLabel)
+				//.domain(dataLabel)
+				.domain(inputMeasures)
 				.rangeRound([0, xAxis_Length - (intBarWidth/2) - (intBarSpacing/2) ])
 				//.rangeRound([0, xAxis_Length - (intBarWidth/2) - intBarSpacing])
 				.padding(0.0)
