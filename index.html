@@ -160,10 +160,10 @@
 			var padding = {left:0,right:20};
 			var xAxis_Length = window_Width * 0.40;
 			var scale = d3.scalePoint()
-				.domain(['Mon','Wed','Fri','Sat'])
+				.domain(dataLabel)
 				.rangeRound([0, xAxis_Length - intBarWidth])
 				.padding(0.0)
-				.align(0.1);
+				.align(0.0);
 			var axis = d3.axisBottom()
 				.scale(scale);
 			
