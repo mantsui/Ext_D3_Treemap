@@ -161,7 +161,7 @@
 			var xAxis_Length = window_Width * 0.40;
 			var scale = d3.scalePoint()
 				.domain(dataLabel)
-				.rangeRound([0, xAxis_Length - intBarWidth])
+				.rangeRound([0, xAxis_Length - intBarWidth - intBarSpacing])
 				.padding(0.0)
 				.align(0.0);
 			var axis = d3.axisBottom()
