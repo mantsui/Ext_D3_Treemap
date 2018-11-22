@@ -162,7 +162,7 @@
 			var scale = d3.scalePoint()
 				.domain(['Mon','Wed','Fri','Sat'])
 				.rangeRound([0, xAxis_Length - intBarWidth])
-				.padding(.1)
+				.padding(0.0)
 				.align(0.1);
 			var axis = d3.axisBottom()
 				.scale(scale);
