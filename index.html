@@ -166,10 +166,9 @@
 				.rangeRound([0, xAxis_Length - (intBarWidth/2) - (intBarSpacing/2) ])
 				//.rangeRound([0, xAxis_Length - (intBarWidth/2) - intBarSpacing])
 				.padding(0.0)
-				.align(-0.5);
+				.align(0.0);
 			var axis = d3.axisBottom()
-				.scale(scale)
-				.ticks(4);
+				.scale(scale);
 			
 			svg.append("g").call(axis)
 				.attr("transform","translate("+ (padding.left) +","+(EstimatedChartHeight + 10)+")");
