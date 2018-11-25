@@ -140,9 +140,11 @@
 			var D3_y = d3.scaleLinear()
 				.range([EstimatedChartHeight, 0]);
 			
+			console.log('----- d3.max() -----');
+			console.log(d3.max(inputData));
 			// Scale the range of the data in the y-axis domain
 			//y.domain([0, d3.max(data, function(d) { return d.sales; })]);
-			D3_y.domain([0, d3.max(inputData);			
+			D3_y.domain( [0, d3.max(inputData)] );
 			
 			// Add svg element to html
 			var svg = d3.select("svg")
@@ -165,7 +167,7 @@
 
 				// Invert the rectangle y-axis because html origin (0,0) starts from top left.
 				//.attr("y",function(dataArray_DataPoint, dataArray_Index){ return EstimatedChartHeight - (dataArray_DataPoint * intVerticalScale); });
-				.attr("y", function(d) { return D3_y(inputData); })
+				.attr("y", function(d) { return D3_y(inputData); });
 			
 			var padding = {left: (intBarWidth / 2), right:20};
 			var xAxis_Length = window_Width * 0.40;
