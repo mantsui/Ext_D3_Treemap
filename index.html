@@ -161,7 +161,8 @@
 
 				// Setting attributes for the rectangle
 				.attr("fill","darkorchid")
-				.attr("height", function(dataArray_DataPoint, dataArray_Index){ return dataArray_DataPoint * intVerticalScale; })
+				//.attr("height", function(dataArray_DataPoint, dataArray_Index){ return dataArray_DataPoint * intVerticalScale; })
+				.attr("height", function(d) { return EstimatedChartHeight - D3_y(inputData); })
 				.attr("width", intBarWidth)
 				.attr("x", function(dataArray_DataPoint, dataArray_Index){ return intBarSpacing * dataArray_Index; })
 
