@@ -125,8 +125,6 @@
 			var window_Height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
 			console.log('Window Width: ' + window_Width);
 			console.log('Window Height: ' + window_Height);
-			var dataArray = [5, 11, 18, 9];
-			var dataLabel = ['Mon','Wed','Fri','Sat'];
 			
 			//var chartWidth = window_Width * 0.4;
 			//var chartHeight = window_Height * 0.8;
@@ -134,7 +132,7 @@
 			var intVerticalScale = window_Height * 0.04;
 			var intBarWidth = (window_Width * 0.40) / (dataArray.length + 1);
 			var intBarSpacing = (window_Width * 0.10);
-			var EstimatedChartHeight = window_Height * 0.8;
+			var chartHeight = window_Height * 0.8;
 			
 			// set the y-axis range
 			var D3_y = d3.scaleLinear()
@@ -143,50 +141,42 @@
 			console.log('----- d3.max() -----');
 			console.log(d3.max(inputData));
 			// Scale the range of the data in the y-axis domain
-			//y.domain([0, d3.max(data, function(d) { return d.sales; })]);
 			D3_y.domain( [0, d3.max(inputData)] );
 			
 			// Add svg element to html
 			var svg = d3.select("svg")
 				//.attr("height","100%")
-				.attr("height", EstimatedChartHeight)
+				.attr("height", chartHeight)
 				.attr("width","100%");
 			
 			// Add rectangle to svg element
 			svg.selectAll("rect")
-				// Binds data to the element selection(3 element selection currently)
-				//.data(dataArray)
+				// Binds Tableau data to the element selection
 				.data(inputData)
 				// Add rectangle item for each element selection
 				.enter().append("rect")	
 
 				// Setting attributes for the rectangle
 				.attr("fill","darkorchid")
-				//.attr("height", function(dataArray_DataPoint, dataArray_Index){ return dataArray_DataPoint * intVerticalScale; })
-				.attr("height", function(d) { return EstimatedChartHeight - D3_y(d); } )
+				.attr("height", function(d) { return chartHeight - D3_y(d); } ) // HTML origin (0,0) starts from top left.
 				.attr("width", intBarWidth)
 				.attr("x", function(dataArray_DataPoint, dataArray_Index){ return intBarSpacing * dataArray_Index; })
-
-				// Invert the rectangle y-axis because html origin (0,0) starts from top left.
-				//.attr("y",function(dataArray_DataPoint, dataArray_Index){ return EstimatedChartHeight - (dataArray_DataPoint * intVerticalScale); });
 				.attr("y", function(d) { return D3_y(d); } );
 			
 			var padding = {left: (intBarWidth / 2), right:20};
 			var xAxis_Length = window_Width * 0.40;
-			var scale = d3.scalePoint()
-				//.domain(dataLabel)
+			var xScale = d3.scalePoint()
 				.domain(inputMeasures)
 				.rangeRound([0, xAxis_Length - (intBarWidth/2) - (intBarSpacing/2) ])
-				//.rangeRound([0, xAxis_Length - (intBarWidth/2) - intBarSpacing])
 				.padding(0.0)
 				.align(0.0);
 			var xAxis = d3.axisBottom()
-				.scale(scale);
+				.scale(xScale);
 			
 			// Append a 'group' element to 'svg'
 			// Add x-axis
 			svg.append("g").call(xAxis)
-				.attr("transform","translate("+ (padding.left) +","+(EstimatedChartHeight + 10)+")");
+				.attr("transform","translate("+ (padding.left) +","+(chartHeight + 10)+")");
 			
 		});
 		}
