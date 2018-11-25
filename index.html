@@ -163,13 +163,13 @@
 				// Setting attributes for the rectangle
 				.attr("fill","darkorchid")
 				//.attr("height", function(dataArray_DataPoint, dataArray_Index){ return dataArray_DataPoint * intVerticalScale; })
-				.attr("height", function(d) { return EstimatedChartHeight - D3_y(inputData); })
+				.attr("height", function(d) { return EstimatedChartHeight - D3_y(d); } )
 				.attr("width", intBarWidth)
 				.attr("x", function(dataArray_DataPoint, dataArray_Index){ return intBarSpacing * dataArray_Index; })
 
 				// Invert the rectangle y-axis because html origin (0,0) starts from top left.
 				//.attr("y",function(dataArray_DataPoint, dataArray_Index){ return EstimatedChartHeight - (dataArray_DataPoint * intVerticalScale); });
-				.attr("y", function(d) { return D3_y(inputData); });
+				.attr("y", function(d) { return D3_y(d); } );
 			
 			var padding = {left: (intBarWidth / 2), right:20};
 			var xAxis_Length = window_Width * 0.40;
