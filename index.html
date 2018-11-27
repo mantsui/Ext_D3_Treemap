@@ -133,13 +133,13 @@
 			var intBarWidth = (window_Width * 0.40) / (inputMeasures.length + 1);
 			var intBarSpacing = (window_Width * 0.30) / (inputMeasures.length + 1);
 			var chartHeight = window_Height * 0.8;
+			console.log('intBarWidth: ' + str(intBarWidth));
+			console.log('intBarSpacing: ' + str(intBarSpacing));
 			
 			// set the y-axis range
 			var D3_y = d3.scaleLinear()
 				.range([chartHeight, 0]);
 			
-			console.log('----- d3.max() -----');
-			console.log(d3.max(inputData));
 			// Scale the range of the data in the y-axis domain
 			D3_y.domain( [0, d3.max(inputData)] );
 			
@@ -164,7 +164,7 @@
 				.attr("y", function(d) { return D3_y(d); } );
 			
 			var padding = {left: (intBarWidth / 2.0), right:20};
-			var xAxis_Length = window_Width * 0.40;
+			var xAxis_Length = window_Width * 0.30;
 			var xScale = d3.scalePoint()
 				.domain(inputMeasures)
 				.rangeRound([0, xAxis_Length - (intBarWidth/2.0) - (intBarSpacing/2.0) ])
