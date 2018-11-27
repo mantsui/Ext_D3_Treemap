@@ -163,11 +163,11 @@
 				.attr("x", function(dataArray_DataPoint, dataArray_Index){ return intBarSpacing * dataArray_Index; })
 				.attr("y", function(d) { return D3_y(d); } );
 			
-			var padding = {left: (intBarWidth / 2), right:20};
+			var padding = {left: (intBarWidth / 2.0), right:20};
 			var xAxis_Length = window_Width * 0.40;
 			var xScale = d3.scalePoint()
 				.domain(inputMeasures)
-				.rangeRound([0, xAxis_Length - (intBarWidth/2) - (intBarSpacing/2) ])
+				.rangeRound([0, xAxis_Length - (intBarWidth/2.0) - (intBarSpacing/2.0) ])
 				.padding(0.0)
 				.align(0.0);
 			var xAxis = d3.axisBottom()
