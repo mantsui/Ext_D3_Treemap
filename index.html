@@ -131,7 +131,7 @@
 			
 			var intVerticalScale = window_Height * 0.04;
 			var intBarWidth = (window_Width * 0.40) / (inputMeasures.length + 1);
-			var intBarSpacing = (window_Width * 0.85) / (inputMeasures.length + 1);
+			var intBarSpacing = (window_Width * 0.95) / (inputMeasures.length + 1);
 			var chartHeight = window_Height * 0.8;
 			console.log('intBarWidth: ' + intBarWidth.toString());
 			console.log('intBarSpacing: ' + intBarSpacing.toString());
@@ -165,10 +165,11 @@
 			
 			var padding = {left: (intBarWidth / 2.0), right:20};
 			//var xAxis_Length = window_Width * 0.30;
-			var xAxis_Length = (intBarWidth + intBarSpacing) * (inputMeasures.length + 1);
+			var xAxis_Length = (intBarWidth + intBarSpacing) * (inputMeasures.length);
 			var xScale = d3.scalePoint()
 				.domain(inputMeasures)
-				.rangeRound([0, xAxis_Length - (intBarWidth/2.0) - (intBarSpacing/2.0) ])
+				//.rangeRound([0, xAxis_Length - (intBarWidth/2.0) - (intBarSpacing/2.0) ])
+				.rangeRound([0, xAxis_Length ])
 				.padding(0.0)
 				.align(0.0);
 			var xAxis = d3.axisBottom()
