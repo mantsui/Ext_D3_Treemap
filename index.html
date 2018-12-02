@@ -121,6 +121,28 @@
 			console.log('Data');
 			console.log(inputData);
 			
+			draw_D3(inputMeasures, inputData)
+		});
+		}
+		
+		// This opens the configuration window.
+		function configure() {
+			const popupUrl = `https://mantsui.github.io/Ext_D3_SimpleBar01_ConfigDialog`;
+			let defaultPayload = "";
+			tableau.extensions.ui.displayDialogAsync(popupUrl, defaultPayload, { height:500, width:500 }).then((closePayload) => {
+				drawD3chart();
+			}).catch((error) => {
+				switch (error.errorCode) {
+					case tableau.ErrorCodes.DialogClosedByUser:
+					console.log("Dialog was closed by user");
+					break;
+				default:
+					console.error(error.message);
+			}
+			});
+		}
+		
+		function draw_D3(Data_Dimension, DataMeasure){
 			var window_Width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 			var window_Height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
 			console.log('Window Width: ' + window_Width);
@@ -153,7 +175,7 @@
 			// Add rectangle to svg element
 			svg.selectAll("rect")
 				// Binds Tableau data to the element selection
-				.data(inputData)
+				.data(DataMeasure)
 				// Add rectangle item for each element selection
 				.enter().append("rect")	
 
@@ -168,7 +190,7 @@
 			//var xAxis_Length = window_Width * 0.30;
 			var xAxis_Length = chartWidth;
 			var xScale = d3.scalePoint()
-				.domain(inputMeasures)
+				.domain(Data_Dimension)
 				//.rangeRound([0, xAxis_Length - (intBarWidth/2.0) - (intBarSpacing/2.0) ])
 				.rangeRound([0, xAxis_Length ])
 				.padding(0.0)
@@ -180,25 +202,6 @@
 			// Add x-axis
 			svg.append("g").call(xAxis)
 				.attr("transform","translate("+ (padding.left) +","+(chartHeight + 10)+")");
-			
-		});
-		}
-		
-		// This opens the configuration window.
-		function configure() {
-			const popupUrl = `https://mantsui.github.io/Ext_D3_SimpleBar01_ConfigDialog`;
-			let defaultPayload = "";
-			tableau.extensions.ui.displayDialogAsync(popupUrl, defaultPayload, { height:500, width:500 }).then((closePayload) => {
-				drawD3chart();
-			}).catch((error) => {
-				switch (error.errorCode) {
-					case tableau.ErrorCodes.DialogClosedByUser:
-					console.log("Dialog was closed by user");
-					break;
-				default:
-					console.error(error.message);
-			}
-			});
 		}
 		
 		console.log('Test');
