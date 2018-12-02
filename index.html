@@ -126,12 +126,12 @@
 			console.log('Window Width: ' + window_Width);
 			console.log('Window Height: ' + window_Height);
 			
-			//var chartWidth = window_Width * 0.4;
+			var chartWidth = window_Width * 0.4;
 			//var chartHeight = window_Height * 0.8;
 			
 			var intVerticalScale = window_Height * 0.04;
-			var intBarWidth = (window_Width * 0.40) / (inputMeasures.length + 1);
-			var intBarSpacing = (window_Width * 0.40) / (inputMeasures.length + 1);
+			var intBarWidth = (window_Width * 0.40) / (inputMeasures.length);
+			var intBarSpacing = (window_Width * 0.40) / (inputMeasures.length);
 			var chartHeight = window_Height * 0.8;
 			console.log('intBarWidth: ' + intBarWidth.toString());
 			console.log('intBarSpacing: ' + intBarSpacing.toString());
@@ -147,7 +147,8 @@
 			var svg = d3.select("svg")
 				//.attr("height","100%")
 				.attr("height", chartHeight)
-				.attr("width","100%");
+				//.attr("width","100%")
+				.attr("width", chartWidth);
 			
 			// Add rectangle to svg element
 			svg.selectAll("rect")
@@ -165,7 +166,7 @@
 			
 			var padding = {left: (intBarWidth / 2.0), right:20};
 			//var xAxis_Length = window_Width * 0.30;
-			var xAxis_Length = (intBarWidth + intBarSpacing) * (inputMeasures.length);
+			var xAxis_Length = chartWidth;
 			var xScale = d3.scalePoint()
 				.domain(inputMeasures)
 				//.rangeRound([0, xAxis_Length - (intBarWidth/2.0) - (intBarSpacing/2.0) ])
