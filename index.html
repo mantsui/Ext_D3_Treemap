@@ -147,65 +147,119 @@
 		}
 		
 		function draw_D3(Data_Dimension, DataMeasure){
-			var window_Width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-			var window_Height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-			console.log('Window Width: ' + window_Width);
-			console.log('Window Height: ' + window_Height);
-			
-			var chartWidth = window_Width * 0.4;
-			//var chartHeight = window_Height * 0.8;
-			
-			var intVerticalScale = window_Height * 0.04;
-			var intBarWidth = (window_Width * 0.40) / (Data_Dimension.length);
-			var intBarSpacing = (window_Width * 0.40) / (Data_Dimension.length);
-			var chartHeight = window_Height * 0.8;
-			console.log('intBarWidth: ' + intBarWidth.toString());
-			console.log('intBarSpacing: ' + intBarSpacing.toString());
-			
-			// set the y-axis range
-			var D3_y = d3.scaleLinear()
-				.range([chartHeight, 0]);
-			
-			// Scale the range of the data in the y-axis domain
-			D3_y.domain( [0, d3.max(DataMeasure)] );
-			
-			// Add svg element to html
-			var svg = d3.select("svg")
-				//.attr("height","100%")
-				.attr("height", chartHeight)
-				//.attr("width","100%")
-				.attr("width", chartWidth);
-			
-			// Add rectangle to svg element
-			svg.selectAll("rect")
-				// Binds Tableau data to the element selection
-				.data(DataMeasure)
-				// Add rectangle item for each element selection
-				.enter().append("rect")	
 
-				// Setting attributes for the rectangle
-				.attr("fill","darkorchid")
-				.attr("height", function(d) { return chartHeight - D3_y(d); } ) // HTML origin (0,0) starts from top left.
-				.attr("width", intBarWidth)
-				.attr("x", function(dataArray_DataPoint, dataArray_Index){ return intBarSpacing * dataArray_Index; })
-				.attr("y", function(d) { return D3_y(d); } );
+			// Define the dimensions of the visualization.
+			var width = 600, //480 660
+			height = 600,	//480 660
+			radius = (Math.min(width, height) / 2);
+
+			/* Define the scales that will translate data values into visualization 
+				 properties. The "x" scale will represent angular position within the
+				 visualization, so it ranges linearly from 0 to 2π. The "y" scale will 
+				 represent area, so it ranges from 0 to the full radius of the
+				 visualization. Since area varies as the square of the radius, 
+				 this scale takes the square root of the input domain before mapping to
+				 the output range.  */
+			var x = d3.scaleLinear()
+					.range([0, 2 * Math.PI]);
+
+			var y = d3.scaleSqrt()
+					.range([0, radius]);
+
+			var color = d3.scaleOrdinal(d3.schemeSet3);
+			//var color = d3.scaleOrdinal()
+			//  .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+			//var sequentialScaleColor = d3.scaleSequential(d3.interpolatePiYG);
+			//var sequentialScaleColor = d3.scaleSequential()
+			//  .domain([0, 2000000]);
+
+			// Declare Data structure
+			var partition = d3.partition();
+
+			// Size arcs
+			var arc = d3.arc()
+					.startAngle(function(d) { return Math.max(0, Math.min(2 * Math.PI, x(d.x0))); })
+					.endAngle(function(d) { return Math.max(0, Math.min(2 * Math.PI, x(d.x1))); })
+					.innerRadius(function(d) { return Math.max(0, y(d.y0)); })
+					.outerRadius(function(d) { return Math.max(0, y(d.y1)); });
+
+			//Remove and create svg for chart refreshing
+			d3.select("svg").remove();	  
+
+
+			/* Create the SVG container for the visualization and define its 
+				 dimensions. Within that container, add a group element (`<g>`) 
+				 that can be transformed via a translation to account for the 
+				 margins and to center the visualization in the container.*/  	  
+			var svg = d3.select(document.getElementById("D3_Sunburst"))
+					.append("svg")
+					.attr("width", width)
+					.attr("height", height)
+					.append("g")
+					.attr("transform", "translate(" + width / 2 + "," + (height / 2) + ")");
+
+			// Find data root
+			var root = d3.hierarchy(nodeData);
+			root.sum(function(d) { return d.size; });
+
+			console.log("***** root data *****");	// Debug output
+			console.log(root);			// Debug output
+
+			svg.selectAll("path")
+			.data(partition(root).descendants())
+			.enter().append("path")
+			.attr("d", arc)
+
+			.style("fill", function(d) { return color((d.children ? d : d.parent).data.name); })
+					//.style("fill", function(d) { return color(d.data.name); })
+					//.style('fill', function(d) { return sequentialScaleColor(d); })
+					//.style('fill', function(d) { return sequentialScaleColor((d.children ? d : d.parent).data.name); })
+
+			.on("click", click)	// Initiate D3 event listener for mouse click on D3 chart
+			.append("title")
+			.text( Text_ToolTip );	// Initiate and call text tooltip
+
+
+			// Function for click event  
+			function click(d) {
+			svg.transition()
+				.duration(750)
+				.tween("scale", function() {
+			  		var xd = d3.interpolate(x.domain(), [d.x0, d.x1]),
+			      		yd = d3.interpolate(y.domain(), [d.y0, 1]),
+			      		yr = d3.interpolate(y.range(), [d.y0 ? 20 : 0, radius]);
+			  		return function(t) { x.domain(xd(t)); y.domain(yd(t)).range(yr(t)); };
+				})
+				.selectAll("path")
+				.attrTween("d", function(d) { return function() { return arc(d); }; });
+
+			}
+
+			// Create text tooltip for D3 Chart
+			function Text_ToolTip(d){
+				var Value_Field_Name = strDisplayName;
+				var Tooltip = ""; 
+				var formatComma = d3.format(",");
+
+				// Define whether dollar sign display on tooltip
+				var DollarSign = "";
+
+				// Add dollar sign to tooltip if value is not "Discharges"
+				if( Value_Field_Name.toUpperCase().indexOf("DISCHARGES") === -1 ) {
+					DollarSign = "$";
+				}
+
+				Tooltip = d.data.name + "\n" + Value_Field_Name + ": " + DollarSign + formatComma(d.value);
+
+				//console.log("Height: " + d.height);			// Debug output
+				//console.log("Depth: " + d.depth);			// Debug output
+				//console.log("Value_Field_Name: " + d.data.name);	// Debug output
+				//console.log("Value: " + d.value);			// Debug output
+				//console.log("Size: " + d.data.size);			// Debug output
+
+				return Tooltip;
+			}			
 			
-			var padding = {left: (intBarWidth / 2.0), right:20};
-			//var xAxis_Length = window_Width * 0.30;
-			var xAxis_Length = chartWidth;
-			var xScale = d3.scalePoint()
-				.domain(Data_Dimension)
-				//.rangeRound([0, xAxis_Length - (intBarWidth/2.0) - (intBarSpacing/2.0) ])
-				.rangeRound([0, xAxis_Length ])
-				.padding(0.0)
-				.align(0.0);
-			var xAxis = d3.axisBottom()
-				.scale(xScale);
-			
-			// Append a 'group' element to 'svg'
-			// Add x-axis
-			svg.append("g").call(xAxis)
-				.attr("transform","translate("+ (padding.left) +","+(chartHeight + 10)+")");
 		}
 		
 		console.log('Test');
