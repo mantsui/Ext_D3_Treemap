@@ -410,15 +410,15 @@
 
 			// Create text tooltip for D3 Chart
 			function Text_ToolTip(d){
-				var Value_Field_Name = strDisplayName;
+				var Value_Field_Name = "Sales";
 				var Tooltip = ""; 
 				var formatComma = d3.format(",");
 
 				// Define whether dollar sign display on tooltip
 				var DollarSign = "";
 
-				// Add dollar sign to tooltip if value is not "Discharges"
-				if( Value_Field_Name.toUpperCase().indexOf("DISCHARGES") === -1 ) {
+				// Add dollar sign to tooltip if value is not "Sales"
+				if( Value_Field_Name.toUpperCase().indexOf("SALES") === -1 ) {
 					DollarSign = "$";
 				}
 
