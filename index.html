@@ -431,6 +431,37 @@
 				//console.log("Size: " + d.data.size);			// Debug output
 
 				return Tooltip;
+			}
+			
+			// Tableau .getData() returns an array (rows) of arrays (columns) of objects, 
+			// which have a formattedValue property.
+			// Convert and flatten "Array of Arrays" to "Array of objects" in 
+			// field:values convention for easier data format for D3.
+			function ReduceToObjectTablulated(cols, data){
+
+				var Array_Of_Objects = [];
+
+				for (var RowIndex = 0; RowIndex < data.length; RowIndex++) {
+					var SingleObject = new Object();
+
+					for (var FieldIndex = 0; FieldIndex < Object.keys(data[RowIndex]).length; FieldIndex++) {
+						var FieldName = cols[FieldIndex].getFieldName();
+
+						SingleObject[FieldName] = data[RowIndex][FieldIndex].formattedValue;
+
+					} // Looping through the object number of properties (aka: Fields) in object
+
+					Array_Of_Objects.push(SingleObject);	// Dynamically append object to the array
+
+					//console.log('*****************');	// Debug output
+					//console.log(SingleObject);		// Debug output
+					//console.log(Array_Of_Objects);	// Debug output
+
+				} //Looping through data array of objects.
+
+				//console.log('***** Display Array_Of_Objects *****');	// Debug output
+				//console.log(Array_Of_Objects);												// Debug output	
+				return Array_Of_Objects;
 			}			
 			
 		}
