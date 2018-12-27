@@ -364,8 +364,8 @@
 				 that can be transformed via a translation to account for the 
 				 margins and to center the visualization in the container.*/  	  
 			//var svg = d3.select(document.getElementById("D3_Sunburst"))
-			var svg = d3.select("svg")
-					//.append("svg")
+			var svg = d3.select("body")
+					.append("svg")
 					.attr("width", width)
 					.attr("height", height)
 					.append("g")
