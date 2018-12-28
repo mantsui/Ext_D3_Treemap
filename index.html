@@ -134,8 +134,8 @@
 			console.log('--- worksheetColumns ---');
 			console.log(worksheetColumns);
 			
-			/*Convert Tableau data into Array of Objects for D3 processing. */
-			//var Tableau_Array_of_Objects = ReduceToObjectTablulated(worksheetColumns, data);
+			// Convert Tableau data into Array of Objects for D3 processing.
+			var Tableau_Array_of_Objects = ReduceToObjectTablulated(worksheetColumns, data);
 			
 			draw_D3(inputMeasures, inputData);
 		});
