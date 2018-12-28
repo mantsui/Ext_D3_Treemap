@@ -458,6 +458,14 @@
 				var SingleObject = new Object();
 
 				console.log('Looping data RowIndex: ' + RowIndex);//debug loop
+
+				var FieldIndex = 0;
+				TableauData.columns.forEach(function (current_value) {
+					console.log('Looping data FieldIndex: ' + FieldIndex);//debug loop
+					console.log('Fieldname: ' + current_value.fieldName);//debug loop
+					FieldIndex++;//debug loop
+				});
+					
 				//for (var FieldIndex = 0; FieldIndex < Object.keys(data[RowIndex]).length; FieldIndex++) {
 				//	var FieldName = cols[FieldIndex].getFieldName();
 
