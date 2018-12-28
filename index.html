@@ -125,9 +125,16 @@
 			console.log('--- sumdata.data ---');
 			console.log(worksheetData);
 			
-			var worksheetColumns = sumdata.columns;
-			console.log('--- sumdata.columns ---');
-			console.log(worksheetColumns);
+			//var worksheetColumns = sumdata.columns;
+			var worksheetColumns = [];
+			//console.log('--- sumdata.columns ---');
+			//console.log(worksheetColumns);
+
+			//Setup simple array of column names.
+			sumdata.columns.forEach(function (current_value) {
+				worksheetColumns.push(current_value.fieldName);
+			});
+			
 			
 			draw_D3(inputMeasures, inputData);
 		});
