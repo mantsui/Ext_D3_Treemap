@@ -125,17 +125,17 @@
 			console.log('--- sumdata.data ---');
 			console.log(worksheetData);
 			
-			//var worksheetColumns = sumdata.columns;
 			var worksheetColumns = [];
-			//console.log('--- sumdata.columns ---');
-			//console.log(worksheetColumns);
 
-			//Setup simple array of column names.
+			// Setup simple array of column names.
 			sumdata.columns.forEach(function (current_value) {
 				worksheetColumns.push(current_value.fieldName);
 			});
 			console.log('--- worksheetColumns ---');
 			console.log(worksheetColumns);
+			
+			/*Convert Tableau data into Array of Objects for D3 processing. */
+			var Tableau_Array_of_Objects = ReduceToObjectTablulated(worksheetColumns, data);
 			
 			draw_D3(inputMeasures, inputData);
 		});
