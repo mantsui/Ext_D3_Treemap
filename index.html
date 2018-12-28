@@ -134,7 +134,8 @@
 			sumdata.columns.forEach(function (current_value) {
 				worksheetColumns.push(current_value.fieldName);
 			});
-			
+			console.log('--- worksheetColumns ---');
+			console.log(worksheetColumns);
 			
 			draw_D3(inputMeasures, inputData);
 		});
