@@ -450,6 +450,7 @@
 		// which have a formattedValue property.
 		// Convert and flatten "Array of Arrays" to "Array of objects" in 
 		// field:values convention for easier data format for D3.
+		// This is also for understandability to imitate the closest form of tablulated data format.
 		function ReduceToObjectTablulated(TableauData){
 
 			var Array_Of_Objects = [];
@@ -459,13 +460,18 @@
 
 				console.log('Looping data RowIndex: ' + RowIndex);//debug loop
 
-				var FieldIndex = 0;
-				TableauData.columns.forEach(function (current_value) {
+				//var FieldIndex = 0;
+				//TableauData.columns.forEach(function (current_value) {
+				//	console.log('Looping data FieldIndex: ' + FieldIndex);//debug loop
+				//	console.log('Fieldname: ' + current_value.fieldName);//debug loop
+				//	FieldIndex++;//debug loop
+				//});
+				
+				for (var FieldIndex = 0; FieldIndex < TableauData.data[RowIndex]; FieldIndex++) {
 					console.log('Looping data FieldIndex: ' + FieldIndex);//debug loop
-					console.log('Fieldname: ' + current_value.fieldName);//debug loop
-					FieldIndex++;//debug loop
-				});
-					
+					console.log(TableauData.data[RowIndex]);//debug loop
+				}
+				
 				//for (var FieldIndex = 0; FieldIndex < Object.keys(data[RowIndex]).length; FieldIndex++) {
 				//	var FieldName = cols[FieldIndex].getFieldName();
 
