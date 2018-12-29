@@ -128,10 +128,13 @@
 			// Convert Tableau data into Array of Objects for D3 processing.
 			var Tableau_Array_of_Objects = ReduceToObjectTablulated(sumdata);
 
+			var arrayDimensionNames = ['Region', 'State or Province', 'Product Category', 'Product Sub-Category'];
+			var strMeasureName = 'SUM(Sales)';
+			var strDisplayName = 'Sales';
 			TableauTreeData = Convert_To_TreeData(Tableau_Array_of_Objects, arrayDimensionNames, strMeasureName, strDisplayName);
 						
 			//console.log('***** Display Tree Data *****');	// Debug output
-			//console.log(TableauTreeData);									// Debug output
+			//console.log(TableauTreeData);			// Debug output
 			
 			draw_D3(inputMeasures, inputData);
 		});
