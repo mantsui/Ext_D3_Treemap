@@ -124,16 +124,7 @@
 			
 			console.log('--- sumdata.data ---');
 			console.log(worksheetData);
-			
-			var worksheetColumns = [];
-
-			// Setup simple array of column names.
-			sumdata.columns.forEach(function (current_value) {
-				worksheetColumns.push(current_value.fieldName);
-			});
-			console.log('--- worksheetColumns ---');
-			console.log(worksheetColumns);
-			
+						
 			// Convert Tableau data into Array of Objects for D3 processing.
 			var Tableau_Array_of_Objects = ReduceToObjectTablulated(sumdata);
 			
@@ -455,19 +446,17 @@
 
 			var Array_Of_Objects = [];
 			
-			//console.log('----- TableauData.columns -----');
-			//console.log(TableauData.columns);
-
 			for (var RowIndex = 0; RowIndex < TableauData.data.length; RowIndex++) {
 				var SingleObject = new Object();
 
 				console.log('Looping data RowIndex: ' + RowIndex);//debug loop
 				
 				for (var FieldIndex = 0; FieldIndex < TableauData.data[RowIndex].length; FieldIndex++) {
-					console.log('Looping data FieldIndex: ' + TableauData.columns[FieldIndex].fieldName);//debug loop
-					//console.log(TableauData.columns[FieldIndex].fieldName);
-					console.log(TableauData.data[RowIndex][FieldIndex].value);//debug loop
-				}
+					//console.log('Looping data FieldIndex: ' + TableauData.columns[FieldIndex].fieldName);//debug loop
+					//console.log(TableauData.data[RowIndex][FieldIndex].value);//debug loop
+					var FieldName = TableauData.columns[FieldIndex].fieldName;
+					SingleObject[FieldName] = TableauData.data[RowIndex][FieldIndex].value;
+				}//Looping through the object number of properties (aka: Fields) in object
 				
 				//for (var FieldIndex = 0; FieldIndex < Object.keys(data[RowIndex]).length; FieldIndex++) {
 				//	var FieldName = cols[FieldIndex].getFieldName();
@@ -476,16 +465,16 @@
 
 				//} // Looping through the object number of properties (aka: Fields) in object
 
-				//Array_Of_Objects.push(SingleObject);	// Dynamically append object to the array
+				Array_Of_Objects.push(SingleObject);	// Dynamically append object to the array
 
-				//console.log('*****************');	// Debug output
-				//console.log(SingleObject);		// Debug output
+				console.log(' ----- Single Object -----');	// Debug output
+				console.log(SingleObject);		// Debug output
 				//console.log(Array_Of_Objects);	// Debug output
 
 			} //Looping through data array of objects.
 
-			//console.log('***** Display Array_Of_Objects *****');	// Debug output
-			//console.log(Array_Of_Objects);												// Debug output	
+			console.log(' ----- Display Array_Of_Objects ----- ');	// Debug output
+			console.log(Array_Of_Objects);												// Debug output	
 			return Array_Of_Objects;
 		}
 		console.log('Test');
