@@ -449,35 +449,71 @@
 			for (var RowIndex = 0; RowIndex < TableauData.data.length; RowIndex++) {
 				var SingleObject = new Object();
 
-				console.log('Looping data RowIndex: ' + RowIndex);//debug loop
-				
 				for (var FieldIndex = 0; FieldIndex < TableauData.data[RowIndex].length; FieldIndex++) {
-					//console.log('Looping data FieldIndex: ' + TableauData.columns[FieldIndex].fieldName);//debug loop
-					//console.log(TableauData.data[RowIndex][FieldIndex].value);//debug loop
 					var FieldName = TableauData.columns[FieldIndex].fieldName;
 					SingleObject[FieldName] = TableauData.data[RowIndex][FieldIndex].value;
 				}//Looping through the object number of properties (aka: Fields) in object
 				
-				//for (var FieldIndex = 0; FieldIndex < Object.keys(data[RowIndex]).length; FieldIndex++) {
-				//	var FieldName = cols[FieldIndex].getFieldName();
-
-				//	SingleObject[FieldName] = data[RowIndex][FieldIndex].formattedValue;
-
-				//} // Looping through the object number of properties (aka: Fields) in object
-
 				Array_Of_Objects.push(SingleObject);	// Dynamically append object to the array
 
-				console.log(' ----- Single Object -----');	// Debug output
-				console.log(SingleObject);		// Debug output
-				//console.log(Array_Of_Objects);	// Debug output
+				//console.log(' ----- Single Object -----');	// Debug output
+				//console.log(SingleObject);			// Debug output
+				//console.log(Array_Of_Objects);		// Debug output
 
 			} //Looping through data array of objects.
 
-			console.log(' ----- Display Array_Of_Objects ----- ');	// Debug output
-			console.log(Array_Of_Objects);												// Debug output	
+			//console.log(' ----- Display Array_Of_Objects ----- ');// Debug output
+			//console.log(Array_Of_Objects);												// Debug output	
 			return Array_Of_Objects;
 		}
-		console.log('Test');
+		
+		// Convert tablulated data into hierarchical data for most advanced D3 charts
+		// Not all D3 charts requires hierarchical data as input (ie: simple D3 line chart, simple D3 bar chart)
+		function Convert_To_TreeData(FlatData, arrayDimensionNames, strValueName, strDisplayValue){
+
+			// Clone a local array of Dimension Names so the array argument is pass by value and not by pass reference
+			var localArrayDimensionNames = arrayDimensionNames.slice();
+
+			var TreeData = { name : strDisplayValue, children : [] };
+			var final_Child_Level = localArrayDimensionNames.pop();
+			var non_Final_Children_Levels = localArrayDimensionNames;
+
+			// Convert tabulated data to tree data.
+			// For each data row, loop through the expected levels traversing the output tree
+			FlatData.forEach(function(d){
+				// Keep this as a reference to the current level
+				var depthCursor = TreeData.children;
+				// Go down one level at a time
+				non_Final_Children_Levels.forEach(function( property, depth ){
+
+					// Look to see if a branch has already been created
+					var index;
+					depthCursor.forEach(function(child,i){
+						if ( d[property] == child.name ) index = i;
+					});
+					// Add a branch if it isn't there
+					if ( isNaN(index) ) {
+						depthCursor.push({ name : d[property], children : []});
+						index = depthCursor.length - 1;
+					}
+					// Now reference the new child array as we go deeper into the tree
+					depthCursor = depthCursor[index].children;
+					// This is a leaf, so add the last element to the specified branch
+
+					//Remove all commas in a text string
+					var TempString = d[strValueName].replace(/,/g,"");
+					Target_Key = Math.round(+TempString); //Convert String to Numeric
+
+					if ( depth === non_Final_Children_Levels.length - 1 ) {
+						depthCursor.push({ name : d[final_Child_Level], size : Target_Key });
+					}
+				});
+			});
+
+			return TreeData;
+		}		
+		
+		
 	})();		
 </script>
 </body>
