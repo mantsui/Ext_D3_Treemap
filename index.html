@@ -455,8 +455,8 @@
 
 			var Array_Of_Objects = [];
 			
-			console.log('----- TableauData.columns -----');
-			console.log(TableauData.columns);
+			//console.log('----- TableauData.columns -----');
+			//console.log(TableauData.columns);
 
 			for (var RowIndex = 0; RowIndex < TableauData.data.length; RowIndex++) {
 				var SingleObject = new Object();
@@ -464,9 +464,9 @@
 				console.log('Looping data RowIndex: ' + RowIndex);//debug loop
 				
 				for (var FieldIndex = 0; FieldIndex < TableauData.data[RowIndex].length; FieldIndex++) {
-					//console.log('Looping data FieldIndex: ' + FieldIndex);//debug loop
-					//console.log(TableauData.columns[FieldIndex].current_value);
-					//console.log(TableauData.data[RowIndex][FieldIndex].value);//debug loop
+					console.log('Looping data FieldIndex: ' + FieldIndex);//debug loop
+					console.log(TableauData.columns[FieldIndex].fieldName);
+					console.log(TableauData.data[RowIndex][FieldIndex].value);//debug loop
 				}
 				
 				//for (var FieldIndex = 0; FieldIndex < Object.keys(data[RowIndex]).length; FieldIndex++) {
