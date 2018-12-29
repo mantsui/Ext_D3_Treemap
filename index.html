@@ -127,6 +127,11 @@
 						
 			// Convert Tableau data into Array of Objects for D3 processing.
 			var Tableau_Array_of_Objects = ReduceToObjectTablulated(sumdata);
+
+			TableauTreeData = Convert_To_TreeData(Tableau_Array_of_Objects, arrayDimensionNames, strMeasureName, strDisplayName);
+						
+			//console.log('***** Display Tree Data *****');	// Debug output
+			//console.log(TableauTreeData);									// Debug output
 			
 			draw_D3(inputMeasures, inputData);
 		});
