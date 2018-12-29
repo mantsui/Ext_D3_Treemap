@@ -468,8 +468,8 @@
 				//});
 				
 				for (var FieldIndex = 0; FieldIndex < TableauData.data[RowIndex].length; FieldIndex++) {
-					console.log('Looping data FieldIndex: ' + FieldIndex);//debug loop
-					console.log(TableauData.data[RowIndex]);//debug loop
+					console.log('Looping data FieldIndex: ' + TableauData.columns[FieldIndex].current_value);//debug loop
+					console.log(TableauData.data[RowIndex][FieldIndex]);//debug loop
 				}
 				
 				//for (var FieldIndex = 0; FieldIndex < Object.keys(data[RowIndex]).length; FieldIndex++) {
