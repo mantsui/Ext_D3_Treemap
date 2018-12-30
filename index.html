@@ -132,8 +132,15 @@
 			var strDisplayName = 'Sales';
 			var TableauTreeData = Convert_To_TreeData(Tableau_Array_of_Objects, arrayDimensionNames, strMeasureName, strDisplayName);
 						
-			//console.log('***** Display Tree Data *****');	// Debug output
-			//console.log(TableauTreeData);			// Debug output
+			console.log('***** Display Tree Data *****');	// Debug output
+			console.log(TableauTreeData);			// Debug output
+			
+			var Test_root = d3.stratify()
+				.id(function(d) { return d.name; })
+				.parentId(function(d) { return d.parent; })
+				(Tableau_Array_of_Objects);			
+			console.log('***** Display Test Stratify *****');	// Debug output
+			console.log(Test_root);			// Debug output
 			
 			draw_D3(TableauTreeData, strDisplayName);
 		});
