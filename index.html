@@ -9,7 +9,6 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
 
-	<!--script src="https://d3js.org/d3.v4.min.js"></script-->
 	<script src="https://d3js.org/d3.v5.min.js"></script>
 
 	<style>
@@ -133,8 +132,8 @@
 			var strDisplayName = 'Sales';
 			var TableauTreeData = Convert_To_TreeData(Tableau_Array_of_Objects, arrayDimensionNames, strMeasureName, strDisplayName);
 						
-			console.log('***** Display Tree Data *****');	// Debug output
-			console.log(TableauTreeData);			// Debug output
+			//console.log('***** Display Tree Data *****');	// Debug output
+			//console.log(TableauTreeData);			// Debug output
 			
 			draw_D3(TableauTreeData, strDisplayName);
 		});
@@ -158,179 +157,6 @@
 		}
 		
 		function draw_D3(nodeData, MeasureName){
-
-			/*var nodeData = {
-					name: "Customer Segment",
-					children: 
-					[
-						{
-						 name: "Small Business", 
-						 children:
-						 [
-							{name: "Central", 
-							 children:
-								[
-									{name: "Furniture", size: 25851},
-									{name: "Office Supplies", size: 41417},
-									{name: "Technology", size: 21071}
-								]
-							},
-
-							{name: "East", 
-							 children:
-								[
-									{name: "Furniture", size: 28903},
-									{name: "Office Supplies", size: 102472},
-									{name: "Technology", size: 35262}
-								]			
-							},
-
-							{name: "South", 
-							 children:
-								[
-									{name: "Furniture", size: 26289},
-									{name: "Office Supplies", size: 18914},
-									{name: "Technology", size: 27908}			 
-								]
-							},
-
-							{name: "West", 
-							 children:
-								[
-									{name: "Furniture", size: 37592},
-									{name: "Office Supplies", size: 6591},
-									{name: "Technology", size: 28024}
-								]
-							}
-						 ]
-						},
-
-						{name: "Corporate",
-						 children:
-						 [
-							{name: "Central", 
-							 children:
-								[
-									{name: "Furniture", size: 44450},
-									{name: "Office Supplies", size: 32968},
-									{name: "Technology", size: 83461}
-								]
-							},
-
-							{name: "East",
-							 children:
-								[
-									{name: "Furniture", size: 70511},
-									{name: "Office Supplies", size: 64384},
-									{name: "Technology", size: 34774}
-								]
-							},
-
-							{name: "South",
-							 children:
-								[
-									{name: "Furniture", size: 45055},
-									{name: "Office Supplies", size: 42900},
-									{name: "Technology", size: 35368}
-								]
-							},
-
-							{name: "West",
-							 children:
-								[
-									{name: "Furniture", size: 69068},
-									{name: "Office Supplies", size: 34147},
-									{name: "Technology", size: 100698}
-								]
-							}
-						 ]
-						},
-
-						{name: "Home Office",
-						 children:
-						 [
-							{name: "Central",
-							 children:
-								[
-									{name: "Furniture", size: 50304},
-									{name: "Office Supplies", size: 34124},
-									{name: "Technology", size: 57787}
-								]
-							},
-
-							{name: "East",
-							 children:
-								[
-									{name: "Furniture", size: 29811},
-									{name: "Office Supplies", size: 24406},
-									{name: "Technology", size: 68939}
-								]
-							},
-
-							{name: "South",
-							 children:
-								[
-									{name: "Furniture", size: 20936},
-									{name: "Office Supplies", size: 28550},
-									{name: "Technology", size: 17426}
-								]
-							},
-
-							{name: "West",
-							 children:
-								[
-									{name: "Furniture", size: 38813},
-									{name: "Office Supplies", size: 59468},
-									{name: "Technology", size: 33917}
-								]
-							}
-						 ]
-						},
-
-						{name: "Consumer",
-						 children:
-						 [
-							{name: "Central",
-							 children:
-								[
-									{name: "Furniture", size: 34689},
-									{name: "Office Supplies", size: 6610},
-									{name: "Technology", size: 15551}
-								]
-							},
-
-							{name: "East", 
-							 children:
-								[
-									{name: "Furniture", size: 67107},
-									{name: "Office Supplies", size: 20523},
-									{name: "Technology", size: 45081}
-								]
-							},
-
-							{name: "South", 
-							 children:
-								[
-									{name: "Furniture", size: 20787},
-									{name: "Office Supplies", size: 22203},
-									{name: "Technology", size: 50769}
-								]
-							},
-
-							{name: "West",
-							 children:
-								[
-									{name: "Furniture", size: 50537},
-									{name: "Office Supplies", size: 11693},
-									{name: "Technology", size: 56228}
-								]
-							}
-						 ]
-						}
-					]
-				}; */
-
-			
 			// Define the dimensions of the visualization.
 			var width = 600, //480 660
 			height = 600,	//480 660
@@ -421,7 +247,7 @@
 
 			// Create text tooltip for D3 Chart
 			function Text_ToolTip(d){
-				var Value_Field_Name = "Sales";
+				var Value_Field_Name = MeasureName;
 				var Tooltip = ""; 
 				var formatComma = d3.format(",");
 
