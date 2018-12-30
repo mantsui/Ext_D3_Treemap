@@ -510,7 +510,7 @@
 
 					//Remove all commas in a text string
 					var TempString = d[strValueName].replace(/,/g,"");
-					Target_Key = Math.round(+TempString); //Convert String to Numeric
+					var Target_Key = Math.round(+TempString); //Convert String to Numeric
 
 					if ( depth === non_Final_Children_Levels.length - 1 ) {
 						depthCursor.push({ name : d[final_Child_Level], size : Target_Key });
