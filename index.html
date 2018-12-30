@@ -133,10 +133,10 @@
 			var strDisplayName = 'Sales';
 			var TableauTreeData = Convert_To_TreeData(Tableau_Array_of_Objects, arrayDimensionNames, strMeasureName, strDisplayName);
 						
-			//console.log('***** Display Tree Data *****');	// Debug output
-			//console.log(TableauTreeData);			// Debug output
+			console.log('***** Display Tree Data *****');	// Debug output
+			console.log(TableauTreeData);			// Debug output
 			
-			draw_D3(inputMeasures, inputData);
+			draw_D3(TableauTreeData, strDisplayName);
 		});
 		}
 		
@@ -157,9 +157,9 @@
 			});
 		}
 		
-		function draw_D3(Data_Dimension, DataMeasure){
+		function draw_D3(nodeData, MeasureName){
 
-			var nodeData = {
+			/*var nodeData = {
 					name: "Customer Segment",
 					children: 
 					[
@@ -328,7 +328,7 @@
 						 ]
 						}
 					]
-				};
+				}; */
 
 			
 			// Define the dimensions of the visualization.
