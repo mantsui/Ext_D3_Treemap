@@ -102,18 +102,18 @@
 		var categoryColumnNumber = tableau.extensions.settings.get("categoryColumnNumber");
 		var valueColumnNumber = tableau.extensions.settings.get("valueColumnNumber");
 		worksheet.getSummaryDataAsync().then(function (sumdata) {
-			var inputMeasures = [];
-			var inputData = [];
+			//var inputMeasures = [];
+			//var inputData = [];
 			var worksheetData = sumdata.data;
-			for (var i=0; i<worksheetData.length; i++) {
+			/*for (var i=0; i<worksheetData.length; i++) {
 				// we are using the saved setting values to populate our data set.
 				inputMeasures.push(worksheetData[i][categoryColumnNumber-1].formattedValue);
 				inputData.push(worksheetData[i][valueColumnNumber-1].value);
-			}
-			console.log('Measures');
-			console.log(inputMeasures);
-			console.log('Data');
-			console.log(inputData);
+			}*/
+			//console.log('Measures');
+			//console.log(inputMeasures);
+			//console.log('Data');
+			//console.log(inputData);
 			
 			console.log('--- sumdata.data ---');
 			console.log(worksheetData);
