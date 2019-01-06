@@ -100,7 +100,8 @@
 		//console.log('tableau.extensions.settings.get("worksheet") Worksheet Name: ' + worksheetName);
 		
 		var categoryColumnNumber = tableau.extensions.settings.get("categoryColumnNumber");
-		var valueColumnNumber = tableau.extensions.settings.get("valueColumnNumber");
+		var strMeasureName  = tableau.extensions.settings.get("MeasureName");
+		console.log('In extension MeasureName: ' + strMeasureName);
 		worksheet.getSummaryDataAsync().then(function (sumdata) {
 			//var inputMeasures = [];
 			//var inputData = [];
@@ -121,7 +122,8 @@
 			// Convert Tableau data into Array of Objects for D3 processing.
 			var Tableau_Array_of_Objects = ReduceToObjectTablulated(sumdata);
 			var arrayDimensionNames = ['Region', 'State or Province', 'Product Category', 'Product Sub-Category'];
-			var strMeasureName = 'SUM(Sales)';
+			//var strMeasureName = 'SUM(Sales)';
+			strMeasureName = 'SUM(Sales)';
 			var strDisplayName = 'Sales';
 			var TableauTreeData = Convert_To_TreeData(Tableau_Array_of_Objects, arrayDimensionNames, strMeasureName, strDisplayName);
 						
