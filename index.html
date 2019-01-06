@@ -101,7 +101,10 @@
 		
 		var categoryColumnNumber = tableau.extensions.settings.get("categoryColumnNumber");
 		var strMeasureName  = tableau.extensions.settings.get("MeasureName");
-		console.log('In extension MeasureName: ' + strMeasureName);
+		//console.log('In extension MeasureName: ' + strMeasureName);
+			console.log('----- settings.get("MeasureName") -----');
+			console.log(tableau.extensions.settings.get("MeasureName"));
+			
 		worksheet.getSummaryDataAsync().then(function (sumdata) {
 			//var inputMeasures = [];
 			//var inputData = [];
