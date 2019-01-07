@@ -101,6 +101,11 @@
 		
 		var strMeasureName = tableau.extensions.settings.get("MeasureName");
 		//console.log('In extension MeasureName: ' + strMeasureName);
+
+		var regExp = /\(([^)]+)\)/;
+		var matches = regExp.exec(strMeasureName);
+		//matches[1] contains the value between the parentheses
+		console.log('regex test: ' + matches[1]);			
 			
 		console.log('----- tableau.extensions.settings.getAll() -----');
 		console.log(tableau.extensions.settings.getAll());
