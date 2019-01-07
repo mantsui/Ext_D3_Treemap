@@ -190,7 +190,7 @@
 			// Find data root
 			var root = d3.hierarchy(nodeData);
 			root.sum(function(d) { return d.size; });
-			console.log('----- root data -----', rooy); // Debug output
+			console.log('----- root data -----', root); // Debug output
 			svg.selectAll("path")
 			.data(partition(root).descendants())
 			.enter().append("path")
