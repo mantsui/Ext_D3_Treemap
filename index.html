@@ -187,8 +187,10 @@
 					.attr("width", width)
 					.attr("height", height)
 					.append("g")
-					.attr("transform", "translate(" + width / 2 + "," + (height / 2) + ")")
-					.attr("align","center");
+					.attr("transform", "translate(" + width / 2 + "," + (height / 2) + ")");
+					//.attr("align","center");
+			document.getElementById("#D3_Chart").align = "center";
+			
 			// Find data root
 			var root = d3.hierarchy(nodeData);
 			root.sum(function(d) { return d.size; });
