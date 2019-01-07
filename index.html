@@ -100,11 +100,10 @@
 		//console.log('tableau.extensions.settings.get("worksheet") Worksheet Name: ' + worksheetName);
 		
 		var strMeasureName = tableau.extensions.settings.get("MeasureName");
-		console.log('In extension MeasureName: ' + strMeasureName);
+		//console.log('In extension MeasureName: ' + strMeasureName);
 			
-		var TestExtArray01 = tableau.extensions.settings.get("TestExtArray");
-		console.log('----- Test Extension Array -----');
-		console.log(TestExtArray01);
+		console.log('----- tableau.extensions.settings.getAll() -----');
+		console.log(tableau.extensions.settings.getAll());
 			
 		worksheet.getSummaryDataAsync().then(function (sumdata) {
 			//var inputMeasures = [];
