@@ -99,7 +99,6 @@
 		//var worksheetName = tableau.extensions.settings.get("worksheet");
 		//console.log('tableau.extensions.settings.get("worksheet") Worksheet Name: ' + worksheetName);
 		
-		var categoryColumnNumber = tableau.extensions.settings.get("categoryColumnNumber");
 		var strMeasureName = tableau.extensions.settings.get("MeasureName");
 		console.log('In extension MeasureName: ' + strMeasureName);
 			
@@ -111,15 +110,6 @@
 			//var inputMeasures = [];
 			//var inputData = [];
 			var worksheetData = sumdata.data;
-			/*for (var i=0; i<worksheetData.length; i++) {
-				// we are using the saved setting values to populate our data set.
-				inputMeasures.push(worksheetData[i][categoryColumnNumber-1].formattedValue);
-				inputData.push(worksheetData[i][valueColumnNumber-1].value);
-			}*/
-			//console.log('Measures');
-			//console.log(inputMeasures);
-			//console.log('Data');
-			//console.log(inputData);
 			
 			console.log('--- sumdata.data ---');
 			console.log(worksheetData);
