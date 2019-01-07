@@ -118,7 +118,7 @@
 			var Tableau_Array_of_Objects = ReduceToObjectTablulated(sumdata);
 			//Tableau_Array_of_Objects
 			var TableauTreeData = Convert_To_TreeData(Tableau_Array_of_Objects, Ordered_Dimensions, strMeasureName, strDisplayName);
-						
+			TableauTreeData.sort(compareValues(strMeasureName));	//sort the array by measure object-property	
 			console.log('----- Display Tree Data -----', TableauTreeData);	// Debug output
 						
 			draw_D3(TableauTreeData, strDisplayName);
