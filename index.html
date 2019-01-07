@@ -122,20 +122,14 @@
 		console.log(Ordered_Dimensions);
 			
 		worksheet.getSummaryDataAsync().then(function (sumdata) {
-			//var inputMeasures = [];
-			//var inputData = [];
-			var worksheetData = sumdata.data;
-			
-			console.log('--- sumdata.data ---');
-			console.log(worksheetData);
+			var worksheetData = sumdata.data;			
+			console.log('----- sumdata.data -----', worksheetData);
 						
 			// Convert Tableau data into Array of Objects for D3 processing.
 			var Tableau_Array_of_Objects = ReduceToObjectTablulated(sumdata);
-			var arrayDimensionNames = ['Region', 'State or Province', 'Product Category', 'Product Sub-Category'];
-			//var strMeasureName = 'SUM(Sales)';
-			//strMeasureName = 'SUM(Sales)';
-			//var strDisplayName = 'Sales';
-			var TableauTreeData = Convert_To_TreeData(Tableau_Array_of_Objects, arrayDimensionNames, strMeasureName, strDisplayName);
+			//var arrayDimensionNames = ['Region', 'State or Province', 'Product Category', 'Product Sub-Category'];
+			
+			var TableauTreeData = Convert_To_TreeData(Tableau_Array_of_Objects, Ordered_Dimensions, strMeasureName, strDisplayName);
 						
 			console.log('***** Display Tree Data *****');	// Debug output
 			console.log(TableauTreeData);			// Debug output
