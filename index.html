@@ -103,12 +103,23 @@
 		//console.log('In extension MeasureName: ' + strMeasureName);
 
 		var regExp = /\(([^)]+)\)/;
-		var matches = regExp.exec(strMeasureName);
+		var regExpMatches = regExp.exec(strMeasureName);
 		//matches[1] contains the value between the parentheses
-		console.log('regex test: ' + matches[1]);			
+		var strDisplayName = regExpMatches[1];
 			
-		console.log('----- tableau.extensions.settings.getAll() -----');
-		console.log(tableau.extensions.settings.getAll());
+		//console.log('----- tableau.extensions.settings.getAll() -----');
+		//console.log(tableau.extensions.settings.getAll());
+		var dict_Settings = tableau.extensions.settings.getAll();
+		var Ordered_Dimensions = [];
+		for(var key in dict_Settings) {
+			var value = dict_Settings[key];
+
+			if (key.includes('FieldName_')){
+				Ordered_Dimensions.push(value);
+			}
+		}	
+		console.log('----- Ordered_Dimensions -----');
+		console.log(Ordered_Dimensions);
 			
 		worksheet.getSummaryDataAsync().then(function (sumdata) {
 			//var inputMeasures = [];
@@ -123,7 +134,7 @@
 			var arrayDimensionNames = ['Region', 'State or Province', 'Product Category', 'Product Sub-Category'];
 			//var strMeasureName = 'SUM(Sales)';
 			//strMeasureName = 'SUM(Sales)';
-			var strDisplayName = 'Sales';
+			//var strDisplayName = 'Sales';
 			var TableauTreeData = Convert_To_TreeData(Tableau_Array_of_Objects, arrayDimensionNames, strMeasureName, strDisplayName);
 						
 			console.log('***** Display Tree Data *****');	// Debug output
