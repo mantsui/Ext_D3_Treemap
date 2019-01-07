@@ -40,11 +40,11 @@
 <body>
 <h4>Tableau Extension API Test - D3 Sunburst Test</h4>
 
-<svg viewBox="0 0 60 55" preserveAspectRatio="xMidYMin slice"
+<!--svg viewBox="0 0 60 55" preserveAspectRatio="xMidYMin slice"
    style="width: 100%; text-align:center; padding-bottom: 92%; height: 1px; overflow: visible">
-</svg>
+</svg-->
 <!-- SVG content -->
-<!--div id="D3_Chart"></div-->
+<div id="D3_Chart"></div>
 	
 <div id="configure" hide>
 	<h3>Please Configure this custom Extension</h3>
@@ -181,7 +181,8 @@
 				 that can be transformed via a translation to account for the 
 				 margins and to center the visualization in the container.*/  	  
 			//var svg = d3.select(document.getElementById("D3_Sunburst"))
-			var svg = d3.select("body")
+			//var svg = d3.select("body")
+			var svg = d3.select("#D3_Chart")
 					.append("svg")
 					.attr("width", width)
 					.attr("height", height)
