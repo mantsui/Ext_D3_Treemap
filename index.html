@@ -142,9 +142,13 @@
 		}
 		
 		function draw_D3(nodeData, MeasureName){
+			
+			var window_Width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+			var window_Height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+			
 			// Define the dimensions of the visualization.
-			var width = 600, //480 660
-			height = 600,	//480 660
+			var width = Math.min(window_Width, window_Height), //600
+			height = Math.min(window_Width, window_Height),	//600
 			radius = (Math.min(width, height) / 2);
 			/* Define the scales that will translate data values into visualization 
 				 properties. The "x" scale will represent angular position within the
