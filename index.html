@@ -33,10 +33,6 @@
 		  font-size: 12px;
 		  fill: purple;
 		}
-		path {
-			stroke:rgb(255, 255, 255);
-			stroke-width: 2.0px;
-		}
 	</style>
 	
 </head>
@@ -212,6 +208,11 @@
 			.on("click", click)	// Initiate D3 event listener for mouse click on D3 chart
 			.append("title")
 			.text( Text_ToolTip );	// Initiate and call text tooltip
+			
+			// Adjust separator color and line thickness
+			$("path").css("stroke", "rgb(255, 255, 255)");
+			$("path").css("stroke-width", "1.0px");
+			
 			// Function for click event  
 			function click(d) {
 			svg.transition()
