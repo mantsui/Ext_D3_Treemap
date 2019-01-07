@@ -94,21 +94,14 @@
 		var worksheet=worksheets.find(function (sheet) { 
 			return sheet.name===sheetName;
 		});
-			
-		// We are reading the values from our settings and storing as local variables.
-		//var worksheetName = tableau.extensions.settings.get("worksheet");
-		//console.log('tableau.extensions.settings.get("worksheet") Worksheet Name: ' + worksheetName);
-		
+					
 		var strMeasureName = tableau.extensions.settings.get("MeasureName");
-		//console.log('In extension MeasureName: ' + strMeasureName);
 
 		var regExp = /\(([^)]+)\)/;
 		var regExpMatches = regExp.exec(strMeasureName);
 		//matches[1] contains the value between the parentheses
 		var strDisplayName = regExpMatches[1];
 			
-		//console.log('----- tableau.extensions.settings.getAll() -----');
-		//console.log(tableau.extensions.settings.getAll());
 		var dict_Settings = tableau.extensions.settings.getAll();
 		var Ordered_Dimensions = [];
 		for(var key in dict_Settings) {
@@ -118,21 +111,17 @@
 				Ordered_Dimensions.push(value);
 			}
 		}	
-		console.log('----- Ordered_Dimensions -----');
-		console.log(Ordered_Dimensions);
+		console.log('----- Ordered_Dimensions -----', Ordered_Dimensions);	// Debug output
 			
 		worksheet.getSummaryDataAsync().then(function (sumdata) {
 			var worksheetData = sumdata.data;			
 			console.log('----- sumdata.data -----', worksheetData);
 						
 			// Convert Tableau data into Array of Objects for D3 processing.
-			var Tableau_Array_of_Objects = ReduceToObjectTablulated(sumdata);
-			//var arrayDimensionNames = ['Region', 'State or Province', 'Product Category', 'Product Sub-Category'];
-			
+			var Tableau_Array_of_Objects = ReduceToObjectTablulated(sumdata);			
 			var TableauTreeData = Convert_To_TreeData(Tableau_Array_of_Objects, Ordered_Dimensions, strMeasureName, strDisplayName);
 						
-			console.log('***** Display Tree Data *****');	// Debug output
-			console.log(TableauTreeData);			// Debug output
+			console.log('----- Display Tree Data -----', TableauTreeData);	// Debug output
 						
 			draw_D3(TableauTreeData, strDisplayName);
 		});
@@ -201,8 +190,7 @@
 			// Find data root
 			var root = d3.hierarchy(nodeData);
 			root.sum(function(d) { return d.size; });
-			console.log("***** root data *****");	// Debug output
-			console.log(root);			// Debug output
+			console.log('----- root data -----', rooy); // Debug output
 			svg.selectAll("path")
 			.data(partition(root).descendants())
 			.enter().append("path")
