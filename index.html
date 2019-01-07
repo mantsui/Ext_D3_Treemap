@@ -33,22 +33,6 @@
 		  font-size: 12px;
 		  fill: purple;
 		}
-		
-		.scaling-svg-container {
-		  position: relative; 
-		  height:0; 
-		  width: 100%; 
-		  padding: 0;
-		  padding-bottom: 100%; 
-		  /* over-ride this inline for aspect ratio other than square */
-		}
-		.scaling-svg {
-		  position: absolute; 
-		  height: 100%; 
-		  width: 100%; 
-		  left: 0; 
-		  top:0;
-		}
 	</style>
 	
 </head>
@@ -56,13 +40,9 @@
 <body>
 <h4>Tableau Extension API Test - D3 Sunburst Test</h4>
 
-<div class="scaling-svg-container" style="padding-bottom: 92% /* 100% * 55/60 */">
-	<svg class="scaling-svg" viewBox="0 0 60 55" >
-	</svg>
-</div>
-<!--svg viewBox="0 0 60 55" preserveAspectRatio="xMidYMin slice"
+<svg viewBox="0 0 60 55" preserveAspectRatio="xMidYMin slice"
    style="width: 100%; text-align:center; padding-bottom: 92%; height: 1px; overflow: visible">
-</svg-->
+</svg>
 <!-- SVG content -->
 <!--div id="D3_Chart"></div-->
 	
@@ -206,7 +186,8 @@
 					.attr("width", width)
 					.attr("height", height)
 					.append("g")
-					.attr("transform", "translate(" + width / 2 + "," + (height / 2) + ")");
+					.attr("transform", "translate(" + width / 2 + "," + (height / 2) + ")")
+					.attr("align","center");
 			// Find data root
 			var root = d3.hierarchy(nodeData);
 			root.sum(function(d) { return d.size; });
