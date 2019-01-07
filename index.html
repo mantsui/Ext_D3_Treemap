@@ -100,8 +100,12 @@
 		//console.log('tableau.extensions.settings.get("worksheet") Worksheet Name: ' + worksheetName);
 		
 		var categoryColumnNumber = tableau.extensions.settings.get("categoryColumnNumber");
-		var strMeasureName  = tableau.extensions.settings.get("MeasureName");
+		var strMeasureName = tableau.extensions.settings.get("MeasureName");
 		console.log('In extension MeasureName: ' + strMeasureName);
+			
+		var TestExtArray01 = tableau.extensions.settings.get("TestExtArray");
+		console.log('----- Test Extension Array -----');
+		console.log(TestExtArray01);
 			
 		worksheet.getSummaryDataAsync().then(function (sumdata) {
 			//var inputMeasures = [];
@@ -124,7 +128,7 @@
 			var Tableau_Array_of_Objects = ReduceToObjectTablulated(sumdata);
 			var arrayDimensionNames = ['Region', 'State or Province', 'Product Category', 'Product Sub-Category'];
 			//var strMeasureName = 'SUM(Sales)';
-			strMeasureName = 'SUM(Sales)';
+			//strMeasureName = 'SUM(Sales)';
 			var strDisplayName = 'Sales';
 			var TableauTreeData = Convert_To_TreeData(Tableau_Array_of_Objects, arrayDimensionNames, strMeasureName, strDisplayName);
 						
