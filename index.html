@@ -116,11 +116,7 @@
 						
 			// Convert Tableau data into Array of Objects for D3 processing.
 			var Tableau_Array_of_Objects = ReduceToObjectTablulated(sumdata);
-			Tableau_Array_of_Objects.sort(compareValues(strMeasureName));	//sort the array by measure object-property
-			Tableau_Array_of_Objects.sort(compareValues('Product Sub-Category'));
-			Tableau_Array_of_Objects.sort(compareValues('Product Category'));
-			Tableau_Array_of_Objects.sort(compareValues('State or Province'));
-			Tableau_Array_of_Objects.sort(compareValues('Region'));
+			//Tableau_Array_of_Objects.sort(compareValues(strMeasureName));	//sort the array by measure object-property
 			
 			var TableauTreeData = Convert_To_TreeData(Tableau_Array_of_Objects, Ordered_Dimensions, strMeasureName, strDisplayName);
 			console.log('----- Display Tree Data -----', TableauTreeData);	// Debug output
