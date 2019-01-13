@@ -206,9 +206,8 @@
 			/* Create the SVG container for the visualization and define its 
 				 dimensions. Within that container, add a group element (`<g>`) 
 				 that can be transformed via a translation to account for the 
-				 margins and to center the visualization in the container.*/  	  
-			//var svg = d3.select(document.getElementById("D3_Sunburst"))
-			//var svg = d3.select("body")
+				 margins and to center the visualization in the container.*/
+
 			var svg = d3.select("#D3_Chart")
 					.append("svg")
 					.attr("width", width)
@@ -217,7 +216,6 @@
 					.attr("transform", "translate(" + width / 2 + "," + (height / 2) + ")");
 					//.attr("align","center");
 			d3.select("#D3_Chart").attr("align","center");
-			//document.getElementById("#D3_Chart").align = "center";
 			
 			// Find data root
 			var root = d3.hierarchy(nodeData);
