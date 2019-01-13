@@ -373,10 +373,12 @@
 			var uniqueList = [];
 			for (var RowIndex = 0; RowIndex < inputArr.length; RowIndex++) {
 				for(var ColIndex = 0; ColIndex < dimensionList.length; ColIndex++) {
-					console.log('Looping fieldname: ', dimensionList[ColIndex]);
-					console.log('Looping element: ', inputArr[RowIndex][dimensionList[ColIndex]]);
+					//console.log('Looping fieldname: ', dimensionList[ColIndex]);
+					//console.log('Looping element: ', inputArr[RowIndex][dimensionList[ColIndex]]);
+					uniqueList.push(inputArr[RowIndex][dimensionList[ColIndex]]);
 				}
 			}
+			console.log('TEMP array of elements: ', uniqueList);
 		}
 
 	})();		
