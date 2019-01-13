@@ -123,11 +123,13 @@
 			console.log('----- Display Tableau_Array_of_Objects -----', Tableau_Array_of_Objects);	// Debug output
 			
 			// Add placeholder if this is a one dimension, one measure dataset
+			// This is to help ensure proper d3 chart drawing for one-dimension dataset
 			if(Ordered_Dimensions.length == 1) {
 			   	Ordered_Dimensions.splice(0, 0, 'placeholder');
 				console.log('Spliced dimensions: ', Ordered_Dimensions);
 			}
 			
+			uniqueArrayCount(Tableau_Array_of_Objects, Ordered_Dimensions);
 			
 			var TableauTreeData = Convert_To_TreeData(Tableau_Array_of_Objects, Ordered_Dimensions, strMeasureName, strDisplayName);
 			console.log('----- Display Tree Data -----', TableauTreeData);	// Debug output
@@ -159,8 +161,8 @@
 			var window_Height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
 			
 			// Define the dimensions of the visualization.
-			var width = Math.min(window_Width, window_Height), //600
-			height = Math.min(window_Width, window_Height),	//600
+			var width = Math.min(window_Width, window_Height),
+			height = Math.min(window_Width, window_Height),
 			radius = (Math.min(width, height) / 2);
 			/* Define the scales that will translate data values into visualization 
 				 properties. The "x" scale will represent angular position within the
@@ -359,6 +361,22 @@
 				}
 				return ( (order == 'desc') ? (comparison * -1) : comparison );
 			};
+		}
+
+		// Function to help force array of distinct elements
+		const distinct = (value, index, self) => {
+			return self.indexOf(value) === index;
+		}
+		
+		function uniqueArrayCount(inputArr, dimensionList){
+			// do something
+			var uniqueList = [];
+			for (var RowIndex = 0; RowIndex < inputArr.length; RowIndex++) {
+				for(var ColIndex = 0; ColIndex < dimensionList.length; ColIndex++) {
+					console.log('Looping fieldname: ', dimensionList[ColIndex]);
+					console.log('Looping element: ', inputArr[RowIndex][dimensionList[ColIndex]]);
+				}
+			}
 		}
 
 	})();		
