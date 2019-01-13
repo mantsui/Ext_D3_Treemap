@@ -118,6 +118,12 @@
 			var Tableau_Array_of_Objects = ReduceToObjectTablulated(sumdata);
 			console.log('----- Display Tableau_Array_of_Objects -----', Tableau_Array_of_Objects);	// Debug output
 			
+			// Add placeholder if this is a one dimension, one measure dataset
+			if(Ordered_Dimensions.length == 2) {
+			   	Ordered_Dimensions.splice(1, 0, 'placeholder');
+			}
+			
+			
 			var TableauTreeData = Convert_To_TreeData(Tableau_Array_of_Objects, Ordered_Dimensions, strMeasureName, strDisplayName);
 			console.log('----- Display Tree Data -----', TableauTreeData);	// Debug output
 						
