@@ -169,7 +169,8 @@
 					.range([0, 2 * Math.PI]);
 			var y = d3.scaleSqrt()
 					.range([0, radius]);
-			var color = d3.scaleOrdinal(d3.schemeSet3);
+			//var color = d3.scaleOrdinal(d3.schemeSet3);
+			var color = d3.scaleOrdinal(d3.schemeCategory20b);
 			//var color = d3.scaleOrdinal()
 			//  .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
 			//var sequentialScaleColor = d3.scaleSequential(d3.interpolatePiYG);
@@ -205,7 +206,7 @@
 			var root = d3.hierarchy(nodeData);
 			root.sum(function(d) { return d.size; });
 			console.log('----- root data -----', root); // Debug output
-			console.log('----- node count -----', root.count();	// Debug output
+			console.log('----- node count -----', root.count());	// Debug output
 			svg.selectAll("path")
 			.data(partition(root).descendants())
 			.enter().append("path")
