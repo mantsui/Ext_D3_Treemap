@@ -226,8 +226,8 @@
 			.data(partition(root).descendants())
 			.enter().append("path")
 			.attr("d", arc)
-			.style("fill", function(d) { return color((d.children ? d : d.parent).data.name); })
-					//.style("fill", function(d) { return color(d.data.name); })
+			//.style("fill", function(d) { return color((d.children ? d : d.parent).data.name); })
+					.style("fill", function(d) { return color(d.data.name); })
 					//.style('fill', function(d) { return sequentialScaleColor(d); })
 					//.style('fill', function(d) { return sequentialScaleColor((d.children ? d : d.parent).data.name); })
 			.attr("stroke", "white")	// Set separator-line color
