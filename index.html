@@ -119,8 +119,9 @@
 			console.log('----- Display Tableau_Array_of_Objects -----', Tableau_Array_of_Objects);	// Debug output
 			
 			// Add placeholder if this is a one dimension, one measure dataset
-			if(Ordered_Dimensions.length == 2) {
+			if(Ordered_Dimensions.length == 1) {
 			   	Ordered_Dimensions.splice(1, 0, 'placeholder');
+				console.log('Spliced dimensions: ', Ordered_Dimensions);
 			}
 			
 			
