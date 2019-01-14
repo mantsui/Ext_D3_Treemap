@@ -367,7 +367,10 @@
 			for(var RowIndex = 0; RowIndex < uniqueElementCount; RowIndex++){
 				//
 				switch(ColorScaleType) {
-					'Viridis':
+					case 'Reds':
+						steppedColorScale.push(d3.interpolateReds(RowIndex / uniqueElementCount));
+						break;
+					case 'Viridis':
 						steppedColorScale.push(d3.interpolateViridis(RowIndex / uniqueElementCount));
 						break;
 					default:
