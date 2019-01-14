@@ -402,7 +402,7 @@
 			// do something
 			var steppedColorScale = [];
 			for(var RowIndex = 0; RowIndex < uniqueElementCount; RowIndex++){
-				steppedColorScale.push(d3.interpolateRainbow(RowIndex / uniqueElementCount));
+				steppedColorScale.push(d3.interpolateViridis(RowIndex / uniqueElementCount));
 			}
 			return steppedColorScale;
 		}
