@@ -173,7 +173,7 @@
 			var y = d3.scaleSqrt()
 					.range([0, radius]);
 
-			var arrStepColors = steppedColorArray('Reds', uniqueElementCount);
+			var arrStepColors = steppedColorArray('Plasma', uniqueElementCount);
 			var color = d3.scaleOrdinal(arrStepColors);
 			
 			// Declare Data structure
@@ -367,12 +367,81 @@
 			for(var RowIndex = 0; RowIndex < uniqueElementCount; RowIndex++){
 				//
 				switch(ColorScaleType) {
+					/*
+					case '':
+						steppedColorScale.push(d3.(RowIndex / uniqueElementCount));
+						break;
+*/
+					case 'Brown_BrightGreen':
+						steppedColorScale.push(d3.interpolateBrBG(RowIndex / uniqueElementCount));
+						break;
+					case 'Purple_Green':
+						steppedColorScale.push(d3.interpolatePRGn(RowIndex / uniqueElementCount));
+						break;
+					case 'Pink_YellowGreen':
+						steppedColorScale.push(d3.interpolatePiYG(RowIndex / uniqueElementCount));
+						break;
+					case 'Purple_Orange':
+						steppedColorScale.push(d3.interpolatePuOr(RowIndex / uniqueElementCount));
+						break;
+					case 'Red_Blue':
+						steppedColorScale.push(d3.interpolateRdBu(RowIndex / uniqueElementCount));
+						break;
+					case 'Red_Grey':
+						steppedColorScale.push(d3.interpolateRdGy(RowIndex / uniqueElementCount));
+						break;
+					case 'Red_Yellow_LightBlue':
+						steppedColorScale.push(d3.interpolateRdYlBu(RowIndex / uniqueElementCount));
+						break;
+					case 'Red_Yellow_LightGreen':
+						steppedColorScale.push(d3.interpolateRdYlGn(RowIndex / uniqueElementCount));
+						break;
+					case 'Spectral':
+						steppedColorScale.push(d3.interpolateSpectral(RowIndex / uniqueElementCount));
+						break;
+					case 'Blues':
+						steppedColorScale.push(d3.interpolateBlues(RowIndex / uniqueElementCount));
+						break;
+					case 'Greens':
+						steppedColorScale.push(d3.interpolateGreens(RowIndex / uniqueElementCount));
+						break;
+					case 'Greys':
+						steppedColorScale.push(d3.interpolateGreys(RowIndex / uniqueElementCount));
+						break;
+					case 'Oranges':
+						steppedColorScale.push(d3.interpolateOranges(RowIndex / uniqueElementCount));
+						break;
+					case 'Purples':
+						steppedColorScale.push(d3.interpolatePurples(RowIndex / uniqueElementCount));
+						break;
 					case 'Reds':
 						steppedColorScale.push(d3.interpolateReds(RowIndex / uniqueElementCount));
 						break;
 					case 'Viridis':
 						steppedColorScale.push(d3.interpolateViridis(RowIndex / uniqueElementCount));
 						break;
+					case 'Inferno':
+						steppedColorScale.push(d3.interpolateInferno(RowIndex / uniqueElementCount));
+						break;
+					case 'Magma':
+						steppedColorScale.push(d3.interpolateMagma(RowIndex / uniqueElementCount));
+						break;
+					case 'Plasma':
+						steppedColorScale.push(d3.interpolatePlasma(RowIndex / uniqueElementCount));
+						break;
+					case 'Warm':
+						steppedColorScale.push(d3.interpolateWarm(RowIndex / uniqueElementCount));
+						break;
+					case 'Cool':
+						steppedColorScale.push(d3.interpolateCool(RowIndex / uniqueElementCount));
+						break;
+					case 'Cube_Helix':
+						steppedColorScale.push(d3.interpolateCubehelixDefault(RowIndex / uniqueElementCount));
+						break;
+					case 'BuGreen':
+						steppedColorScale.push(d3.interpolateBuGn(RowIndex / uniqueElementCount));
+						break;
+
 					default:
 						steppedColorScale.push(d3.interpolateRainbow(RowIndex / uniqueElementCount));
 				}
