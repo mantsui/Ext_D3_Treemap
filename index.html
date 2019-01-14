@@ -438,8 +438,47 @@
 					case 'Cube_Helix':
 						steppedColorScale.push(d3.interpolateCubehelixDefault(RowIndex / uniqueElementCount));
 						break;
-					case 'BuGreen':
+					case 'Blue_Green':
 						steppedColorScale.push(d3.interpolateBuGn(RowIndex / uniqueElementCount));
+						break;
+					case 'Blue_Purple':
+						steppedColorScale.push(d3.interpolateBuPu(RowIndex / uniqueElementCount));
+						break;
+					case 'Green_Blue':
+						steppedColorScale.push(d3.interpolateGnBu(RowIndex / uniqueElementCount));
+						break;
+					case 'Orange_Red':
+						steppedColorScale.push(d3.interpolateOrRd(RowIndex / uniqueElementCount));
+						break;
+					case 'Purple_Blue_Green':
+						steppedColorScale.push(d3.interpolatePuBuGn(RowIndex / uniqueElementCount));
+						break;
+					case 'Purple_Blue':
+						steppedColorScale.push(d3.interpolatePuBu(RowIndex / uniqueElementCount));
+						break;
+					case 'Purple_Red':
+						steppedColorScale.push(d3.interpolatePuRd(RowIndex / uniqueElementCount));
+						break;
+					case 'Red_Purple':
+						steppedColorScale.push(d3.interpolateRdPu(RowIndex / uniqueElementCount));
+						break;
+					case 'Yellow_Green_Blue':
+						steppedColorScale.push(d3.interpolateYlGnBu(RowIndex / uniqueElementCount));
+						break;
+					case 'Yellow_Green':
+						steppedColorScale.push(d3.interpolateYlGn(RowIndex / uniqueElementCount));
+						break;
+					case 'Yellow_Orange_Brown':
+						steppedColorScale.push(d3.interpolateYlOrBr(RowIndex / uniqueElementCount));
+						break;
+					case 'Yellow_Orange_Red':
+						steppedColorScale.push(d3.interpolateYlOrRd(RowIndex / uniqueElementCount));
+						break;
+					case 'Rainbow':
+						steppedColorScale.push(d3.interpolateRainbow(RowIndex / uniqueElementCount));
+						break;
+					case 'Sinebow':
+						steppedColorScale.push(d3.interpolateSinebow(RowIndex / uniqueElementCount));
 						break;
 
 					default:
