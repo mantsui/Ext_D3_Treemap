@@ -173,7 +173,7 @@
 			var y = d3.scaleSqrt()
 					.range([0, radius]);
 
-			var arrStepColors = steppedColorArray(uniqueElementCount);
+			var arrStepColors = steppedColorArray('Test', uniqueElementCount);
 			var color = d3.scaleOrdinal(arrStepColors);
 			
 			// Declare Data structure
@@ -362,12 +362,19 @@
 		}
 		
 		// Established stepped color scale to help the color constrast of the D3 chart
-		function steppedColorArray(uniqueElementCount) {
-			// do something
+		function steppedColorArray(ColorScaleType, uniqueElementCount) {
 			var steppedColorScale = [];
 			for(var RowIndex = 0; RowIndex < uniqueElementCount; RowIndex++){
-				steppedColorScale.push(d3.interpolateViridis(RowIndex / uniqueElementCount));
+				//
+				switch(ColorScaleType) {
+					'Viridis':
+						steppedColorScale.push(d3.interpolateViridis(RowIndex / uniqueElementCount));
+						break;
+					default:
+						steppedColorScale.push(d3.interpolateRainbow(RowIndex / uniqueElementCount));
+				}
 			}
+
 			return steppedColorScale;
 		}
 
