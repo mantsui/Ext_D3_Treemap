@@ -130,7 +130,7 @@
 			var TableauTreeData = Convert_To_TreeData(Tableau_Array_of_Objects, Ordered_Dimensions, strMeasureName, strDisplayName);
 			console.log('----- Display Tree Data -----', TableauTreeData);	// Debug output
 
-			console.log('Color scale: ', tableau.extensions.settings.get("selectColor"));
+			console.log('Color scale: ', tableau.extensions.settings.get("chartColorScale"));
 			draw_D3(TableauTreeData, strDisplayName, uniqEleCount);
 		});
 		}
