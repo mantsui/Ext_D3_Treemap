@@ -367,11 +367,6 @@
 			for(var RowIndex = 0; RowIndex < uniqueElementCount; RowIndex++){
 				//
 				switch(ColorScaleType) {
-					/*
-					case '':
-						steppedColorScale.push(d3.(RowIndex / uniqueElementCount));
-						break;
-*/
 					case 'Brown_BrightGreen':
 						steppedColorScale.push(d3.interpolateBrBG(RowIndex / uniqueElementCount));
 						break;
