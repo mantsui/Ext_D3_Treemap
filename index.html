@@ -231,7 +231,8 @@
 			  		return function(t) { x.domain(xd(t)); y.domain(yd(t)).range(yr(t)); };
 				})
 				.selectAll("path")
-				.attrTween("d", function(d) { return function() { return arc(d); }; });
+				.attrTween("d", function(d) { return function() { return arc(d); }; })
+				.attr("stroke-width", 2);	// Test dynamic stroke-width
 			}
 			// Create text tooltip for D3 Chart
 			function Text_ToolTip(d){
