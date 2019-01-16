@@ -213,7 +213,8 @@
 			.attr("d", arc)
 			//.style("fill", function(d) { return color((d.children ? d : d.parent).data.name); })
 			.style("fill", function(d) { return color(d.data.name); })
-			//.attr("stroke", "white")	// Set separator-line color
+			.attr("stroke", "white")	// Set separator-line color
+			.attr("stroke-width", Dynamic_StrokeWidth)
 			//.attr("stroke-width", 0.5)	// Set separator-line thickness
 			.on("click", click)		// Initiate D3 event listener for mouse click on D3 chart
 			.append("title")
@@ -250,6 +251,12 @@
 				//console.log("Value: " + d.value);			// Debug output
 				//console.log("Size: " + d.data.size);			// Debug output
 				return Tooltip;
+			}
+			
+			function Dynamic_StrokeWidth(d){
+				var intWidth = 0.5;
+				console.log('TEMP d3 d object: ', d);
+				return intWidth;
 			}
 		}
 		
