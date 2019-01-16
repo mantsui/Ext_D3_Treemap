@@ -130,8 +130,9 @@
 			var TableauTreeData = Convert_To_TreeData(Tableau_Array_of_Objects, Ordered_Dimensions, strMeasureName, strDisplayName);
 			console.log('----- Display Tree Data -----', TableauTreeData);	// Debug output
 
-			console.log('Color scale: ', tableau.extensions.settings.get("chartColorScale"));
-			draw_D3(TableauTreeData, strDisplayName, uniqEleCount);
+			var colorScale = tableau.extensions.settings.get("chartColorScale");
+
+			draw_D3(TableauTreeData, strDisplayName, uniqEleCount, colorScale);
 		});
 		}
 		
@@ -153,7 +154,7 @@
 		}
 		
 		// Passing uniqueElementCount to help with the color contrast
-		function draw_D3(nodeData, MeasureName, uniqueElementCount){
+		function draw_D3(nodeData, MeasureName, uniqueElementCount, colorChromaticScale){
 			
 			var window_Width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 			var window_Height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
@@ -174,7 +175,7 @@
 			var y = d3.scaleSqrt()
 					.range([0, radius]);
 
-			var arrStepColors = steppedColorArray('Warm', uniqueElementCount);
+			var arrStepColors = steppedColorArray(colorChromaticScale, uniqueElementCount);
 			var color = d3.scaleOrdinal(arrStepColors);
 			
 			// Declare Data structure
@@ -212,8 +213,8 @@
 			.attr("d", arc)
 			//.style("fill", function(d) { return color((d.children ? d : d.parent).data.name); })
 			.style("fill", function(d) { return color(d.data.name); })
-			.attr("stroke", "white")	// Set separator-line color
-			.attr("stroke-width", 0.5)	// Set separator-line thickness
+			//.attr("stroke", "white")	// Set separator-line color
+			//.attr("stroke-width", 0.5)	// Set separator-line thickness
 			.on("click", click)		// Initiate D3 event listener for mouse click on D3 chart
 			.append("title")
 			.text( Text_ToolTip );		// Initiate and call text tooltip
