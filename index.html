@@ -265,10 +265,11 @@
 				return intWidth;
 			}
 			function Dynamic_StrokeWidth(d, intDepth){
-				console.log('Depth: ', intDepth);
+				//console.log('Depth: ', intDepth);
 				var intWidth = 0.5;
 				if (d.depth > 3 && intDepth <= 3) {
 					intWidth = 0.0;	// Hide stroke width on deeper layers of sunburst nodes
+					console.log('Hiding deeper levels intDept: ', intDepth);
 				}
 				/*else if (d.depth > 3 && intDepth > 3) {
 					 intWidth = 0.5;
