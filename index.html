@@ -222,6 +222,8 @@
 			
 			// Function for click event  
 			function click(d) {
+				
+			console.log('Event click on: ', d.depth);
 			svg.transition()
 				.duration(750)
 				.tween("scale", function() {
@@ -231,8 +233,8 @@
 			  		return function(t) { x.domain(xd(t)); y.domain(yd(t)).range(yr(t)); };
 				})
 				.selectAll("path")
+				//.style("stroke-width", 1.5 / k + "px")
 				.attrTween("d", function(d) { return function() { return arc(d); }; });
-				//.attr("stroke-width", 2);	// Test dynamic stroke-width
 			}
 			// Create text tooltip for D3 Chart
 			function Text_ToolTip(d){
@@ -262,6 +264,8 @@
 				}
 				return intWidth;
 			}
+			function Dynamic_StrokeWidth(d){
+			}		
 		}
 		
 		// Tableau .getData() returns an array (rows) of arrays (columns) of objects, 
