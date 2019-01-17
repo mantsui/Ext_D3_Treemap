@@ -223,18 +223,19 @@
 			// Function for click event  
 			function click(d) {
 				
-			console.log('Event click on: ', d.depth);
-			svg.transition()
-				.duration(750)
-				.tween("scale", function() {
-			  		var xd = d3.interpolate(x.domain(), [d.x0, d.x1]),
-			      		yd = d3.interpolate(y.domain(), [d.y0, 1]),
-			      		yr = d3.interpolate(y.range(), [d.y0 ? 20 : 0, radius]);
-			  		return function(t) { x.domain(xd(t)); y.domain(yd(t)).range(yr(t)); };
-				})
-				.selectAll("path")
-				//.style("stroke-width", 1.5 / k + "px")
-				.attrTween("d", function(d) { return function() { return arc(d); }; });
+				var clickDepth = d.depth;
+				svg.transition()
+					.duration(750)
+					.tween("scale", function() {
+						var xd = d3.interpolate(x.domain(), [d.x0, d.x1]),
+						yd = d3.interpolate(y.domain(), [d.y0, 1]),
+						yr = d3.interpolate(y.range(), [d.y0 ? 20 : 0, radius]);
+						return function(t) { x.domain(xd(t)); y.domain(yd(t)).range(yr(t)); };
+					})
+					.selectAll("path")
+					//.style("stroke-width", 1.5 / k + "px")
+					.style("stroke-width", Dynamic_StrokeWidth(d, clickDepth))
+					.attrTween("d", function(d) { return function() { return arc(d); }; });
 			}
 			// Create text tooltip for D3 Chart
 			function Text_ToolTip(d){
@@ -264,7 +265,10 @@
 				}
 				return intWidth;
 			}
-			function Dynamic_StrokeWidth(d){
+			function Dynamic_StrokeWidth(d, intDepth){
+				console.log('Depth: ', intDepth);
+				
+				return 0.5;
 			}		
 		}
 		
