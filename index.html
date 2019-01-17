@@ -234,7 +234,7 @@
 					.selectAll("path")
 					//.style("stroke-width", 1.5 / k + "px")
 					//.style("stroke-width", Dynamic_StrokeWidth(d, clickDepth))
-					.attr("stroke-width", Dynamic_StrokeWidth(d, clickDepth))
+					.attrTween("stroke-width", Dynamic_StrokeWidth(d, clickDepth))
 					.attrTween("d", function(d) { return function() { return arc(d); }; });
 			}
 			// Create text tooltip for D3 Chart
@@ -266,7 +266,7 @@
 			}
 			function Dynamic_StrokeWidth(d, intDepth){
 				console.log('Click Depth: ', intDepth);
-				console.log('d.depth: ', d.depth);
+				//console.log('d.depth: ', d.depth);
 				var intWidth = 0.5;
 				if (d.depth > 3 && intDepth <= 3) {
 					intWidth = 0.0;	// Hide stroke width on deeper layers of sunburst nodes
