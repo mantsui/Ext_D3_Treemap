@@ -234,7 +234,6 @@
 					.selectAll("path")
 					//.style("stroke-width", 1.5 / k + "px")
 					//.style("stroke-width", Dynamic_StrokeWidth(d, clickDepth))
-					.attrTween("stroke-width", Dynamic_StrokeWidth(d, clickDepth))
 					.attrTween("d", function(d) { return function() { return arc(d); }; });
 			}
 			// Create text tooltip for D3 Chart
