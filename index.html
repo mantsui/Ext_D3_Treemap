@@ -214,7 +214,7 @@
 			//.style("fill", function(d) { return color((d.children ? d : d.parent).data.name); })
 			.style("fill", function(d) { return color(d.data.name); })
 			.attr("stroke", "white")	// Set separator-line color
-			.attr("stroke-width", Dynamic_StrokeWidth)
+			.attr("stroke-width", Initial_StrokeWidth)
 			//.attr("stroke-width", 0.5)	// Set separator-line thickness
 			.on("click", click)		// Initiate D3 event listener for mouse click on D3 chart
 			.append("title")
@@ -231,8 +231,8 @@
 			  		return function(t) { x.domain(xd(t)); y.domain(yd(t)).range(yr(t)); };
 				})
 				.selectAll("path")
-				.attrTween("d", function(d) { return function() { return arc(d); }; })
-				.attr("stroke-width", 2);	// Test dynamic stroke-width
+				.attrTween("d", function(d) { return function() { return arc(d); }; });
+				//.attr("stroke-width", 2);	// Test dynamic stroke-width
 			}
 			// Create text tooltip for D3 Chart
 			function Text_ToolTip(d){
@@ -254,9 +254,12 @@
 				return Tooltip;
 			}
 			
-			function Dynamic_StrokeWidth(d){
+			function Initial_StrokeWidth(d){
 				var intWidth = 0.5;
-				console.log('TEMP d3 d object: ', d);
+				//console.log('TEMP d3 d object: ', d);
+				if (d.depth > 3) {
+					intWidth = 0.0;	// Hide stroke width on deeper layers of sunburst nodes
+				}
 				return intWidth;
 			}
 		}
