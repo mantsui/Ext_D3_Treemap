@@ -199,7 +199,6 @@
 					.attr("height", height)
 					.append("g")
 					.attr("transform", "translate(" + width / 2 + "," + (height / 2) + ")");
-					//.attr("align","center");
 			d3.select("#D3_Chart").attr("align","center");
 			
 			// Find data root
@@ -234,7 +233,8 @@
 					})
 					.selectAll("path")
 					//.style("stroke-width", 1.5 / k + "px")
-					.style("stroke-width", Dynamic_StrokeWidth(d, clickDepth))
+					//.style("stroke-width", Dynamic_StrokeWidth(d, clickDepth))
+					.attr("stroke-width", Dynamic_StrokeWidth(d, clickDepth))
 					.attrTween("d", function(d) { return function() { return arc(d); }; });
 			}
 			// Create text tooltip for D3 Chart
