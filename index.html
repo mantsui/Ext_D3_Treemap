@@ -259,7 +259,6 @@
 			
 			function Initial_StrokeWidth(d){
 				var intWidth = 0.5;
-				//console.log('TEMP d3 d object: ', d);
 				if (d.depth > 3) {
 					intWidth = 0.0;	// Hide stroke width on deeper layers of sunburst nodes
 				}
@@ -267,8 +266,14 @@
 			}
 			function Dynamic_StrokeWidth(d, intDepth){
 				console.log('Depth: ', intDepth);
-				
-				return 0.5;
+				var intWidth = 0.5;
+				if (d.depth > 3 and intDepth <= 3) {
+					intWidth = 0.0;	// Hide stroke width on deeper layers of sunburst nodes
+				}
+				/*else if (d.depth > 3 and intDepth > 3) {
+					 intWidth = 0.5;
+				}*/
+				return intWidth;
 			}		
 		}
 		
