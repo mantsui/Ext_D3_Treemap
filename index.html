@@ -58,10 +58,21 @@
 	'use strict';
 	// Wrap everything in an anonymous function to avoid polluting the global namespace
 	(function () {
+		
+		// These variables will hold a reference to the unregister Event Listener functions.
+		// https://tableau.github.io/extensions-api/docs/interfaces/dashboard.html#addeventlistener
+		let unregisterSettingsEventListener = null;
+		
 		$(document).ready(function () {
 			// Added new code here to point to the configure function.
 			tableau.extensions.initializeAsync({ 'configure':configure }).then(function () {
 				getData_to_D3();
+				
+				// Add settings listener here
+				unregisterSettingsEventListener = tableau.extensions.settings.addEventListener(tableau.TableauEventType.SettingsChanged, (settingsEvent) => {
+					getData_to_D3();
+				});
+
 			}, function () { console.log('Error while Initializing: ' + err.toString()); });
 		});		
 		
