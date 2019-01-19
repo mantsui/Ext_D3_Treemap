@@ -238,6 +238,8 @@
 			});
 			console.log('TEMP sheetToFilter: ', sheetToFilter);
 			
+			sheetToFilter.applyFilterAsync('Region', 'East', tableau.FilterUpdateType.Replace);
+			
 			// Function for click event  
 			function click(d) {
 				
