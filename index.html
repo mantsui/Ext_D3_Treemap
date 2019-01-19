@@ -232,6 +232,10 @@
 			.append("title")
 			.text( Text_ToolTip );		// Initiate and call text tooltip
 			
+			
+			var sheetToFilter = tableau.extensions.dashboardContent.dashboard.worksheets.find('Sales Map');
+			console.log('TEMP sheetToFilter: ', sheetToFilter);
+			
 			// Function for click event  
 			function click(d) {
 				
