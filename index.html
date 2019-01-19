@@ -69,6 +69,7 @@
 				getData_to_D3();
 				
 				// Add settings listener here
+				// Help refresh the chart upon save from configuration dialog
 				unregisterSettingsEventListener = tableau.extensions.settings.addEventListener(tableau.TableauEventType.SettingsChanged, (settingsEvent) => {
 					getData_to_D3();
 				});
