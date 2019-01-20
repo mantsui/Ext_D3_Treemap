@@ -542,19 +542,26 @@
 
 		// Filter the specified dimension to the specified value(s) for a target sheet in the dashboard
 		function setFilterTo(filterSheetName, filterName, values) {
-			//var sheet = vizName.getWorkbook().getActiveSheet().getWorksheets().get(sheetName);
-		    //sheet.applyFilterAsync(filterName, values, tableau.FilterUpdateType.REPLACE); 
-
+			
+			resetFilter(filterSheetName, filterName);
 			var sheetToFilter = tableau.extensions.dashboardContent.dashboard.worksheets.find(function (sheet) { 
 				return sheet.name === filterSheetName;
 			});
 			
-			//sheetToFilter.applyFilterAsync('Region', ['East','Central'], tableau.FilterUpdateType.Replace);
-			sheetToFilter.clearFilterAsync(filterName);	// Reset filters for sheetToFiler
+			//sheetToFilter.clearFilterAsync(filterName);	// Reset filters for sheetToFiler
 			sheetToFilter.applyFilterAsync(filterName, ['East','Central'], tableau.FilterUpdateType.Replace);
 
 		}
-
+		
+		// Clear any pre-existing filters for target sheet in the dashboard
+		function resetFilter(filterSheetName, filterName) {
+			
+			var sheetToFilter = tableau.extensions.dashboardContent.dashboard.worksheets.find(function (sheet) { 
+				return sheet.name === filterSheetName;
+			});
+			
+			sheetToFilter.clearFilterAsync(filterName);	// Reset filters for sheetToFiler			
+		}
 
 	})();		
 </script>
