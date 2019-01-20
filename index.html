@@ -554,7 +554,6 @@
 			});
 			
 			sheetToFilter.applyFilterAsync(filterName, values, tableau.FilterUpdateType.Replace);
-
 		}
 		
 		// Clear any pre-existing filters for target sheet in the dashboard
@@ -564,7 +563,8 @@
 				return sheet.name === filterSheetName;
 			});
 			
-			sheetToFilter.clearFilterAsync(filterName);	// Reset filters for sheetToFiler			
+			//sheetToFilter.clearFilterAsync(filterName);	// Reset filters for sheetToFiler
+			sheetToFilter.applyFilterAsync(filterName, '', tableau.FilterUpdateType.All);
 		}
 
 	})();		
