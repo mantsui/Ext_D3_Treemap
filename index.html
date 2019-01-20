@@ -62,8 +62,6 @@
 		// These variables will hold a reference to the unregister Event Listener functions.
 		// https://tableau.github.io/extensions-api/docs/interfaces/dashboard.html#addeventlistener
 		let unregisterSettingsEventListener = null;
-
-		var worksheet;
 		
 		$(document).ready(function () {
 			// Added new code here to point to the configure function.
@@ -104,7 +102,7 @@
 			
 		// Use the worksheet name saved in the Settings to find and return
 		// the worksheet object.
-		worksheet=worksheets.find(function (sheet) { 
+		var worksheet=worksheets.find(function (sheet) { 
 			return sheet.name===sheetName;
 		});
 					
@@ -148,7 +146,7 @@
 
 			var colorScale = tableau.extensions.settings.get("chartColorScale");
 
-			draw_D3(TableauTreeData, strDisplayName, uniqEleCount, colorScale);
+			draw_D3(TableauTreeData, strDisplayName, Ordered_Dimensions, uniqEleCount, colorScale);
 		});
 		}
 		
@@ -170,7 +168,9 @@
 		}
 		
 		// Passing uniqueElementCount to help with the color contrast
-		function draw_D3(nodeData, MeasureName, uniqueElementCount, colorChromaticScale){
+		function draw_D3(nodeData, MeasureName, DimensionList, uniqueElementCount, colorChromaticScale){
+			
+			console.log('TEMP DimensionList: ', DimensionList);
 			
 			var window_Width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 			var window_Height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
