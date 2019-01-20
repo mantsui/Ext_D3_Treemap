@@ -249,6 +249,8 @@
 				
 				var clickDepth = d.depth;
 				var arrValue = [];
+				
+				arrValue.push(d.data.name);
 				console.log('TEMP click depth: ', clickDepth);
 				console.log('TEMP click object: ', d);
 				svg.transition()
@@ -268,10 +270,12 @@
 				if(clickDepth == 0) {
 					console.log('TEMP Click lvl 0 resetting');
 					resetFilter( 'Sales Map', DimensionList[clickDepth] );
-				}
+				} else {
 				
 				// Optional apply filter function to target sheet in dashboard
+				//setFilterTo('Sales Map', 'Region', ['West', 'East']);
 				setFilterTo('Sales Map', 'Region', ['West', 'East']);
+				}
 			}
 			// Create text tooltip for D3 Chart
 			function Text_ToolTip(d){
@@ -566,8 +570,8 @@
 				return sheet.name === filterSheetName;
 			});
 			
-			//sheetToFilter.clearFilterAsync(filterName);	// Reset filters for sheetToFiler
-			sheetToFilter.applyFilterAsync(filterName, '', tableau.FilterUpdateType.All);
+			sheetToFilter.clearFilterAsync(filterName);	// Reset filters for sheetToFiler
+			//sheetToFilter.applyFilterAsync(filterName, '', tableau.FilterUpdateType.All);
 		}
 
 	})();		
