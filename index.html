@@ -154,7 +154,7 @@
 		function configure() {
 			const popupUrl = `https://mantsui.github.io/Ext_D3_Sunburst_Test_ConfigDialog`;
 			let defaultPayload = "";
-			tableau.extensions.ui.displayDialogAsync(popupUrl, defaultPayload, { height:800, width:500 }).then((closePayload) => {
+			tableau.extensions.ui.displayDialogAsync(popupUrl, defaultPayload, { height:700, width:500 }).then((closePayload) => {
 				drawD3chart();
 			}).catch((error) => {
 				switch (error.errorCode) {
