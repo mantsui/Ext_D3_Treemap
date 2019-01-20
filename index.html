@@ -170,8 +170,6 @@
 		// Passing uniqueElementCount to help with the color contrast
 		function draw_D3(nodeData, MeasureName, DimensionList, uniqueElementCount, colorChromaticScale){
 			
-			console.log('TEMP DimensionList: ', DimensionList);
-			
 			var window_Width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 			var window_Height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
 			
@@ -234,21 +232,12 @@
 			.on("click", click)		// Initiate D3 event listener for mouse click on D3 chart
 			.append("title")
 			.text( Text_ToolTip );		// Initiate and call text tooltip
-			
-			
-			/*var sheetToFilter = tableau.extensions.dashboardContent.dashboard.worksheets.find(function (sheet) { 
-				return sheet.name==='Sales Map';
-			});
-			
-			//sheetToFilter.applyFilterAsync('Region', ['East','Central'], tableau.FilterUpdateType.Replace);
-			sheetToFilter.clearFilterAsync('Region');	// Reset filters for sheetToFiler
-			sheetToFilter.applyFilterAsync('Region', ['East','Central'], tableau.FilterUpdateType.Replace);*/
-			
+
+
 			var filterSheet = '';
 			if( tableau.extensions.settings.get("FilterSheet") != null) {
 				filterSheet = tableau.extensions.settings.get("FilterSheet");
 			}
-			console.log('TEMP Filter Sheet Name: ', filterSheet);
 
 			// Function for click event  
 			function click(d) {
@@ -277,12 +266,12 @@
 				
 				if(clickDepth == 0) {
 					//resetFilter( 'Sales Map', DimensionList[clickDepth] );
-					resetFilter( 'Sales Map', DimensionList.slice(clickDepth) );
+					resetFilter( filterSheet, DimensionList.slice(clickDepth) );
 				} else {
 				
 					// Optional apply filter function to target sheet in dashboard
-					resetFilter( 'Sales Map', DimensionList.slice(clickDepth) );
-					setFilterTo('Sales Map', DimensionList[clickDepth - 1], arrValue);
+					resetFilter( filterSheet, DimensionList.slice(clickDepth) );
+					setFilterTo( filterSheet, DimensionList[clickDepth - 1], arrValue);
 				}
 			}
 			// Create text tooltip for D3 Chart
