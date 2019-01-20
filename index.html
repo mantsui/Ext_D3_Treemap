@@ -236,11 +236,10 @@
 			var sheetToFilter = tableau.extensions.dashboardContent.dashboard.worksheets.find(function (sheet) { 
 				return sheet.name==='Sales Map';
 			});
-			console.log('TEMP sheetToFilter: ', sheetToFilter);
 			
 			//sheetToFilter.applyFilterAsync('Region', ['East','Central'], tableau.FilterUpdateType.Replace);
-			sheetToFilter.clearFilterAsync('Region')
-				.applyFilterAsync('Region', ['East','Central'], tableau.FilterUpdateType.Replace);
+			sheetToFilter.clearFilterAsync('Region');	// Reset filters for sheetToFiler
+			sheetToFilter.applyFilterAsync('Region', ['East','Central'], tableau.FilterUpdateType.Replace);
 			
 			// Function for click event  
 			function click(d) {
