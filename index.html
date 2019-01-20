@@ -244,6 +244,12 @@
 			sheetToFilter.clearFilterAsync('Region');	// Reset filters for sheetToFiler
 			sheetToFilter.applyFilterAsync('Region', ['East','Central'], tableau.FilterUpdateType.Replace);*/
 			
+			var filterSheet = '';
+			if( tableau.extensions.settings.get("FilterSheet") != null) {
+				filterSheet = tableau.extensions.settings.get("FilterSheet");
+			}
+			console.log('TEMP Filter Sheet Name: ', filterSheet);
+
 			// Function for click event  
 			function click(d) {
 				
