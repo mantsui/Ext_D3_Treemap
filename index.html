@@ -262,6 +262,11 @@
 					//.style("stroke-width", Dynamic_StrokeWidth(d, clickDepth))
 					.attrTween("d", function(d) { return function() { return arc(d); }; });
 				
+				
+				if(clickDepth == 0) {
+					resetFilter( 'Sales Map', DimensionList[clickDepth] );
+				}
+				
 				// Optional apply filter function to target sheet in dashboard
 				setFilterTo('Sales Map', 'Region', ['West', 'East']);
 			}
