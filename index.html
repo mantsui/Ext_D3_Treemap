@@ -270,11 +270,12 @@
 				
 				
 				if(clickDepth == 0) {
-					resetFilter( 'Sales Map', DimensionList[clickDepth] );
+					//resetFilter( 'Sales Map', DimensionList[clickDepth] );
+					resetFilter( 'Sales Map', DimensionList.slice(clickDepth) );
 				} else {
 				
 					// Optional apply filter function to target sheet in dashboard
-					//setFilterTo('Sales Map', 'Region', ['West', 'East']);
+					resetFilter( 'Sales Map', DimensionList.slice(clickDepth) );
 					setFilterTo('Sales Map', DimensionList[clickDepth - 1], arrValue);
 				}
 			}
@@ -555,7 +556,7 @@
 
 		// Filter the specified dimension to the specified value(s) for a target sheet in the dashboard
 		function setFilterTo(filterSheetName, filterName, values) {
-			resetFilter(filterSheetName, filterName);
+			//resetFilter(filterSheetName, filterName);
 			var sheetToFilter = tableau.extensions.dashboardContent.dashboard.worksheets.find(function (sheet) { 
 				return sheet.name === filterSheetName;
 			});
@@ -564,12 +565,21 @@
 		}
 		
 		// Clear any pre-existing filters for target sheet in the dashboard
-		function resetFilter(filterSheetName, filterName) {
+		/*function resetFilter(filterSheetName, filterName) {
 			var sheetToFilter = tableau.extensions.dashboardContent.dashboard.worksheets.find(function (sheet) { 
 				return sheet.name === filterSheetName;
 			});
 			
 			sheetToFilter.clearFilterAsync(filterName);	// Reset filters for sheetToFiler
+		}*/
+		function resetFilter(filterSheetName, arrDimensionList) {
+			var sheetToFilter = tableau.extensions.dashboardContent.dashboard.worksheets.find(function (sheet) { 
+				return sheet.name === filterSheetName;
+			});
+			
+			arrDimensionList.forEach(function(currentValue){
+				sheetToFilter.clearFilterAsync(currentValue);	// Reset filters for sheetToFiler
+			}
 		}
 
 	})();		
