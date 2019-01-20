@@ -268,13 +268,12 @@
 				
 				
 				if(clickDepth == 0) {
-					console.log('TEMP Click lvl 0 resetting');
 					resetFilter( 'Sales Map', DimensionList[clickDepth] );
 				} else {
 				
-				// Optional apply filter function to target sheet in dashboard
-				//setFilterTo('Sales Map', 'Region', ['West', 'East']);
-				setFilterTo('Sales Map', 'Region', ['West', 'East']);
+					// Optional apply filter function to target sheet in dashboard
+					//setFilterTo('Sales Map', 'Region', ['West', 'East']);
+					setFilterTo('Sales Map', DimensionList[clickDepth - 1], arrValue);
 				}
 			}
 			// Create text tooltip for D3 Chart
@@ -554,7 +553,6 @@
 
 		// Filter the specified dimension to the specified value(s) for a target sheet in the dashboard
 		function setFilterTo(filterSheetName, filterName, values) {
-			
 			resetFilter(filterSheetName, filterName);
 			var sheetToFilter = tableau.extensions.dashboardContent.dashboard.worksheets.find(function (sheet) { 
 				return sheet.name === filterSheetName;
@@ -565,13 +563,11 @@
 		
 		// Clear any pre-existing filters for target sheet in the dashboard
 		function resetFilter(filterSheetName, filterName) {
-			console.log('TEMP reset filter function called');
 			var sheetToFilter = tableau.extensions.dashboardContent.dashboard.worksheets.find(function (sheet) { 
 				return sheet.name === filterSheetName;
 			});
 			
 			sheetToFilter.clearFilterAsync(filterName);	// Reset filters for sheetToFiler
-			//sheetToFilter.applyFilterAsync(filterName, '', tableau.FilterUpdateType.All);
 		}
 
 	})();		
