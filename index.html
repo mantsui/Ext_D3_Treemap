@@ -548,8 +548,7 @@
 				return sheet.name === filterSheetName;
 			});
 			
-			//sheetToFilter.clearFilterAsync(filterName);	// Reset filters for sheetToFiler
-			sheetToFilter.applyFilterAsync(filterName, ['East','Central'], tableau.FilterUpdateType.Replace);
+			sheetToFilter.applyFilterAsync(filterName, values, tableau.FilterUpdateType.Replace);
 
 		}
 		
