@@ -264,6 +264,7 @@
 				
 				
 				if(clickDepth == 0) {
+					console.log('TEMP Click lvl 0 resetting');
 					resetFilter( 'Sales Map', DimensionList[clickDepth] );
 				}
 				
@@ -558,7 +559,7 @@
 		
 		// Clear any pre-existing filters for target sheet in the dashboard
 		function resetFilter(filterSheetName, filterName) {
-			
+			console.log('TEMP reset filter function called');
 			var sheetToFilter = tableau.extensions.dashboardContent.dashboard.worksheets.find(function (sheet) { 
 				return sheet.name === filterSheetName;
 			});
