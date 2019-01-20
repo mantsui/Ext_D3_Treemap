@@ -236,13 +236,13 @@
 			.text( Text_ToolTip );		// Initiate and call text tooltip
 			
 			
-			var sheetToFilter = tableau.extensions.dashboardContent.dashboard.worksheets.find(function (sheet) { 
+			/*var sheetToFilter = tableau.extensions.dashboardContent.dashboard.worksheets.find(function (sheet) { 
 				return sheet.name==='Sales Map';
 			});
 			
 			//sheetToFilter.applyFilterAsync('Region', ['East','Central'], tableau.FilterUpdateType.Replace);
 			sheetToFilter.clearFilterAsync('Region');	// Reset filters for sheetToFiler
-			sheetToFilter.applyFilterAsync('Region', ['East','Central'], tableau.FilterUpdateType.Replace);
+			sheetToFilter.applyFilterAsync('Region', ['East','Central'], tableau.FilterUpdateType.Replace);*/
 			
 			// Function for click event  
 			function click(d) {
@@ -261,6 +261,9 @@
 					//.style("stroke-width", 1.5 / k + "px")
 					//.style("stroke-width", Dynamic_StrokeWidth(d, clickDepth))
 					.attrTween("d", function(d) { return function() { return arc(d); }; });
+				
+				// Optional apply filter function to target sheet in dashboard
+				setFilterTo('Sales Map', 'Region', ['West', 'East']);
 			}
 			// Create text tooltip for D3 Chart
 			function Text_ToolTip(d){
@@ -536,6 +539,22 @@
 
 			return steppedColorScale;
 		}
+
+		// Filter the specified dimension to the specified value(s) for a target sheet in the dashboard
+		function setFilterTo(filterSheetName, filterName, values) {
+			//var sheet = vizName.getWorkbook().getActiveSheet().getWorksheets().get(sheetName);
+		    //sheet.applyFilterAsync(filterName, values, tableau.FilterUpdateType.REPLACE); 
+
+			var sheetToFilter = tableau.extensions.dashboardContent.dashboard.worksheets.find(function (sheet) { 
+				return sheet.name === filterSheetName;
+			});
+			
+			//sheetToFilter.applyFilterAsync('Region', ['East','Central'], tableau.FilterUpdateType.Replace);
+			sheetToFilter.clearFilterAsync(filterName);	// Reset filters for sheetToFiler
+			sheetToFilter.applyFilterAsync(filterName, ['East','Central'], tableau.FilterUpdateType.Replace);
+
+		}
+
 
 	})();		
 </script>
