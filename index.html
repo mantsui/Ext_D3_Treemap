@@ -248,7 +248,9 @@
 			function click(d) {
 				
 				var clickDepth = d.depth;
+				var arrValue = [];
 				console.log('TEMP click depth: ', clickDepth);
+				console.log('TEMP click object: ', d);
 				svg.transition()
 					.duration(750)
 					.tween("scale", function() {
