@@ -265,13 +265,15 @@
 				
 				
 				if(clickDepth == 0) {
-					//resetFilter( 'Sales Map', DimensionList[clickDepth] );
-					resetFilter( filterSheet, DimensionList.slice(clickDepth) );
+					if(filterSheet != ''){
+						resetFilter( filterSheet, DimensionList.slice(clickDepth) );
+					}
 				} else {
-				
-					// Optional apply filter function to target sheet in dashboard
-					resetFilter( filterSheet, DimensionList.slice(clickDepth) );
-					setFilterTo( filterSheet, DimensionList[clickDepth - 1], arrValue);
+					if(filterSheet != ''){
+						// Optional apply filter function to target sheet in dashboard
+						resetFilter( filterSheet, DimensionList.slice(clickDepth) );
+						setFilterTo( filterSheet, DimensionList[clickDepth - 1], arrValue);
+					}
 				}
 			}
 			// Create text tooltip for D3 Chart
