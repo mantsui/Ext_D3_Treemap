@@ -63,10 +63,6 @@
 		// https://tableau.github.io/extensions-api/docs/interfaces/dashboard.html#addeventlistener
 		let unregisterSettingsEventListener = null;
 
-		const worksheets=tableau.extensions.dashboardContent.dashboard.worksheets;
-		// We will try to read the worksheet from the settings, if this exists we will show
-		// the configuration screen, otherwise we will clear the table and destroy the
-		// reference.
 		var worksheet;
 		
 		$(document).ready(function () {
@@ -84,6 +80,11 @@
 		});		
 		
 		function getData_to_D3() {
+
+		const worksheets=tableau.extensions.dashboardContent.dashboard.worksheets;
+		// We will try to read the worksheet from the settings, if this exists we will show
+		// the configuration screen, otherwise we will clear the table and destroy the
+		// reference.
 			
 		var sheetName = tableau.extensions.settings.get("worksheet");
 		//console.log('tableau.extensions.settings.get("worksheet") Worksheet Name: ' + sheetName);
