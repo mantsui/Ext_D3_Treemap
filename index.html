@@ -119,11 +119,10 @@
 		for(var key in dict_Settings) {
 			var value = dict_Settings[key];
 
-			//if (key.includes('FieldName_')){
 			if (key.startsWith('FieldName_')){
 				Ordered_Dimensions.push(value);
 			}
-		}	
+		}
 		console.log('----- Ordered_Dimensions -----', Ordered_Dimensions);	// Debug output
 			
 		worksheet.getSummaryDataAsync().then(function (sumdata) {
@@ -240,6 +239,16 @@
 			if( tableau.extensions.settings.get("FilterSheet") != null) {
 				filterSheet = tableau.extensions.settings.get("FilterSheet");
 			}
+
+			var Filter_Dimensions = [];
+			for(var key in dict_Settings) {
+				var value = dict_Settings[key];
+
+				if (key.startsWith('FilterFieldName_')){
+					Filter_Dimensions.push(value);
+				}
+			}
+			console.log('TEMP Filter_Dimensions ', );
 
 			// Function for click event  
 			function click(d) {
