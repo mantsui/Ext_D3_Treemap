@@ -118,7 +118,8 @@
 		for(var key in dict_Settings) {
 			var value = dict_Settings[key];
 
-			if (key.includes('FieldName_')){
+			//if (key.includes('FieldName_')){
+			if (key.startsWith('FieldName_')){
 				Ordered_Dimensions.push(value);
 			}
 		}	
