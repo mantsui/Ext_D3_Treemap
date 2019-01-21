@@ -248,7 +248,6 @@
 					Filter_Dimensions.push(value);
 				}
 			}
-			console.log('TEMP Filter_Dimensions ', Filter_Dimensions);
 
 			// Function for click event  
 			function click(d) {
@@ -283,7 +282,9 @@
 					if(filterSheet != ''){
 						// Optional apply filter function to target sheet in dashboard
 						resetFilter( filterSheet, DimensionList.slice(clickDepth) );
-						setFilterTo( filterSheet, DimensionList[clickDepth - 1], arrValue);
+						if( Filter_Dimensions.includes(DimensionList[clickDepth - 1]) ) {
+							setFilterTo( filterSheet, DimensionList[clickDepth - 1], arrValue);
+						}
 					}
 				}
 			}
@@ -572,21 +573,15 @@
 			sheetToFilter.applyFilterAsync(filterName, values, tableau.FilterUpdateType.Replace);
 		}
 		
-		// Clear any pre-existing filters for target sheet in the dashboard
-		/*function resetFilter(filterSheetName, filterName) {
-			var sheetToFilter = tableau.extensions.dashboardContent.dashboard.worksheets.find(function (sheet) { 
-				return sheet.name === filterSheetName;
-			});
-			
-			sheetToFilter.clearFilterAsync(filterName);	// Reset filters for sheetToFiler
-		}*/
 		function resetFilter(filterSheetName, arrDimensionList) {
 			var sheetToFilter = tableau.extensions.dashboardContent.dashboard.worksheets.find(function (sheet) { 
 				return sheet.name === filterSheetName;
 			});
 			
 			arrDimensionList.forEach(function(currentValue){
-				sheetToFilter.clearFilterAsync(currentValue);	// Reset filters for sheetToFiler
+				if( Filter_Dimensions.includes(currentValue) ) {
+					sheetToFilter.clearFilterAsync(currentValue);	// Reset filters for sheetToFiler
+				}
 			});
 		}
 
