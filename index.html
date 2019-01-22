@@ -253,12 +253,8 @@
 			function click(d) {
 				
 				var clickDepth = d.depth;
-				var arrValue = [];
-				
+				var arrValue = [];				
 				arrValue.push(d.data.name);
-				console.log('TEMP click depth: ', clickDepth);
-				console.log('TEMP click object: ', d);
-				console.log( 'TEMP click slicing: ', DimensionList.slice(clickDepth) );
 				
 				svg.transition()
 					.duration(750)
