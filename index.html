@@ -115,6 +115,8 @@
 		var strDisplayName = regExpMatches[1];
 			
 		dict_Settings = tableau.extensions.settings.getAll();
+		console.log('dict_Settings: ', dict_Settings);
+
 		var Ordered_Dimensions = [];
 		for(var key in dict_Settings) {
 			var value = dict_Settings[key];
