@@ -295,7 +295,7 @@
 				var DollarSign = "";
 				// Add dollar sign to tooltip if value is not "Sales" isDollarSign
 				//if( Value_Field_Name.toUpperCase().indexOf("SALES") === -1 ) {
-				if( dict_Settings[isDollarSign] == "true" ) {
+				if( dict_Settings['isDollarSign'] == "true" ) {
 					DollarSign = "$";
 				}
 				Tooltip = d.data.name + "\n" + Value_Field_Name + ": " + DollarSign + formatComma(d.value);
