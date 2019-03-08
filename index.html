@@ -389,8 +389,6 @@
 					depthCursor = depthCursor[index].children;
 					// This is a leaf, so add the last element to the specified branch
 					//Remove all commas in a text string
-					console.log('Temp Debug d[strValueName]: ', d[strValueName]);
-					console.log('Temp Debug Typeof: ', typeof d[strValueName]);
 					if(typeof d[strValueName] != 'number') {
 						var TempString = d[strValueName].replace(/,/g,"");
 						var Target_Key = Math.round(+TempString); //Convert String to Numeric
