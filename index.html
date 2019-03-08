@@ -391,8 +391,13 @@
 					//Remove all commas in a text string
 					console.log('Temp Debug d[strValueName]: ', d[strValueName]);
 					console.log('Temp Debug Typeof: ', typeof d[strValueName]);
-					var TempString = d[strValueName].replace(/,/g,"");
-					var Target_Key = Math.round(+TempString); //Convert String to Numeric
+					if(typeof d[strValueName] != 'number') {
+						var TempString = d[strValueName].replace(/,/g,"");
+						var Target_Key = Math.round(+TempString); //Convert String to Numeric
+					} else {
+						var Target_Key = Math.round(d[strValueName]);
+					}
+					
 					if ( depth === non_Final_Children_Levels.length - 1 ) {
 						depthCursor.push({ name : d[final_Child_Level], size : Target_Key });
 					}
