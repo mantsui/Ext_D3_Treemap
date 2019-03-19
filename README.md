@@ -1,3 +1,7 @@
-# Ext_D3_SimpleBar01
+# Ext_D3_Sunburst
 
-Simple Tableau Extension test to draw a simple D3 Bar.
+Tableau Extension drawing zoomable Sunburst chart at dynamic number of dimensions using D3 javascript library.
+
+Tableau sheet requirement:
+1) One Measure
+2) At least two dimension
