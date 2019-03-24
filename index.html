@@ -88,6 +88,7 @@
 			
 		var sheetName = tableau.extensions.settings.get("worksheet");
 		console.log('Debug sheetName ', sheetName); //03.24.19 Temp Debug
+		sheetName = 'TabData'; //03.24.19 Temp Debug
 
 		//console.log('tableau.extensions.settings.get("worksheet") Worksheet Name: ' + sheetName);
 		if (sheetName == undefined || sheetName =="" || sheetName == null) {
@@ -137,19 +138,16 @@
 			// Convert Tableau data into Array of Objects for D3 processing.
 			var Tableau_Array_of_Objects = ReduceToObjectTablulated(sumdata);
 			console.log('----- Display Tableau_Array_of_Objects -----', Tableau_Array_of_Objects);	// Debug output
-			
-			// Add placeholder if this is a one dimension, one measure dataset
-			// This is to help ensure proper d3 chart drawing for one-dimension dataset
-			//if(Ordered_Dimensions.length == 1) {
-			//   	Ordered_Dimensions.splice(0, 0, 'placeholder');
-			//	console.log('Spliced dimensions: ', Ordered_Dimensions);
-			//}
-			
+						
 			var uniqEleCount = uniqueElementCnt(Tableau_Array_of_Objects, Ordered_Dimensions);
 			
 			var TableauTreeData = Convert_To_TreeData(Tableau_Array_of_Objects, Ordered_Dimensions, strMeasureName, strDisplayName);
 			console.log('----- Display Tree Data -----', TableauTreeData);	// Debug output
 
+			
+			
+			
+			
 			var colorScale = tableau.extensions.settings.get("chartColorScale");
 
 			draw_D3(TableauTreeData, strDisplayName, Ordered_Dimensions, uniqEleCount, colorScale);
