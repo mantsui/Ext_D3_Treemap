@@ -145,7 +145,8 @@
 			var TableauTreeData = Convert_To_TreeData(Tableau_Array_of_Objects, Ordered_Dimensions, strMeasureName, strDisplayName);
 			console.log('----- Display Tree Data -----', TableauTreeData);	// Debug output
 
-			
+			renameObjInArray(Tableau_Array_of_Objects, 'Product Sub-Category', 'key');
+			renameObjInArray(Tableau_Array_of_Objects, 'SUM(Sales)', 'value');			
 			
 			
 			
@@ -590,6 +591,12 @@
 			});
 		}
 
+		function renameObjInArray(arr, OldName, NewName) {
+			for(var i=0; i<arr.length; i++) {
+				arr[i] = renameKeys(arr[i], { [OldName]: NewName });
+			}
+		}
+		
 	})();		
 </script>
 </body>
