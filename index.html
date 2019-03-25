@@ -142,8 +142,9 @@
 						
 			var uniqEleCount = uniqueElementCnt(Tableau_Array_of_Objects, Ordered_Dimensions);
 			
-			var TableauTreeData = Convert_To_TreeData(Tableau_Array_of_Objects, Ordered_Dimensions, strMeasureName, strDisplayName);
-			console.log('----- Display Tree Data -----', TableauTreeData);	// Debug output
+			//Sunburst Code
+			//var TableauTreeData = Convert_To_TreeData(Tableau_Array_of_Objects, Ordered_Dimensions, strMeasureName, strDisplayName);
+			//console.log('----- Display Tree Data -----', TableauTreeData);	// Debug output
 
 			renameObjInArray(Tableau_Array_of_Objects, 'Product Sub-Category', 'key');
 			renameObjInArray(Tableau_Array_of_Objects, 'SUM(Sales)', 'value');			
@@ -154,7 +155,8 @@
 			
 			var colorScale = tableau.extensions.settings.get("chartColorScale");
 
-			draw_D3(TableauTreeData, strDisplayName, Ordered_Dimensions, uniqEleCount, colorScale);
+			//Sunburst Code
+			//draw_D3(TableauTreeData, strDisplayName, Ordered_Dimensions, uniqEleCount, colorScale);
 		});
 		}
 		
