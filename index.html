@@ -218,7 +218,8 @@
 			var color = d3.scaleOrdinal(d3.schemeCategory10);
 
 
-			var x = d3.scale.linear()
+			//var x = d3.scale.linear()  //sunburst code
+			var x = d3.scaleLinear()
 					.domain([0, width])
 					.range([0, width]);
 
