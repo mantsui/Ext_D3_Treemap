@@ -223,7 +223,9 @@
 					.domain([0, width])
 					.range([0, width]);
 
-			var y = d3.scale.linear()
+
+			//var y = d3.scale.linear() //sunburst code
+			var y = d3.scaleLinear()
 					.domain([0, height])
 					.range([0, height]);
 
@@ -241,7 +243,7 @@
 					.attr("height", height + margin.bottom + margin.top)
 					.style("margin-left", -margin.left + "px")
 					.style("margin.right", -margin.right + "px")
-				.append("g")
+					.append("g")
 					.attr("transform", "translate(" + margin.left + "," + margin.top + ")")
 					.style("shape-rendering", "crispEdges");
 
