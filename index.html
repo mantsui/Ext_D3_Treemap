@@ -361,6 +361,26 @@
 				return g;
 			}
 
+			function name(d) {
+				return breadcrumbs(d) +
+				(d.parent
+				? " -  Click to zoom out"
+				: " - Click inside square to zoom in");
+			}
+			function breadcrumbs(d) {
+				var res = "";
+				var sep = " > ";
+				d.ancestors().reverse().forEach(function(i){
+				    res += i.data.name + sep;
+				});
+				return res
+					.split(sep)
+					.filter(function(i){
+						return i!== "";
+					})
+					.join(sep);
+			}
+
 
 		//function draw_D3 block end
 		}
