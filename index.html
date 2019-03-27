@@ -284,18 +284,21 @@
 						.datum(d)
 						.attr("class", "depth");
 				var g = g1.selectAll("g")
-						.data(d.children)
+						//.data(d.children)  //Temp original code
+						.data(d._children)
 						.enter()
 						.append("g");
 				// add class and click handler to all g's with children
 				g.filter(function (d) {
-					return d.children;
+					//return d.children;//Temp original code
+					return d._children;
 				})
 						.classed("children", true)
 						.on("click", transition);
 				g.selectAll(".child")
 						.data(function (d) {
-							return d.children || [d];
+							//return d.children || [d]; //Temp original code
+							return d._children || [d];
 						})
 						.enter().append("rect")
 						.attr("class", "child")
