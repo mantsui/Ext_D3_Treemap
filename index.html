@@ -283,8 +283,8 @@
 						.attr("class", "depth");
 				var g = g1.selectAll("g")
 						.data(d.children)
-						.enter().
-						append("g");
+						.enter()
+						.append("g");
 				// add class and click handler to all g's with children
 				g.filter(function (d) {
 					return d.children;
