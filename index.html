@@ -256,7 +256,7 @@
 					.attr("dy", ".75em");
 
 			var root = d3.hierarchy(data);
-			console.log(root);
+			console.log('root: ', root);
 			treemap(root.sum(function (d) {
 				return d.value;
 			})
