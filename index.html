@@ -233,6 +233,7 @@
 					.size([width, height])
 					.paddingInner(0)
 					.round(false);
+
 			var svg = d3.select("#D3_Chart").append("svg")
 					.attr("width", width + margin.left + margin.right)
 					.attr("height", height + margin.bottom + margin.top)
@@ -242,7 +243,17 @@
 						.attr("transform", "translate(" + margin.left + "," + margin.top + ")")
 						.style("shape-rendering", "crispEdges");
 
-
+			var grandparent = svg.append("g")
+					.attr("class", "grandparent");
+			grandparent.append("rect")
+					.attr("y", -margin.top)
+					.attr("width", width)
+					.attr("height", margin.top)
+					.attr("fill", '#bbbbbb');
+			grandparent.append("text")
+					.attr("x", 6)
+					.attr("y", 6 - margin.top)
+					.attr("dy", ".75em");
 
 
 
