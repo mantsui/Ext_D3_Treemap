@@ -232,9 +232,9 @@
 			var treemap = d3.treemap()
 					.size([width, height])
 					.paddingInner(0)
-					.children(function(d, depth) { return depth ? null : d._children; }) //add from v3
-					.sort(function(a, b) { return a.value - b.value; }) //add from v3
-					.ratio(height / width * 0.5 * (1 + Math.sqrt(5))) //add from v3
+					//.children(function(d, depth) { return depth ? null : d._children; }) //add from v3
+					//.sort(function(a, b) { return a.value - b.value; }) //add from v3
+					//.ratio(height / width * 0.5 * (1 + Math.sqrt(5))) //add from v3
 					.round(false);
 
 			var svg = d3.select("#D3_Chart").append("svg")
