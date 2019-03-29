@@ -146,10 +146,11 @@
 			//var TableauTreeData = Convert_To_TreeData(Tableau_Array_of_Objects, Ordered_Dimensions, strMeasureName, strDisplayName);
 			//console.log('----- Display Tree Data -----', TableauTreeData);	// Debug output
 
-			renameObjInArray(Tableau_Array_of_Objects, 'Product Sub-Category', 'key');
-			renameObjInArray(Tableau_Array_of_Objects, 'SUM(Sales)', 'value');			
+			//renameObjInArray(Tableau_Array_of_Objects, 'Product Sub-Category', 'key');
+			//renameObjInArray(Tableau_Array_of_Objects, 'SUM(Sales)', 'value');			
 			
-			var Tableau_data = d3.nest().key(function(d) { return d["Region"]; }).key(function(d) { return d["State or Province"]; }).entries(Tableau_Array_of_Objects);
+			//var Tableau_data = d3.nest().key(function(d) { return d["Region"]; }).key(function(d) { return d["State or Province"]; }).entries(Tableau_Array_of_Objects);
+			var Tableau_data = d3.hierarchy(Tableau_Array_of_Objects);
 			console.log('Tableau_data ', Tableau_data);	// Debug output
 			
 			
