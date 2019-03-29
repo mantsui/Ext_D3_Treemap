@@ -144,7 +144,7 @@
 			
 			//Sunburst Code
 			var TableauTreeData = Convert_To_TreeData(Tableau_Array_of_Objects, Ordered_Dimensions, strMeasureName, strDisplayName);
-			console.log('----- Display Tree Data -----', TableauTreeData);	// Debug output
+			console.log('Debug TableauTreeData: ', TableauTreeData);	// Debug output
 
 			//renameObjInArray(Tableau_Array_of_Objects, 'Product Sub-Category', 'key');
 			//renameObjInArray(Tableau_Array_of_Objects, 'SUM(Sales)', 'value');			
@@ -158,6 +158,7 @@
 			//Sunburst Code
 			//draw_D3(TableauTreeData, strDisplayName, Ordered_Dimensions, uniqEleCount, colorScale);
 			//draw_D3({title: "Superstore Dataset"}, {key: strDisplayName, values: Tableau_data});
+			draw_D3(TableauTreeData);
 
 		});
 		}
@@ -182,7 +183,7 @@
 		// Passing uniqueElementCount to help with the color contrast
 		//function draw_D3(nodeData, MeasureName, DimensionList, uniqueElementCount, colorChromaticScale){ //Sunburst code
 		function draw_D3(data){
-
+			console.log('draw_D3: ', data);
 
 		//function draw_D3 block end
 		}
