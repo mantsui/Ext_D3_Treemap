@@ -183,7 +183,9 @@
 		// Passing uniqueElementCount to help with the color contrast
 		//function draw_D3(nodeData, MeasureName, DimensionList, uniqueElementCount, colorChromaticScale){ //Sunburst code
 		function draw_D3(data){
-			console.log('draw_D3: ', data);
+			console.log('draw_D3 running: ', data);
+			var divWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+			var divHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
 
 			var margin = {top: 30, right: 0, bottom: 20, left: 0},
 			    width = divWidth -25,
