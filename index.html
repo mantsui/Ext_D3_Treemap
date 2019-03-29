@@ -185,6 +185,43 @@
 		function draw_D3(data){
 			console.log('draw_D3: ', data);
 
+			var margin = {top: 30, right: 0, bottom: 20, left: 0},
+			    width = divWidth -25,
+			    height = 600 - margin.top - margin.bottom,
+			    formatNumber = d3.format(","),
+			    transitioning;
+			// sets x and y scale to determine size of visible boxes
+			var x = d3.scaleLinear()
+					.domain([0, width])
+					.range([0, width]);
+			var y = d3.scaleLinear()
+					.domain([0, height])
+					.range([0, height]);
+			var treemap = d3.treemap()
+					.size([width, height])
+					.paddingInner(0)
+					.round(false);
+			var svg = d3.select('#'+el_id).append("svg")
+					.attr("width", width + margin.left + margin.right)
+					.attr("height", height + margin.bottom + margin.top)
+					.style("margin-left", -margin.left + "px")
+					.style("margin.right", -margin.right + "px")
+					.append("g")
+						.attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+						.style("shape-rendering", "crispEdges");
+			var grandparent = svg.append("g")
+						.attr("class", "grandparent");
+			grandparent.append("rect")
+						.attr("y", -margin.top)
+						.attr("width", width)
+						.attr("height", margin.top)
+						.attr("fill", '#bbbbbb');
+			grandparent.append("text")
+						.attr("x", 6)
+						.attr("y", 6 - margin.top)
+						.attr("dy", ".75em");
+
+
 		//function draw_D3 block end
 		}
 		
