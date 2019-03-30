@@ -331,7 +331,66 @@
                 }
                 return g;
             }
-
+            function text(text) {
+                text.attr("x", function (d) {
+                    return x(d.x) + 6;
+                })
+                    .attr("y", function (d) {
+                        return y(d.y) + 6;
+                    });
+            }
+            function rect(rect) {
+                rect
+                    .attr("x", function (d) {
+                        return x(d.x0);
+                    })
+                    .attr("y", function (d) {
+                        return y(d.y0);
+                    })
+                    .attr("width", function (d) {
+                        return x(d.x1) - x(d.x0);
+                    })
+                    .attr("height", function (d) {
+                        return y(d.y1) - y(d.y0);
+                    })
+                    .attr("fill", function (d) {
+                        return '#bbbbbb';
+                    });
+            }
+            function foreign(foreign) { /* added */
+                foreign
+                    .attr("x", function (d) {
+                        return x(d.x0);
+                    })
+                    .attr("y", function (d) {
+                        return y(d.y0);
+                    })
+                    .attr("width", function (d) {
+                        return x(d.x1) - x(d.x0);
+                    })
+                    .attr("height", function (d) {
+                        return y(d.y1) - y(d.y0);
+                    });
+            }
+            function name(d) {
+                return breadcrumbs(d) +
+                    (d.parent
+                    ? " -  Click to zoom out"
+                    : " - Click inside square to zoom in");
+            }
+            function breadcrumbs(d) {
+                var res = "";
+                var sep = " > ";
+                d.ancestors().reverse().forEach(function(i){
+                    res += i.data.name + sep;
+                });
+                return res
+                    .split(sep)
+                    .filter(function(i){
+                        return i!== "";
+                    })
+                    .join(sep);
+            }
 
 
 
