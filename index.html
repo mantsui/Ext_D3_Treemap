@@ -203,6 +203,7 @@
 					.attr("height", height + margin.bottom + margin.top)
 					.style("margin-left", -margin.left + "px")
 					.style("margin.right", -margin.right + "px")
+					.style("fill", function(d) { return color(d.data.name); }) // 03.30.19 new code
 					.append("g")
 						.attr("transform", "translate(" + margin.left + "," + margin.top + ")")
 						.style("shape-rendering", "crispEdges");
@@ -239,12 +240,12 @@
 				// grandparent color
 				console.log('Debug d.data.name: ', d.data.name);
 				grandparent.datum(d.parent)
-					.select("rect")
+					.select("rect");
 					//03.30.19 test code
-					.style("fill", function(d) {
+					/*.style("fill", function(d) {
 							console.log('Debug d: ', d);
 							return color(d.name); 
-						}); 
+						}); */
 					/* .attr("fill", function () {   03.30.19 original code
 						return '#bbbbbb'
 					}); */
