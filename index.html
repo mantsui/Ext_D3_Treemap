@@ -238,7 +238,8 @@
 					.text(name(d));
 				// grandparent color
 				grandparent.datum(d.parent)
-					.select("rect");
+					.select("rect")
+					.style("fill", function(d) { return color(d.parent.name); });  //03.30.19 test code
 					/* .attr("fill", function () {   03.30.19 original code
 						return '#bbbbbb'
 					}); */
@@ -282,8 +283,8 @@
 						.attr("class", "textdiv"); //textdiv class allows us to style the text easily with CSS
 
 				// 03.30.19 new code
-				g.selectAll("rect")
-						.style("fill", function(d) { return color(d.name); });
+				//g.selectAll("rect")
+						//.style("fill", function(d) { return color(d.name); });
 				
 				function transition(d) {
 					if (transitioning || !d) return;
