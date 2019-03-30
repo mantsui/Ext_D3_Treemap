@@ -178,6 +178,9 @@
 			var divWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 			var divHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
 
+			var color = d3.scaleOrdinal(d3.schemeCategory20);
+			//d3.scaleOrdinal(d3.schemeCategory10);
+			
 			var margin = {top: 30, right: 0, bottom: 20, left: 0},
 			    width = divWidth -25,
 			    height = 600 - margin.top - margin.bottom,
@@ -208,8 +211,8 @@
 			grandparent.append("rect")
 						.attr("y", -margin.top)
 						.attr("width", width)
-						.attr("height", margin.top)
-						.attr("fill", '#bbbbbb');
+						.attr("height", margin.top);
+						//.attr("fill", '#bbbbbb');// 03.30.19 original code
 			grandparent.append("text")
 						.attr("x", 6)
 						.attr("y", 6 - margin.top)
@@ -235,10 +238,10 @@
 					.text(name(d));
 				// grandparent color
 				grandparent.datum(d.parent)
-					.select("rect")
-					.attr("fill", function () {
+					.select("rect");
+					/* .attr("fill", function () {   03.30.19 original code
 						return '#bbbbbb'
-					});
+					}); */
 				var g1 = svg.insert("g", ".grandparent")
 						.datum(d)
 						.attr("class", "depth");
@@ -277,6 +280,11 @@
 							    '<p>' + formatNumber(d.value) + '</p>';
 						})
 						.attr("class", "textdiv"); //textdiv class allows us to style the text easily with CSS
+
+				// 03.30.19 new code
+				g.selectAll("rect")
+						.style("fill", function(d) { return color(d.key); });
+				
 				function transition(d) {
 					if (transitioning || !d) return;
 					transitioning = true;
