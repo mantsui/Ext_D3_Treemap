@@ -142,22 +142,13 @@
 						
 			var uniqEleCount = uniqueElementCnt(Tableau_Array_of_Objects, Ordered_Dimensions);
 			
-			//Sunburst Code
 			var TableauTreeData = Convert_To_TreeData(Tableau_Array_of_Objects, Ordered_Dimensions, strMeasureName, strDisplayName);
 			console.log('Debug TableauTreeData: ', TableauTreeData);	// Debug output
-
-			//renameObjInArray(Tableau_Array_of_Objects, 'Product Sub-Category', 'key');
-			//renameObjInArray(Tableau_Array_of_Objects, 'SUM(Sales)', 'value');			
-			
-			//var Tableau_data = d3.nest().key(function(d) { return d["Region"]; }).key(function(d) { return d["State or Province"]; }).entries(Tableau_Array_of_Objects);
-			//console.log('Tableau_data ', Tableau_data);	// Debug output
-			
 			
 			var colorScale = tableau.extensions.settings.get("chartColorScale");//Sunburst Code
 
 			//Sunburst Code
 			//draw_D3(TableauTreeData, strDisplayName, Ordered_Dimensions, uniqEleCount, colorScale);
-			//draw_D3({title: "Superstore Dataset"}, {key: strDisplayName, values: Tableau_data});
 			draw_D3(TableauTreeData);
 
 		});
@@ -183,6 +174,7 @@
 		// Passing uniqueElementCount to help with the color contrast
 		//function draw_D3(nodeData, MeasureName, DimensionList, uniqueElementCount, colorChromaticScale){ //Sunburst code
 		function draw_D3(data){
+			// http://bl.ocks.org/guglielmo/16d880a6615da7f502116220cb551498 D3 source
 			var divWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 			var divHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
 
@@ -623,20 +615,6 @@
 					sheetToFilter.clearFilterAsync(currentValue);	// Reset filters for sheetToFiler
 				}
 			});
-		}
-
-		function renameObjInArray(arr, OldName, NewName) {
-			for(var i=0; i<arr.length; i++) {
-				arr[i] = renameKeys(arr[i], { [OldName]: NewName });
-			}
-		}
-
-		function renameKeys(obj, newKeys) {
-			const keyValues = Object.keys(obj).map(key => {
-				const newKey = newKeys[key] || key;
-				return { [newKey]: obj[key] };
-			});
-			return Object.assign({}, ...keyValues);
 		}
 		
 	})();		
