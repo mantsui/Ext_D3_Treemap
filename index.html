@@ -240,7 +240,11 @@
 				console.log('Debug d.data.name: ', d.data.name);
 				grandparent.datum(d.parent)
 					.select("rect")
-					.style("fill", function(d) { return color(d.data.name); });  //03.30.19 test code
+					//03.30.19 test code
+					.style("fill", function(d) {
+							console.log('Debug d: ', d);
+							return color(d.name); 
+						}); 
 					/* .attr("fill", function () {   03.30.19 original code
 						return '#bbbbbb'
 					}); */
