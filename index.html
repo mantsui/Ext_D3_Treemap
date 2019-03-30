@@ -237,6 +237,7 @@
 					.select("text")
 					.text(name(d));
 				// grandparent color
+				console.log('Debug d.parent: ', d.parent);
 				grandparent.datum(d.parent)
 					.select("rect")
 					.style("fill", function(d) { return color(d.parent.name); });  //03.30.19 test code
