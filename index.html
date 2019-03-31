@@ -181,8 +181,7 @@
 			//var color = d3.scaleOrdinal(d3.schemeSet3);
 			var color = d3.scaleOrdinal()
 					//.range(d3.schemeCategory10
-					.range(d3.schemeCategory20c)
-					.map(function(c) { c = d3.rgb(c); c.opacity = 0.6; return c; }));
+					.range(d3.schemeSet3.map(function(c) { c = d3.rgb(c); c.opacity = 0.6; return c; }));
 			//d3.scaleOrdinal(d3.schemeCategory10);
 			
 			var margin = {top: 30, right: 0, bottom: 20, left: 0},
