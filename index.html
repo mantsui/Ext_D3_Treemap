@@ -178,7 +178,10 @@
 			var divWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 			var divHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
 
-			var color = d3.scaleOrdinal(d3.schemeSet3);
+			//var color = d3.scaleOrdinal(d3.schemeSet3);
+			var color = d3.scaleOrdinal()
+					.range(d3.schemeCategory10
+					.map(function(c) { c = d3.rgb(c); c.opacity = 0.6; return c; }));
 			//d3.scaleOrdinal(d3.schemeCategory10);
 			
 			var margin = {top: 30, right: 0, bottom: 20, left: 0},
@@ -203,9 +206,9 @@
 					.attr("height", height + margin.bottom + margin.top)
 					.style("margin-left", -margin.left + "px")
 					.style("margin.right", -margin.right + "px")
-					.style("fill", function(d) { 
+					/*.style("fill", function(d) { 
 						console.log('Debug 207 d: ', d);
-						return color(d.name); }) // 03.30.19 new code
+						return color(d.name); }) */ // 03.30.19 new code
 					.append("g")
 						.attr("transform", "translate(" + margin.left + "," + margin.top + ")")
 						.style("shape-rendering", "crispEdges");
@@ -293,7 +296,10 @@
 				// 03.30.19 new code
 				//g.selectAll("rect")
 						//.style("fill", function(d) { return color(d.name); });
-				
+				console.log('Debug 299 d: ', d);
+				g.selectAll("rect").style("fill", function(d) { return color(d.data.name); });
+
+
 				function transition(d) {
 					if (transitioning || !d) return;
 					transitioning = true;
