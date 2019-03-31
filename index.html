@@ -214,8 +214,9 @@
 			var Tableau_Array_of_Objects = ReduceToObjectTablulated(sumdata);
 			console.log('----- Display Tableau_Array_of_Objects -----', Tableau_Array_of_Objects);	// Debug output
 						
-			var uniqEleCount = uniqueElementCnt(Tableau_Array_of_Objects, Ordered_Dimensions);
+			//var uniqEleCount = uniqueElementCnt(Tableau_Array_of_Objects, Ordered_Dimensions); //Sunburst Code
 			
+			// Reformat tableau data into tree-like/hierarchical structure for D3.
 			var TableauTreeData = Convert_To_TreeData(Tableau_Array_of_Objects, Ordered_Dimensions, strMeasureName, strDisplayName);
 			console.log('Debug TableauTreeData: ', TableauTreeData);	// Debug output
 			
