@@ -234,10 +234,11 @@
 			var color = d3.scaleOrdinal()
 					.range(d3.schemeSet3.map(function(c) { c = d3.rgb(c); c.opacity = 0.6; return c; }));
 			
-			var margin = {top: 30, right: 0, bottom: 20, left: 0},
+			//var margin = {top: 30, right: 0, bottom: 20, left: 0}, // old code
+			var margin = {top: 0, right: 0, bottom: 20, left: 0},
 			    width = divWidth,
 			    //height = 600 - margin.top - margin.bottom, // old code
-			    height = divHeight,
+			    height = divHeight - margin.bottom,
 			    formatNumber = d3.format(","),
 			    transitioning;
 			// sets x and y scale to determine size of visible boxes
