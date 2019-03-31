@@ -180,7 +180,8 @@
 
 			//var color = d3.scaleOrdinal(d3.schemeSet3);
 			var color = d3.scaleOrdinal()
-					.range(d3.schemeCategory10
+					//.range(d3.schemeCategory10
+					.range(d3.schemeCategory20c
 					.map(function(c) { c = d3.rgb(c); c.opacity = 0.6; return c; }));
 			//d3.scaleOrdinal(d3.schemeCategory10);
 			
@@ -206,9 +207,6 @@
 					.attr("height", height + margin.bottom + margin.top)
 					.style("margin-left", -margin.left + "px")
 					.style("margin.right", -margin.right + "px")
-					/*.style("fill", function(d) { 
-						console.log('Debug 207 d: ', d);
-						return color(d.name); }) */ // 03.30.19 new code
 					.append("g")
 						.attr("transform", "translate(" + margin.left + "," + margin.top + ")")
 						.style("shape-rendering", "crispEdges");
