@@ -235,9 +235,9 @@
 					.range(d3.schemeSet3.map(function(c) { c = d3.rgb(c); c.opacity = 0.6; return c; }));
 			
 			var margin = {top: 30, right: 0, bottom: 20, left: 0},
-			    //width = divWidth -25, //old code
 			    width = divWidth,
-			    height = 600 - margin.top - margin.bottom,
+			    //height = 600 - margin.top - margin.bottom, // old code
+			    height = divHeight,
 			    formatNumber = d3.format(","),
 			    transitioning;
 			// sets x and y scale to determine size of visible boxes
