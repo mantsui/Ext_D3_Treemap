@@ -178,11 +178,8 @@
 			var divWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 			var divHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
 
-			//var color = d3.scaleOrdinal(d3.schemeSet3);
 			var color = d3.scaleOrdinal()
-					//.range(d3.schemeCategory10
 					.range(d3.schemeSet3.map(function(c) { c = d3.rgb(c); c.opacity = 0.6; return c; }));
-			//d3.scaleOrdinal(d3.schemeCategory10);
 			
 			var margin = {top: 30, right: 0, bottom: 20, left: 0},
 			    width = divWidth -25,
@@ -214,8 +211,8 @@
 			grandparent.append("rect")
 						.attr("y", -margin.top)
 						.attr("width", width)
-						.attr("height", margin.top);
-						//.attr("fill", '#bbbbbb');// 03.30.19 original code
+						.attr("height", margin.top)
+						.attr("fill", '#bbbbbb');// 03.30.19 original code
 			grandparent.append("text")
 						.attr("x", 6)
 						.attr("y", 6 - margin.top)
