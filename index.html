@@ -212,7 +212,8 @@
 			const popupUrl = `https://mantsui.github.io/Ext_D3_Treemap_ConfigDialog`;
 			let defaultPayload = "";
 			tableau.extensions.ui.displayDialogAsync(popupUrl, defaultPayload, { height:700, width:500 }).then((closePayload) => {
-				drawD3chart();
+				// drawD3chart(); 03.30.19 old code
+				getData_to_D3(); //0 3.30.19 test code
 			}).catch((error) => {
 				switch (error.errorCode) {
 					case tableau.ErrorCodes.DialogClosedByUser:
