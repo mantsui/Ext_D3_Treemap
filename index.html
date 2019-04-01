@@ -38,17 +38,18 @@
 		.grandparent rect {
 		  cursor: pointer;
 		}
-		.children rect.child {
+		.children rect.child {		// Hide child when mouse is not hovering on child
 		  opacity: 0;
 		}
 		.children rect.parent {
 		}
-		.children:hover rect.child {
+		.children:hover rect.child {	// Reveal child color when mouse is hovering on child
 		  opacity: 1;
 		  stroke-width: 1px;
 		}
-		.children:hover rect.parent {
-		  opacity: 0;
+		.children:hover rect.parent { 	// Hide parent color when mouse is hovering on child
+		  //opacity: 0;
+		  opacity: 0.3;
 		}
 		.legend {
 		  margin-bottom:8px !important;
