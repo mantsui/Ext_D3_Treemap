@@ -264,6 +264,9 @@
 						.attr("transform", "translate(" + margin.left + "," + margin.top + ")")
 						.style("shape-rendering", "crispEdges");
 			
+			// Add tooltip  04.01.19
+			var tool = d3.select('#D3_Chart').append("svg").attr("class", "toolTip");
+
 			var grandparent = svg.append("g")
 						.attr("class", "grandparent");
 			grandparent.append("rect")
