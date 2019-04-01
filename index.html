@@ -265,7 +265,7 @@
 						.style("shape-rendering", "crispEdges");
 			
 			// Add tooltip  04.01.19
-			var tool = d3.select('#D3_Chart').append("svg").attr("class", "toolTip");
+			//var tool = d3.select('#D3_Chart').append("svg").attr("class", "toolTip");
 
 			var grandparent = svg.append("g")
 						.attr("class", "grandparent");
@@ -306,8 +306,8 @@
 						.attr("class", "depth");
 				var g = g1.selectAll("g")
 						.data(d.children)
-						.enter().
-						append("g");
+						.enter()
+						.append("g");
 				// add class and click handler to all g's with children
 				g.filter(function (d) {
 					return d.children;
@@ -319,7 +319,11 @@
 						})
 						.enter().append("rect")
 						.attr("class", "child")
-						.call(rect);
+						.call(rect)
+						.append("title")		// 04.01.19 Test code
+						.text(function (d){		// 04.01.19 Test code
+							return 'Test tooltip XYZ';	// 04.01.19 Test code
+						});				// 04.01.19 Test code
 				// add title to parents
 				g.append("rect").attr("class", "parent")
 						.call(rect)
