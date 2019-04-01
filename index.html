@@ -261,7 +261,9 @@
 					.style("margin.right", -margin.right + "px")
 					.append("g")
 						.attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-						.style("shape-rendering", "crispEdges");
+						.style("shape-rendering", "crispEdges")
+						.text(function(d) { return 'Test tooltip XYZ'; }); // 04.01.19 test code
+			
 			var grandparent = svg.append("g")
 						.attr("class", "grandparent");
 			grandparent.append("rect")
