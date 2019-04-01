@@ -315,10 +315,7 @@
 						})
 						.enter().append("rect")
 						.attr("class", "child")
-						.call(rect)
-						.text(function (d){
-							return 'Test tooltip XYZ';
-						});
+						.call(rect);
 				// add title to parents
 				g.append("rect").attr("class", "parent")
 						.call(rect)
