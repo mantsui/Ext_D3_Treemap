@@ -254,6 +254,10 @@
 					.size([width, height])
 					.paddingInner(0)
 					.round(false);
+
+			//Remove and create svg for chart refreshing
+			d3.select("svg").remove();
+
 			// Adds the svg canvas
 			var svg = d3.select('#D3_Chart').append("svg")
 					.attr("width", width + margin.left + margin.right)
