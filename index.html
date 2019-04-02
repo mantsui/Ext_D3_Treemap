@@ -323,11 +323,8 @@
 						})
 						.enter().append("rect")
 						.attr("class", "child")
-						.call(rect)
-						.append("title")		// 04.01.19 Test code
-						.text(function (d){		// 04.01.19 Test code
-							return 'Test tooltip XYZ';	// 04.01.19 Test code
-						});				// 04.01.19 Test code
+						.call(rect);
+
 				// add title to parents
 				g.append("rect").attr("class", "parent")
 						.call(rect)
@@ -347,24 +344,6 @@
 							    '<p>' + formatNumber(d.value) + '</p>';
 						})
 						.attr("class", "textdiv"); //textdiv class allows us to style the text easily with CSS
-
-				var t = g.append("text")  //04.01.19 Test Code
-						.attr("class", "ptext")
-						.attr("dy", ".75em")
-
-				t.append("tspan")
-						.text(function(d) { return d.key; });
-				t.append("tspan")
-						.attr("dy", "1.0em")
-						// Summary Tooltip Text
-						.text(function(d) {
-
-							var PrefixString = "$$";
-							return PrefixString + Math.round(d.value);
-							//return PrefixString + numberWithCommas( Math.round(d.value) );
-						});
-
-				t.call(text);
 
 				g.selectAll("rect").style("fill", function(d) { return color(d.data.name); });
 
