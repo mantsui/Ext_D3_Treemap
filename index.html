@@ -330,19 +330,20 @@
 							tool.style("left", d3.event.pageX + 10 + "px")
 							tool.style("top", d3.event.pageY - 20 + "px")
 							tool.style("display", "inline-block");
-							
-							tool.html(function(d) {
-								console.log('Debug 335 d: ', d);
-								console.log('Debug 336 d: ', d.data.name);
-								return '' +
-								    '<p class="title"> ' + d.data.name + '</p>' +
-								    '<p>' + formatNumber(d.value) + '</p>';
-							} );
+
+							console.log('Debug 335 d: ', d);
+							console.log('Debug 336 d: ', d.data.name);							
+							tool.html( tooltip_HTML(d.data.name) );
 							//tool.html(d.children ? null : d.name + "<br>" + ' $ ' + formatMoney(Math.round(d.size * 1000)) + ' ' + roundToTwo((d.value / 16147370.2) * 100) + '%');
 						}).on("mouseout", function (d) {
 							tool.style("display", "none");
 						});
-
+				function tooltip_HTML(strInput) {
+					return '' +
+					    '<p class="title"> ' + strInput + '</p>';
+					    /*'<p class="title"> ' + d.data.name + '</p>' +
+					    '<p>' + formatNumber(d.value) + '</p>';*/
+				} 
 				// add class and click handler to all g's with children
 				g.filter(function (d) {
 					return d.children;
