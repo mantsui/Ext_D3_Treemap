@@ -360,7 +360,8 @@
 						.text(function(d) {
 
 							var PrefixString = "$$";
-							return PrefixString + numberWithCommas( Math.round(d.value) );
+							return PrefixString + Math.round(d.value);
+							//return PrefixString + numberWithCommas( Math.round(d.value) );
 						});
 
 				t.call(text);
