@@ -326,7 +326,16 @@
 				var g = g1.selectAll("g")
 						.data(d.children)
 						.enter()
-						.append("g");
+						.append("g")
+						.on("mousemove", function (d) {  // 04.01.19 tooltip code
+							tool.style("left", d3.event.pageX + 10 + "px")
+							tool.style("top", d3.event.pageY - 20 + "px")
+							tool.style("display", "inline-block");
+							tool.html(d.children ? null : d.name + "<br>" + ' $ ' + formatMoney(Math.round(d.size * 1000)) + ' ' + roundToTwo((d.value / 16147370.2) * 100) + '%');
+						}).on("mouseout", function (d) {
+							tool.style("display", "none");
+						});
+
 				// add class and click handler to all g's with children
 				g.filter(function (d) {
 					return d.children;
@@ -338,15 +347,7 @@
 						})
 						.enter().append("rect")
 						.attr("class", "child")
-						.call(rect)
-						.on("mousemove", function (d) {  // 04.01.19 tooltip code
-							tool.style("left", d3.event.pageX + 10 + "px")
-							tool.style("top", d3.event.pageY - 20 + "px")
-							tool.style("display", "inline-block");
-							tool.html(d.children ? null : d.name + "<br>" + ' $ ' + formatMoney(Math.round(d.size * 1000)) + ' ' + roundToTwo((d.value / 16147370.2) * 100) + '%');
-						}).on("mouseout", function (d) {
-							tool.style("display", "none");
-						});
+						.call(rect);
 
 				// add title to parents
 				g.append("rect").attr("class", "parent")
