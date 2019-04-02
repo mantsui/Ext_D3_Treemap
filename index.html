@@ -333,7 +333,8 @@
 							tool.style("display", "inline-block");
 							
 							console.log('Debug 335 d: ', d);
-							tool.html("Tooltip xxx");
+							console.log('Debug 336 d: ', d.data.name);
+							tool.html(d.data.name);
 							//tool.html(d.children ? null : d.name + "<br>" + ' $ ' + formatMoney(Math.round(d.size * 1000)) + ' ' + roundToTwo((d.value / 16147370.2) * 100) + '%');
 						}).on("mouseout", function (d) {
 							tool.style("display", "none");
