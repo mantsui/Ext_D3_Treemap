@@ -331,9 +331,9 @@
 							tool.style("top", d3.event.pageY - 20 + "px")
 							tool.style("display", "inline-block");
 							
-							console.log('Debug 335 d: ', d);
-							console.log('Debug 336 d: ', d.data.name);
 							tool.html(function(d) {
+								console.log('Debug 335 d: ', d);
+								console.log('Debug 336 d: ', d.data.name);
 								return '' +
 								    '<p class="title"> ' + d.data.name + '</p>' +
 								    '<p>' + formatNumber(d.value) + '</p>';
