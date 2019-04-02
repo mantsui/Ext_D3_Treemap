@@ -243,7 +243,6 @@
 		// Passing uniqueElementCount to help with the color contrast
 		//function draw_D3(nodeData, MeasureName, DimensionList, uniqueElementCount, colorChromaticScale){ //Sunburst code
 		function draw_D3(data){
-			// http://bl.ocks.org/guglielmo/16d880a6615da7f502116220cb551498 D3 source
 			var divWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 			var divHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
 
@@ -284,7 +283,7 @@
 						.style("shape-rendering", "crispEdges");
 			
 			// Add tooltip  04.01.19
-			var tool = d3.select('#D3_Chart').append("svg").attr("class", "toolTip");
+			//var tool = d3.select('#D3_Chart').append("svg").attr("class", "toolTip");
 
 			var grandparent = svg.append("g")
 						.attr("class", "grandparent");
@@ -334,7 +333,11 @@
 							
 							console.log('Debug 335 d: ', d);
 							console.log('Debug 336 d: ', d.data.name);
-							tool.html(function(d) { return "Tooltip yyy "; } );
+							tool.html(function(d) {
+								return '' +
+								    '<p class="title"> ' + d.data.name + '</p>' +
+								    '<p>' + formatNumber(d.value) + '</p>';
+							} );
 							//tool.html(d.children ? null : d.name + "<br>" + ' $ ' + formatMoney(Math.round(d.size * 1000)) + ' ' + roundToTwo((d.value / 16147370.2) * 100) + '%');
 						}).on("mouseout", function (d) {
 							tool.style("display", "none");
