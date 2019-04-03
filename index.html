@@ -86,23 +86,6 @@
 		    font-size:10px !important;
 		}
 
-		.svg-tooltip {
-		    pointer-events: none;
-		}
-		.tooltip {
-		    padding: 10px;
-		    color: #4A22FF;
-		}
-		.lead {
-		    font-style: italic;
-		}
-		p {
-		    margin: 5px 0px;
-		}
-		polygon {
-		    pointer-events: none;
-		}
-
 	</style>
 	
 </head>
@@ -283,9 +266,6 @@
 						.attr("transform", "translate(" + margin.left + "," + margin.top + ")")
 						.style("shape-rendering", "crispEdges");
 			
-			// Add tooltip  04.01.19
-			var tool = d3.select('#D3_Chart').append("svg").attr("class", "toolTip");
-
 			var grandparent = svg.append("g")
 						.attr("class", "grandparent");
 			grandparent.append("rect")
@@ -347,46 +327,11 @@
 						.attr("class", "child")
 						.call(rect)
 						.on("mousemove", function (d) {  // 04.01.19 tooltip code
-
 							console.log('Debug 335 d: ', d);
 							console.log('Debug 336 d: ', d.data.name);
-
-							/*var fo = svg.append('foreignObject')
-									.attr({
-										'x': anchor.w - tip.w,
-										'y': anchor.h + tip.h,
-										'width': foWidth,
-										'class': 'svg-tooltip'
-									});
-							var div = fo.append('xhtml:div')
-									.append('div')
-									.attr({
-										'class': 'tooltip'
-									});
-							div.append('p')
-									.attr('class', 'lead')
-									.html('Holmes was certainly not a difficult man to live with.');
-									div.append('p')
-									.html('He was quiet in his ways, and his habits were regular. It was rare for him to be up after ten at night, and he had invariably breakfasted and gone out before I rose in the morning.');
-							var foHeight = div[0][0].getBoundingClientRect().height;
-							fo.attr({
-								'height': foHeight
-							});
-							svg.insert('polygon', '.svg-tooltip')
-									.attr({
-										'points': "0,0 0," + foHeight + " " + foWidth + "," + foHeight + " " + foWidth + ",0 " + (t) + ",0 " + tip.w + "," + (-tip.h) + " " + (t/2) + ",0",
-										'height': foHeight + tip.h,
-										'width': foWidth,
-										'fill': '#D8D8D8', 
-										'opacity': 0.75,
-										'transform': 'translate(' + (anchor.w - tip.w) + ',' + (anchor.h + tip.h) + ')'
-									});*/
-
 						})
 						.on("mouseout", function (d) {
 							//tool.style("display", "none");
-							svg.selectAll('.svg-tooltip').remove();
-							svg.selectAll('polygon').remove();
 						});
 
 				// add title to parents
