@@ -86,6 +86,23 @@
 		    font-size:10px !important;
 		}
 
+		.svg-tooltip {
+		    pointer-events: none;
+		}
+		.tooltip {
+		    padding: 10px;
+		    color: #4A22FF;
+		}
+		.lead {
+		    font-style: italic;
+		}
+		p {
+		    margin: 5px 0px;
+		}
+		polygon {
+		    pointer-events: none;
+		}
+
 	</style>
 	
 </head>
@@ -311,6 +328,11 @@
 						.enter()
 						.append("g");
 
+				// 04.02.19 New Code
+				var foWidth = 300;
+				var anchor = {'w': width/3, 'h': height/3};
+				var t = 50, k = 15;
+				var tip = {'w': (3/4 * t), 'h': k}; // 04.02.19 New Code
 
 				// add class and click handler to all g's with children
 				g.filter(function (d) {
@@ -328,19 +350,43 @@
 
 							console.log('Debug 335 d: ', d);
 							console.log('Debug 336 d: ', d.data.name);
-							tool.call(rect)
-							//.attr("class", "foreignobj")
-							.append("xhtml:div")
-							.attr("dy", ".75em")
-							.html(function (d) {
-								return '' +
-								    '<p class="title"> ' + d.data.name + '</p>' +
-								    '<p>' + formatNumber(d.value) + '</p>';
-							})
-							.attr("class", "textdiv"); //textdiv class allows us to style the text easily with CSS
+
+							var fo = svg.append('foreignObject')
+									.attr({
+										'x': anchor.w - tip.w,
+										'y': anchor.h + tip.h,
+										'width': foWidth,
+										'class': 'svg-tooltip'
+									});
+							var div = fo.append('xhtml:div')
+									.append('div')
+									.attr({
+										'class': 'tooltip'
+									});
+							div.append('p')
+									.attr('class', 'lead')
+									.html('Holmes was certainly not a difficult man to live with.');
+									div.append('p')
+									.html('He was quiet in his ways, and his habits were regular. It was rare for him to be up after ten at night, and he had invariably breakfasted and gone out before I rose in the morning.');
+							var foHeight = div[0][0].getBoundingClientRect().height;
+							fo.attr({
+								'height': foHeight
+							});
+							svg.insert('polygon', '.svg-tooltip')
+									.attr({
+										'points': "0,0 0," + foHeight + " " + foWidth + "," + foHeight + " " + foWidth + ",0 " + (t) + ",0 " + tip.w + "," + (-tip.h) + " " + (t/2) + ",0",
+										'height': foHeight + tip.h,
+										'width': foWidth,
+										'fill': '#D8D8D8', 
+										'opacity': 0.75,
+										'transform': 'translate(' + (anchor.w - tip.w) + ',' + (anchor.h + tip.h) + ')'
+									});
+
 						})
 						.on("mouseout", function (d) {
 							//tool.style("display", "none");
+							svg.selectAll('.svg-tooltip').remove();
+							svg.selectAll('polygon').remove();
 						});
 
 				// add title to parents
