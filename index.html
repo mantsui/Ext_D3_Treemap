@@ -86,21 +86,6 @@
 		    font-size:10px !important;
 		}
 
-		.toolTip {
-		   position: absolute;
-		   display: none;
-		   width: auto;
-		   height: auto;
-		   background: none repeat scroll 0 0 white;
-		   border: 0 none;
-		   border-radius: 8px 8px 8px 8px;
-		   box-shadow: -3px 3px 15px #888888;
-		   color: black;
-		   font: 12px sans-serif;
-		   padding: 5px;
-		   text-align: center;
-		}
-
 	</style>
 	
 </head>
@@ -338,7 +323,25 @@
 						})
 						.enter().append("rect")
 						.attr("class", "child")
-						.call(rect);
+						.call(rect)
+						.on("mousemove", function (d) {  // 04.01.19 tooltip code
+
+							console.log('Debug 335 d: ', d);
+							console.log('Debug 336 d: ', d.data.name);
+							tool.call(rect)
+							//.attr("class", "foreignobj")
+							.append("xhtml:div")
+							.attr("dy", ".75em")
+							.html(function (d) {
+								return '' +
+								    '<p class="title"> ' + d.data.name + '</p>' +
+								    '<p>' + formatNumber(d.value) + '</p>';
+							})
+							.attr("class", "textdiv"); //textdiv class allows us to style the text easily with CSS
+						})
+						.on("mouseout", function (d) {
+							//tool.style("display", "none");
+						});
 
 				// add title to parents
 				g.append("rect").attr("class", "parent")
@@ -356,7 +359,7 @@
 						.html(function (d) {
 							return '' +
 							    '<p class="title"> ' + d.data.name + '</p>' +
-							    '<p>' + 'xyzabc' + formatNumber(d.value) + '</p>';
+							    '<p>' + formatNumber(d.value) + '</p>';
 						})
 						.attr("class", "textdiv"); //textdiv class allows us to style the text easily with CSS
 
