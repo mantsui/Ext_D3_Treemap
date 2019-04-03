@@ -155,8 +155,7 @@
 		// reference.
 			
 		var sheetName = tableau.extensions.settings.get("worksheet");
-		console.log('Debug sheetName ', sheetName); //03.24.19 Temp Debug
-		//sheetName = 'TabData'; //03.24.19 Temp Debug
+		console.log('Debug sheetName ', sheetName); 
 
 		//console.log('tableau.extensions.settings.get("worksheet") Worksheet Name: ' + sheetName);
 		if (sheetName == undefined || sheetName =="" || sheetName == null) {
@@ -325,26 +324,9 @@
 				var g = g1.selectAll("g")
 						.data(d.children)
 						.enter()
-						.append("g")
-						.on("mousemove", function (d) {  // 04.01.19 tooltip code
-							tool.style("left", d3.event.pageX + 10 + "px")
-							tool.style("top", d3.event.pageY - 20 + "px")
-							tool.style("display", "inline-block");
+						.append("g");
 
-							console.log('Debug 335 d: ', d);
-							console.log('Debug 336 d: ', d.data.name);							
-							tool.html( tooltip_HTML(d.data.name) );
-							//tool.html(d.children ? null : d.name + "<br>" + ' $ ' + formatMoney(Math.round(d.size * 1000)) + ' ' + roundToTwo((d.value / 16147370.2) * 100) + '%');
-						}).on("mouseout", function (d) {
-							tool.style("display", "none");
-						});
-				function tooltip_HTML(strInput) {
-					console.log('Debug 342 strInput: ', strInput);
-					return '' +
-					    '<p class="title"> ' + strInput + '</p>';
-					    /*'<p class="title"> ' + d.data.name + '</p>' +
-					    '<p>' + formatNumber(d.value) + '</p>';*/
-				} 
+
 				// add class and click handler to all g's with children
 				g.filter(function (d) {
 					return d.children;
