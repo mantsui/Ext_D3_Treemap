@@ -306,13 +306,14 @@
 				var g = g1.selectAll("g")
 						.data(d.children)
 						.enter()
-						.append("g");
-
-				// 04.02.19 New Code
-				var foWidth = 300;
-				var anchor = {'w': width/3, 'h': height/3};
-				var t = 50, k = 15;
-				var tip = {'w': (3/4 * t), 'h': k}; // 04.02.19 New Code
+						.append("g")
+						.on("mousemove", function (d) {  // 04.01.19 tooltip code
+							console.log('Debug 335 d: ', d);
+							console.log('Debug 336 d: ', d.data.name);
+						})
+						.on("mouseout", function (d) {
+							//tool.style("display", "none");
+						});
 
 				// add class and click handler to all g's with children
 				g.filter(function (d) {
@@ -325,14 +326,7 @@
 						})
 						.enter().append("rect")
 						.attr("class", "child")
-						.call(rect)
-						.on("mousemove", function (d) {  // 04.01.19 tooltip code
-							console.log('Debug 335 d: ', d);
-							console.log('Debug 336 d: ', d.data.name);
-						})
-						.on("mouseout", function (d) {
-							//tool.style("display", "none");
-						});
+						.call(rect);
 
 				// add title to parents
 				g.append("rect").attr("class", "parent")
