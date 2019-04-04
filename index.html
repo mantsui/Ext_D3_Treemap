@@ -303,6 +303,11 @@
 				var g1 = svg.insert("g", ".grandparent")
 						.datum(d)
 						.attr("class", "depth");
+
+				var foWidth = 300;  // 04.03.19 new code
+				var anchor = {'w': width/3, 'h': height/3};  // 04.03.19 new code
+				var t = 50, k = 15;  // 04.03.19 new code
+				var tip = {'w': (3/4 * t), 'h': k};  // 04.03.19 new code
 				var g = g1.selectAll("g")
 						.data(d.children)
 						.enter()
@@ -311,14 +316,14 @@
 							console.log('Debug 335 d: ', d);
 							console.log('Debug 336 d: ', d.data.name);
 
-						var fo = svg.append('foreignObject')
+						var fo = svg.append('foreignObject')  // 04.03.19 new code
 							.attr({
 								'x': anchor.w - tip.w,
 								'y': anchor.h + tip.h,
 								'width': foWidth,
 								'class': 'svg-tooltip'
 							});
-						var div = fo.append('xhtml:div')
+						var div = fo.append('xhtml:div')  // 04.03.19 new code
 							.append('div')
 							.attr({
 								'class': 'tooltip'
@@ -332,7 +337,7 @@
 							fo.attr({
 								'height': foHeight
 							});
-						svg.insert('polygon', '.svg-tooltip')
+						svg.insert('polygon', '.svg-tooltip')  // 04.03.19 new code
 							.attr({
 							    'points': "0,0 0," + foHeight + " " + foWidth + "," + foHeight + " " + foWidth + ",0 " + (t) + ",0 " + tip.w + "," + (-tip.h) + " " + (t/2) + ",0",
 							    'height': foHeight + tip.h,
