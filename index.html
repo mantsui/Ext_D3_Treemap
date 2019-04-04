@@ -304,6 +304,13 @@
 						.datum(d)
 						.attr("class", "depth");
 
+
+				var tooltip = d3.select("body")  // 04.04.19 tooltip code
+						.append("div")
+						.style("position", "absolute")
+						.style("z-index", "10")
+						.style("visibility", "hidden")
+						.text("a simple tooltip");
 				var g = g1.selectAll("g")
 						.data(d.children)
 						.enter()
@@ -312,7 +319,7 @@
 							console.log('Debug 335 d: ', d);
 							console.log('Debug 336 d: ', d.data.name);
 							
-
+							return tooltip.style("visibility", "visible");
 						})
 						.on("mouseout", function (d) {
 							//tool.style("display", "none");
