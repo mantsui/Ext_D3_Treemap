@@ -310,6 +310,37 @@
 						.on("mousemove", function (d) {  // 04.01.19 tooltip code
 							console.log('Debug 335 d: ', d);
 							console.log('Debug 336 d: ', d.data.name);
+
+						var fo = svg.append('foreignObject')
+							.attr({
+								'x': anchor.w - tip.w,
+								'y': anchor.h + tip.h,
+								'width': foWidth,
+								'class': 'svg-tooltip'
+							});
+						var div = fo.append('xhtml:div')
+							.append('div')
+							.attr({
+								'class': 'tooltip'
+							});
+						div.append('p')
+							.attr('class', 'lead')
+							.html('Holmes was certainly not a difficult man to live with.');
+						div.append('p')
+							.html('He was quiet in his ways, and his habits were regular. It was rare for him to be up after ten at night, and he had invariably breakfasted and gone out before I rose in the morning.');
+						var foHeight = div[0][0].getBoundingClientRect().height;
+							fo.attr({
+								'height': foHeight
+							});
+						svg.insert('polygon', '.svg-tooltip')
+							.attr({
+							    'points': "0,0 0," + foHeight + " " + foWidth + "," + foHeight + " " + foWidth + ",0 " + (t) + ",0 " + tip.w + "," + (-tip.h) + " " + (t/2) + ",0",
+							    'height': foHeight + tip.h,
+							    'width': foWidth,
+							    'fill': '#D8D8D8', 
+							    'opacity': 0.75,
+							    'transform': 'translate(' + (anchor.w - tip.w) + ',' + (anchor.h + tip.h) + ')'
+							});
 						})
 						.on("mouseout", function (d) {
 							//tool.style("display", "none");
