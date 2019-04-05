@@ -322,7 +322,12 @@
 						})
 						.enter().append("rect")
 						.attr("class", "child")
-						.call(rect);
+						.call(rect)
+						.on("mousemove", function (d) {  // 04.05.19 tooltip code
+							console.log('Debug 327 mousemove .child d: ', d);
+							console.log('Debug 328 mousemove .child d: ', d.data.name);
+							
+						});
 
 				// add title to parents
 				g.append("rect").attr("class", "parent")
