@@ -306,8 +306,8 @@
 						.enter()
 						.append("g")
 						.on("mousemove", function (d) {  // 04.01.19 tooltip code
-							console.log('Debug 335 d: ', d);
-							console.log('Debug 336 d: ', d.data.name);
+							console.log('Debug 308 mousemove g1 d: ', d);
+							console.log('Debug 309 mousemove g1 d: ', d.data.name);
 							
 						});
 
@@ -397,8 +397,8 @@
 				rect.attr("x", function (d) { return x(d.x0); })
 						.attr("y", function (d) { return y(d.y0); })
 						.attr("width", function (d) { return x(d.x1) - x(d.x0); })
-						.attr("height", function (d) { return y(d.y1) - y(d.y0); })
-						.attr("fill", function (d) { return '#bbbbbb'; });
+						.attr("height", function (d) { return y(d.y1) - y(d.y0); });
+						//.attr("fill", function (d) { return '#bbbbbb'; }); // 04.05.19 original code
 			}
 			function foreign(foreign) { /* added */
 				foreign.attr("x", function (d) { return x(d.x0); })
