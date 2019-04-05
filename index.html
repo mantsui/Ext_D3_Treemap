@@ -301,13 +301,6 @@
 						.datum(d)
 						.attr("class", "depth");
 
-
-				var tooltip = d3.select("svg")  // 04.04.19 tooltip code
-						.append("div")
-						.style("position", "absolute")
-						.style("z-index", "10")
-						.style("visibility", "hidden")
-						.text("a simple tooltip");
 				var g = g1.selectAll("g")
 						.data(d.children)
 						.enter()
@@ -316,12 +309,7 @@
 							console.log('Debug 335 d: ', d);
 							console.log('Debug 336 d: ', d.data.name);
 							
-							return tooltip.style("visibility", "visible");
-						});
-						//.on("mousemove", function(){return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");});
-						//.on("mouseout", function (d) {
-							//tool.style("display", "none");
-						//});
+\						});
 
 				// add class and click handler to all g's with children
 				g.filter(function (d) {
@@ -351,7 +339,7 @@
 						.attr("dy", ".75em")
 						.html(function (d) {
 							return '' +
-							    '<p class="title"> ' + d.data.name + '</p>' +
+							    '<p class="title"> ' + 'zzz' + d.data.name + '</p>' +
 							    '<p>' + formatNumber(d.value) + '</p>';
 						})
 						.attr("class", "textdiv"); //textdiv class allows us to style the text easily with CSS
