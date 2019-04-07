@@ -334,6 +334,7 @@
 					tooltip.transition()
 					.duration(200)
 					.style("opacity", 0);
+					d3.select("tooltip").selectAll("*").remove(); // 04.07.19 Test Code
 				}
 
 				function clearTooltip() { // Test code
@@ -386,6 +387,8 @@
 
 
 				function transition(d) {
+					d3.select("tooltip").selectAll("*").remove(); // 04.07.19 Test Code
+					
 					if (transitioning || !d) return;
 					transitioning = true;
 					var g2 = display(d),
