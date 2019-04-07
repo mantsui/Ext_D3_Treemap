@@ -321,8 +321,9 @@
 										    '<p class="title"> ' + 'XXX' + d.data.name + '</p>';
 									})
 									.attr("class", "textdiv"); //textdiv class allows us to style the text easily with CSS
-
-
+						})
+						.on('mouseout', function() {
+							svg.selectAll('.foreignobj_Tooltip').remove();
 						});
 
 				// add class and click handler to all g's with children
