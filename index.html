@@ -313,23 +313,20 @@
 
 				// Create 3 functions to show / update (when mouse move but stay on same circle) / hide the tooltip
 				var showTooltip = function(d) {
-					console.log('Debug showTooltip d: ', d.data.name);
+					console.log('Debug showTooltip d: ', d);
 					tooltip.transition()
 						.duration(200)
 						tooltip
 						.style("opacity", 1)
-						//.html("Country: " + 'XYZ') 04.07.19 original code
 						.html(d.data.name + '<br/>' + formatNumber(d.value))
 						.style("left", (d3.mouse(this)[0] + 10) + "px")
 						.style("top", (d3.mouse(this)[1] + 10) + "px");
 				}
 				var moveTooltip = function(d) {
-					console.log('Debug moveTooltip d: ', d.data.name);
 					tooltip.style("left", (d3.mouse(this)[0] + 10) + "px")
 					.style("top", (d3.mouse(this)[1] + 10) + "px");
 				}
 				var hideTooltip = function(d) {
-					console.log('Debug hideTooltip d: ', d.data.name);
 					tooltip.transition()
 					.duration(200)
 					.style("opacity", 0);
