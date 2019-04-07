@@ -314,8 +314,7 @@
 					console.log('Debug showTooltip d: ', d);
 					console.log('Debug markWidth: ', d.x1 - d.x0);
 					console.log('Debug markHeight: ', d.y1 - d.y0);
-					//d3.select("tooltip").selectAll("*").remove();
-					tooltip.style("opacity", 0); // Clear old tooltip?
+					//tooltip.style("opacity", 0); // Clear old tooltip?
 					
 					tooltip.transition()
 						.duration(200);
@@ -332,7 +331,6 @@
 					tooltip.transition()
 					.duration(200)
 					.style("opacity", 0);
-					//d3.select("tooltip").selectAll("*").remove(); // 04.07.19 Test Code
 				}
 
 				var g = g1.selectAll("g")
@@ -381,8 +379,7 @@
 
 
 				function transition(d) {
-					//d3.select("tooltip").selectAll("*").remove(); // 04.07.19 Test Code
-					tooltip.style("opacity", 0); // 04.07.19 Test Code // Clear potentially old residual tooltips.
+					tooltip.style("opacity", 0); // Clear potentially old residual tooltips.
 					
 					if (transitioning || !d) return;
 					transitioning = true;
