@@ -319,14 +319,14 @@
 						tooltip
 						.style("opacity", 1)
 						//.html("Country: " + 'XYZ') 04.07.19 original code
-						.html(d.data.name + '\n' + formatNumber(d.value))
-						.style("left", (d3.mouse(this)[0] + 0) + "px")
-						.style("top", (d3.mouse(this)[1] + 0) + "px");
+						.html(d.data.name + ' ' + formatNumber(d.value))
+						.style("left", (d3.mouse(this)[0] + 10) + "px")
+						.style("top", (d3.mouse(this)[1] + 10) + "px");
 				}
 				var moveTooltip = function(d) {
 					console.log('Debug moveTooltip d: ', d.data.name);
-					tooltip.style("left", (d3.mouse(this)[0] + 0) + "px")
-					.style("top", (d3.mouse(this)[1] + 0) + "px");
+					tooltip.style("left", (d3.mouse(this)[0] + 10) + "px")
+					.style("top", (d3.mouse(this)[1] + 10) + "px");
 				}
 				var hideTooltip = function(d) {
 					console.log('Debug hideTooltip d: ', d.data.name);
