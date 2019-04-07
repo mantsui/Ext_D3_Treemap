@@ -309,10 +309,10 @@
 							console.log('Debug 308 mousemove g1 d: ', d);
 							console.log('Debug 309 mousemove g1 d: ', d.data.name);
 
-							//04.07.19 new code
+							//04.07.19 new code for tooltip
 							g.append("foreignObject")
 									.call(rect)
-									.attr("class", "foreignobj")
+									.attr("class", "foreignobj_Tooltip")
 									.append("xhtml:div")
 									.attr("dy", ".75em")
 									.style("opacity", 0.75)
@@ -336,11 +336,7 @@
 						})
 						.enter().append("rect")
 						.attr("class", "child")
-						.call(rect)
-						.on("mousemove", function (d) {  // 04.05.19 tooltip code
-							console.log('Debug 327 mousemove .child d: ', d);
-							console.log('Debug 328 mousemove .child d: ', d.data.name);
-						});
+						.call(rect);
 
 				// add title to parents
 				g.append("rect").attr("class", "parent")
