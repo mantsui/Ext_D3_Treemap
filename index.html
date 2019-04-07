@@ -314,6 +314,7 @@
 					console.log('Debug showTooltip d: ', d);
 					console.log('Debug markWidth: ', d.x1 - d.x0);
 					console.log('Debug markHeight: ', d.y1 - d.y0);
+					clearTooltip();
 					tooltip.transition()
 						.duration(200);
 					tooltip.style("opacity", 1)
@@ -332,7 +333,7 @@
 				}
 
 				function clearTooltip() {
-					//tooltip
+					tooltip.selectAll("div").style("fill-opacity", 0);
 					//g2.selectAll("text").style("fill-opacity", 0);
 				}
 
