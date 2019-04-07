@@ -330,6 +330,40 @@
 						//.on("mousemove", moveTooltip )
 						.on("mouseleave", hideTooltip );
 
+				// Create a tooltip div that is hidden by default:
+				var tooltip = d3.select("#D3_Chart")
+						.append("div")
+						.style("opacity", 0)
+						.attr("class", "tooltip")
+						.style("background-color", "black")
+						.style("border-radius", "5px")
+						.style("padding", "10px")
+						.style("color", "white");
+
+				// Create 3 functions to show / update (when mouse move but stay on same circle) / hide the tooltip
+				var showTooltip = function(d) {
+					console.log('Debug showTooltip d: ', d.data.name);
+					tooltip.transition()
+						.duration(200)
+						tooltip
+						.style("opacity", 1)
+						.html("Country: " + 'XYZ')
+						.style("left", (d3.mouse(this)[0]+30) + "px")
+						.style("top", (d3.mouse(this)[1]+30) + "px");
+				}
+				var moveTooltip = function(d) {
+					console.log('Debug moveTooltip d: ', d.data.name);
+					tooltip.style("left", (d3.mouse(this)[0]+30) + "px")
+					.style("top", (d3.mouse(this)[1]+30) + "px");
+				}
+				var hideTooltip = function(d) {
+					console.log('Debug hideTooltip d: ', d.data.name);
+					tooltip.transition()
+					.duration(200)
+					.style("opacity", 0);
+				}
+
+
 				// add class and click handler to all g's with children
 				g.filter(function (d) {
 					return d.children;
@@ -365,38 +399,6 @@
 
 				g.selectAll("rect").style("fill", function(d) { return color(d.data.name); });
 
-				// Create a tooltip div that is hidden by default:
-				var tooltip = d3.select("#D3_Chart")
-						.append("div")
-						.style("opacity", 0)
-						.attr("class", "tooltip")
-						.style("background-color", "black")
-						.style("border-radius", "5px")
-						.style("padding", "10px")
-						.style("color", "white");
-
-				// Create 3 functions to show / update (when mouse move but stay on same circle) / hide the tooltip
-				var showTooltip = function(d) {
-					console.log('Debug showTooltip d: ', d.data.name);
-					tooltip.transition()
-						.duration(200)
-						tooltip
-						.style("opacity", 1)
-						.html("Country: " + 'XYZ')
-						.style("left", (d3.mouse(this)[0]+30) + "px")
-						.style("top", (d3.mouse(this)[1]+30) + "px");
-				}
-				var moveTooltip = function(d) {
-					console.log('Debug moveTooltip d: ', d.data.name);
-					tooltip.style("left", (d3.mouse(this)[0]+30) + "px")
-					.style("top", (d3.mouse(this)[1]+30) + "px");
-				}
-				var hideTooltip = function(d) {
-					console.log('Debug hideTooltip d: ', d.data.name);
-					tooltip.transition()
-					.duration(200)
-					.style("opacity", 0);
-				}
 
 				function transition(d) {
 					if (transitioning || !d) return;
