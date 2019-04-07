@@ -315,7 +315,8 @@
 					console.log('Debug markWidth: ', d.x1 - d.x0);
 					console.log('Debug markHeight: ', d.y1 - d.y0);
 					//d3.select("tooltip").selectAll("div").remove();
-					d3.select("tooltip").remove();
+					//d3.select("tooltip").remove();
+					d3.select("tooltip").selectAll("*").remove();
 					
 					//clearTooltip();  //test code
 					tooltip.transition()
