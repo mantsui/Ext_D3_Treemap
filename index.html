@@ -314,6 +314,8 @@
 				// Create 3 functions to show / update (when mouse move but stay on same circle) / hide the tooltip
 				var showTooltip = function(d) {
 					console.log('Debug showTooltip d: ', d);
+					console.log('Debug markWidth: ', d.x1 - d.x0);
+					console.log('Debug markHeight: ', d.y1 - d.y0);
 					tooltip.transition()
 						.duration(200)
 						tooltip
@@ -378,6 +380,8 @@
 
 
 				function transition(d) {
+					hideTooltip; // Hide potentially any residual tooltip
+					
 					if (transitioning || !d) return;
 					transitioning = true;
 					var g2 = display(d),
