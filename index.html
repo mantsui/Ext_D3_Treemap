@@ -326,7 +326,20 @@
 						.on("mousemove", function (d) {  // 04.05.19 tooltip code
 							console.log('Debug 327 mousemove .child d: ', d);
 							console.log('Debug 328 mousemove .child d: ', d.data.name);
-							
+
+							//04.07.19 new code
+							g.append("foreignObject")
+									.call(rect)
+									.attr("class", "foreignobj")
+									.append("xhtml:div")
+									.attr("dy", ".75em")
+									.html(function (d) {
+										return '' +
+										    '<p class="title"> ' + 'XXX' + d.data.name + '</p>';
+									})
+									.attr("class", "textdiv"); //textdiv class allows us to style the text easily with CSS
+
+
 						});
 
 				// add title to parents
