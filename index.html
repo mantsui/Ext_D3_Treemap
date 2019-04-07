@@ -320,13 +320,13 @@
 						.style("opacity", 1)
 						//.html("Country: " + 'XYZ') 04.07.19 original code
 						.html(d.data.name)
-						.style("left", (d3.mouse(this)[0]+30) + "px")
-						.style("top", (d3.mouse(this)[1]+30) + "px");
+						.style("left", (d3.mouse(this)[0] + 0) + "px")
+						.style("top", (d3.mouse(this)[1] + 0) + "px");
 				}
 				var moveTooltip = function(d) {
 					console.log('Debug moveTooltip d: ', d.data.name);
-					tooltip.style("left", (d3.mouse(this)[0]+30) + "px")
-					.style("top", (d3.mouse(this)[1]+30) + "px");
+					tooltip.style("left", (d3.mouse(this)[0] + 0) + "px")
+					.style("top", (d3.mouse(this)[1] + 0) + "px");
 				}
 				var hideTooltip = function(d) {
 					console.log('Debug hideTooltip d: ', d.data.name);
@@ -339,27 +339,6 @@
 						.data(d.children)
 						.enter()
 						.append("g")
-						//.on("mousemove", function (d) {  // 04.01.19 tooltip code
-						//	console.log('Debug 308 mousemove g1 d: ', d);
-						//	console.log('Debug 309 mousemove g1 d: ', d.data.name);
-
-							//04.07.19 new code for tooltip
-						//	g.append("foreignObject")
-						//			.call(rect)
-						//			.attr("class", "foreignobj_Tooltip")
-						//			.append("xhtml:div")
-						//			.attr("dy", ".75em")
-						//			.style("opacity", 0.75)
-						//			.html(function (d) {
-						//				return '' +
-						//				    '<p class="title"> ' + 'XXX' + d.data.name + '</p>';
-						//			})
-						//			.attr("class", "textdiv"); //textdiv class allows us to style the text easily with CSS
-						//})
-						//.on('mouseout', function() {
-						//	svg.selectAll('.foreignobj_Tooltip').remove();
-						//})
-						//.on("mousemove", showTooltip )
 						.on("mouseover", showTooltip )
 						.on("mousemove", moveTooltip )
 						.on("mouseleave", hideTooltip );
