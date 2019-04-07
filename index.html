@@ -305,26 +305,29 @@
 						.data(d.children)
 						.enter()
 						.append("g")
-						.on("mousemove", function (d) {  // 04.01.19 tooltip code
-							console.log('Debug 308 mousemove g1 d: ', d);
-							console.log('Debug 309 mousemove g1 d: ', d.data.name);
+						//.on("mousemove", function (d) {  // 04.01.19 tooltip code
+						//	console.log('Debug 308 mousemove g1 d: ', d);
+						//	console.log('Debug 309 mousemove g1 d: ', d.data.name);
 
 							//04.07.19 new code for tooltip
-							g.append("foreignObject")
-									.call(rect)
-									.attr("class", "foreignobj_Tooltip")
-									.append("xhtml:div")
-									.attr("dy", ".75em")
-									.style("opacity", 0.75)
-									.html(function (d) {
-										return '' +
-										    '<p class="title"> ' + 'XXX' + d.data.name + '</p>';
-									})
-									.attr("class", "textdiv"); //textdiv class allows us to style the text easily with CSS
-						})
-						.on('mouseout', function() {
-							svg.selectAll('.foreignobj_Tooltip').remove();
-						});
+						//	g.append("foreignObject")
+						//			.call(rect)
+						//			.attr("class", "foreignobj_Tooltip")
+						//			.append("xhtml:div")
+						//			.attr("dy", ".75em")
+						//			.style("opacity", 0.75)
+						//			.html(function (d) {
+						//				return '' +
+						//				    '<p class="title"> ' + 'XXX' + d.data.name + '</p>';
+						//			})
+						//			.attr("class", "textdiv"); //textdiv class allows us to style the text easily with CSS
+						//})
+						//.on('mouseout', function() {
+						//	svg.selectAll('.foreignobj_Tooltip').remove();
+						//})
+						.on("mouseover", showTooltip )
+						.on("mousemove", moveTooltip )
+						.on("mouseleave", hideTooltip );
 
 				// add class and click handler to all g's with children
 				g.filter(function (d) {
@@ -361,6 +364,35 @@
 
 				g.selectAll("rect").style("fill", function(d) { return color(d.data.name); });
 
+				// Create a tooltip div that is hidden by default:
+				var tooltip = d3.select("#D3_Chart")
+						.append("div")
+						.style("opacity", 0)
+						.attr("class", "tooltip")
+						.style("background-color", "black")
+						.style("border-radius", "5px")
+						.style("padding", "10px")
+						.style("color", "white")
+
+				// Create 3 functions to show / update (when mouse move but stay on same circle) / hide the tooltip
+				var showTooltip = function(d) {
+					tooltip.transition()
+						.duration(200)
+						tooltip
+						.style("opacity", 1)
+						.html("Country: " + 'XYZ')
+						.style("left", (d3.mouse(this)[0]+30) + "px")
+						.style("top", (d3.mouse(this)[1]+30) + "px")
+				}
+				var moveTooltip = function(d) {
+					tooltip.style("left", (d3.mouse(this)[0]+30) + "px")
+					.style("top", (d3.mouse(this)[1]+30) + "px")
+				}
+				var hideTooltip = function(d) {
+					tooltip.transition()
+					.duration(200)
+					.style("opacity", 0)
+				}
 
 				function transition(d) {
 					if (transitioning || !d) return;
