@@ -339,8 +339,9 @@
 						.data(d.children)
 						.enter()
 						.append("g")
-						.on("mouseover", showTooltip )
-						.on("mousemove", moveTooltip )
+						//.on("mouseover", showTooltip )
+						//.on("mousemove", moveTooltip )
+						.on("mousemove", showTooltip )
 						.on("mouseleave", hideTooltip );
 
 				// add class and click handler to all g's with children
