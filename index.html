@@ -312,9 +312,10 @@
 				// Create 3 functions to show / update (when mouse move but stay on same circle) / hide the tooltip
 				var showTooltip = function(d) {
 					console.log('Debug showTooltip d: ', d);
-					//console.log('Debug markWidth: ', d.x1 - d.x0);
-					//console.log('Debug markHeight: ', d.y1 - d.y0);
-					console.log('Debug typeof tooltip: ', typeof(tooltip))
+					console.log('Debug markWidth: ', d.x1 - d.x0);
+					console.log('Debug markHeight: ', d.y1 - d.y0);
+					d3.select("tooltip").selectAll("div").remove();
+					
 					//clearTooltip();  //test code
 					tooltip.transition()
 						.duration(200);
