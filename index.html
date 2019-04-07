@@ -301,35 +301,6 @@
 						.datum(d)
 						.attr("class", "depth");
 
-				var g = g1.selectAll("g")
-						.data(d.children)
-						.enter()
-						.append("g")
-						//.on("mousemove", function (d) {  // 04.01.19 tooltip code
-						//	console.log('Debug 308 mousemove g1 d: ', d);
-						//	console.log('Debug 309 mousemove g1 d: ', d.data.name);
-
-							//04.07.19 new code for tooltip
-						//	g.append("foreignObject")
-						//			.call(rect)
-						//			.attr("class", "foreignobj_Tooltip")
-						//			.append("xhtml:div")
-						//			.attr("dy", ".75em")
-						//			.style("opacity", 0.75)
-						//			.html(function (d) {
-						//				return '' +
-						//				    '<p class="title"> ' + 'XXX' + d.data.name + '</p>';
-						//			})
-						//			.attr("class", "textdiv"); //textdiv class allows us to style the text easily with CSS
-						//})
-						//.on('mouseout', function() {
-						//	svg.selectAll('.foreignobj_Tooltip').remove();
-						//})
-						.on("mousemove", showTooltip )
-						.on("mouseover", showTooltip )
-						//.on("mousemove", moveTooltip )
-						.on("mouseleave", hideTooltip );
-
 				// Create a tooltip div that is hidden by default:
 				var tooltip = d3.select("#D3_Chart")
 						.append("div")
@@ -363,6 +334,34 @@
 					.style("opacity", 0);
 				}
 
+				var g = g1.selectAll("g")
+						.data(d.children)
+						.enter()
+						.append("g")
+						//.on("mousemove", function (d) {  // 04.01.19 tooltip code
+						//	console.log('Debug 308 mousemove g1 d: ', d);
+						//	console.log('Debug 309 mousemove g1 d: ', d.data.name);
+
+							//04.07.19 new code for tooltip
+						//	g.append("foreignObject")
+						//			.call(rect)
+						//			.attr("class", "foreignobj_Tooltip")
+						//			.append("xhtml:div")
+						//			.attr("dy", ".75em")
+						//			.style("opacity", 0.75)
+						//			.html(function (d) {
+						//				return '' +
+						//				    '<p class="title"> ' + 'XXX' + d.data.name + '</p>';
+						//			})
+						//			.attr("class", "textdiv"); //textdiv class allows us to style the text easily with CSS
+						//})
+						//.on('mouseout', function() {
+						//	svg.selectAll('.foreignobj_Tooltip').remove();
+						//})
+						.on("mousemove", showTooltip )
+						.on("mouseover", showTooltip )
+						//.on("mousemove", moveTooltip )
+						.on("mouseleave", hideTooltip );
 
 				// add class and click handler to all g's with children
 				g.filter(function (d) {
