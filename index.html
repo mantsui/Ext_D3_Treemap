@@ -138,9 +138,13 @@
 		// We will try to read the worksheet from the settings, if this exists we will show
 		// the configuration screen, otherwise we will clear the table and destroy the
 		// reference.
-			
+		
+		var debugTimestamp = new Date();
 		var sheetName = tableau.extensions.settings.get("worksheet");
-		console.log('Debug sheetName ', sheetName); 
+		console.log('Debug sheetName ', debugTimestamp.toGMTString(), ' ',sheetName); 
+
+		dict_Settings = tableau.extensions.settings.getAll();
+		console.log('dict_Settings: ', dict_Settings);
 
 		//console.log('tableau.extensions.settings.get("worksheet") Worksheet Name: ' + sheetName);
 		if (sheetName == undefined || sheetName =="" || sheetName == null) {
@@ -167,9 +171,6 @@
 		//matches[1] contains the value between the parentheses
 		var strDisplayName = regExpMatches[1];
 			
-		dict_Settings = tableau.extensions.settings.getAll();
-		console.log('dict_Settings: ', dict_Settings);
-
 		var Ordered_Dimensions = [];
 		for(var key in dict_Settings) {
 			var value = dict_Settings[key];
@@ -369,9 +370,14 @@
 						.append("xhtml:div")
 						.attr("dy", ".75em")
 						.html(function (d) {
-							return '' +
-							    '<p class="title"> ' + d.data.name + '</p>' +
-							    '<p>' + formatNumber(d.value) + '</p>';
+							if( elementWidth_Too_Small() ){ // Hide label if data element is too small.
+								return '';
+							}
+							else {
+								return '' +
+								    '<p class="title"> ' + d.data.name + '</p>' +
+								    '<p>' + formatNumber(d.value) + '</p>';
+							}
 						})
 						.attr("class", "textdiv"); //textdiv class allows us to style the text easily with CSS
 
@@ -457,6 +463,15 @@
 					.join(sep);
 			}
 
+			function elementWidth_Too_Small(d){
+				var Minimum_Width = 30;
+				if( (d.x1 - d.x0) < Minimum_Width) {
+					return true;
+				}
+				else {
+					return false;
+				}	
+			}
 
 		} // function draw_D3(data) block end
 		
