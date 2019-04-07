@@ -318,7 +318,8 @@
 						.duration(200)
 						tooltip
 						.style("opacity", 1)
-						.html("Country: " + 'XYZ')
+						//.html("Country: " + 'XYZ') 04.07.19 original code
+						.html(d.data.name)
 						.style("left", (d3.mouse(this)[0]+30) + "px")
 						.style("top", (d3.mouse(this)[1]+30) + "px");
 				}
@@ -358,9 +359,9 @@
 						//.on('mouseout', function() {
 						//	svg.selectAll('.foreignobj_Tooltip').remove();
 						//})
-						.on("mousemove", showTooltip )
+						//.on("mousemove", showTooltip )
 						.on("mouseover", showTooltip )
-						//.on("mousemove", moveTooltip )
+						.on("mousemove", moveTooltip )
 						.on("mouseleave", hideTooltip );
 
 				// add class and click handler to all g's with children
