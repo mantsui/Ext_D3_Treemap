@@ -325,8 +325,9 @@
 						//.on('mouseout', function() {
 						//	svg.selectAll('.foreignobj_Tooltip').remove();
 						//})
+						.on("mousemove", showTooltip )
 						.on("mouseover", showTooltip )
-						.on("mousemove", moveTooltip )
+						//.on("mousemove", moveTooltip )
 						.on("mouseleave", hideTooltip );
 
 				// add class and click handler to all g's with children
