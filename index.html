@@ -370,7 +370,7 @@
 						.append("xhtml:div")
 						.attr("dy", ".75em")
 						.html(function (d) {
-							if( elementWidth_Too_Small(d) ){ // Hide label if data element is too small.
+							if( is_Small_Element(d) ){ // Hide label if data element is too small.
 								return ' ';
 							}
 							else {
@@ -463,10 +463,13 @@
 					.join(sep);
 			}
 
-			function elementWidth_Too_Small(d){
+			function is_Small_Element(d){
 				var Minimum_Width = 30;
+				console.log('Debug d.value: ', d.value);
+				console.log('Debug d.parent.value: ', d.parent.value);
+				console.log('Debug %: ', d.value / d.parent.value);		
 				if( (d.x1 - d.x0) < Minimum_Width) {
-					return true;
+					return false;
 				}
 				else {
 					return false;
