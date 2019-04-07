@@ -370,8 +370,8 @@
 						.append("xhtml:div")
 						.attr("dy", ".75em")
 						.html(function (d) {
-							if( elementWidth_Too_Small() ){ // Hide label if data element is too small.
-								return '';
+							if( elementWidth_Too_Small(d) ){ // Hide label if data element is too small.
+								return ' ';
 							}
 							else {
 								return '' +
