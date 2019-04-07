@@ -230,10 +230,8 @@
 			var color = d3.scaleOrdinal()
 					.range(d3.schemeSet3.map(function(c) { c = d3.rgb(c); c.opacity = 0.6; return c; }));
 			
-			//var margin = {top: 30, right: 0, bottom: 20, left: 0}, // old code
 			var margin = {top: 30, right: 0, bottom: 20, left: 0, vert_padding: 10},
 			    width = divWidth,
-			    //height = 600 - margin.top - margin.bottom, // old code
 			    height = divHeight - margin.top - margin.bottom - margin.vert_padding,
 			    formatNumber = d3.format(","),
 			    transitioning;
@@ -317,9 +315,8 @@
 					console.log('Debug markWidth: ', d.x1 - d.x0);
 					console.log('Debug markHeight: ', d.y1 - d.y0);
 					tooltip.transition()
-						.duration(200)
-						tooltip
-						.style("opacity", 1)
+						.duration(200);
+					tooltip.style("opacity", 1)
 						.html(d.data.name + '<br/>' + formatNumber(d.value))
 						.style("left", (d3.mouse(this)[0] + 10) + "px")
 						.style("top", (d3.mouse(this)[1] + 10) + "px");
@@ -332,6 +329,11 @@
 					tooltip.transition()
 					.duration(200)
 					.style("opacity", 0);
+				}
+
+				function clearTooltip() {
+					//tooltip
+					//g2.selectAll("text").style("fill-opacity", 0);
 				}
 
 				var g = g1.selectAll("g")
@@ -380,8 +382,6 @@
 
 
 				function transition(d) {
-					hideTooltip; // Hide potentially any residual tooltip
-					
 					if (transitioning || !d) return;
 					transitioning = true;
 					var g2 = display(d),
