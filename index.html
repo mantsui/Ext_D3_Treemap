@@ -312,9 +312,10 @@
 				// Create 3 functions to show / update (when mouse move but stay on same circle) / hide the tooltip
 				var showTooltip = function(d) {
 					console.log('Debug showTooltip d: ', d);
-					console.log('Debug markWidth: ', d.x1 - d.x0);
-					console.log('Debug markHeight: ', d.y1 - d.y0);
-					clearTooltip();
+					//console.log('Debug markWidth: ', d.x1 - d.x0);
+					//console.log('Debug markHeight: ', d.y1 - d.y0);
+					console.log('Debug typeof tooltip: ', typeof(tooltip))
+					//clearTooltip();  //test code
 					tooltip.transition()
 						.duration(200);
 					tooltip.style("opacity", 1)
@@ -332,9 +333,8 @@
 					.style("opacity", 0);
 				}
 
-				function clearTooltip() {
+				function clearTooltip() { // Test code
 					tooltip.selectAll("div").style("fill-opacity", 0);
-					//g2.selectAll("text").style("fill-opacity", 0);
 				}
 
 				var g = g1.selectAll("g")
