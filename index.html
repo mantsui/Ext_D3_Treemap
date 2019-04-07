@@ -311,7 +311,11 @@
 						.style("color", "white");
 
 				// Create 3 functions to show / update (when mouse move but stay on same circle) / hide the tooltip
-				var showTooltip = function(d) {					
+				var showTooltip = function(d) {	
+					console.log('Debug d.value: ', d.data.name,' ' , d.value);
+					console.log('Debug d.parent.value: ', d.parent.value);
+					console.log('Debug %: ', d.value / d.parent.value);
+
 					tooltip.transition()
 						.duration(200);
 					tooltip.style("opacity", 0.70)
@@ -460,9 +464,9 @@
 
 			function is_Small_Element(d){
 				var Minimum_Width = 30;
-				console.log('Debug d.value: ', d.data.name,' ' , d.value);
-				console.log('Debug d.parent.value: ', d.parent.value);
-				console.log('Debug %: ', d.value / d.parent.value);		
+				//console.log('Debug d.value: ', d.data.name,' ' , d.value);
+				//console.log('Debug d.parent.value: ', d.parent.value);
+				//console.log('Debug %: ', d.value / d.parent.value);		
 				if( (d.x1 - d.x0) < Minimum_Width) {
 					return false;
 				}
