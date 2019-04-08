@@ -318,12 +318,12 @@
 						tooltip.style("opacity", 0.70)
 							.html(d.data.name + '<br/>' + formatNumber(d.value))
 							.style("left", (d3.mouse(this)[0] - 80) + "px")
-							.style("top", (d3.mouse(this)[1] - 20) + "px");
+							.style("top", (d3.mouse(this)[1] - 30) + "px");
 					}
 				}
 				var moveTooltip = function(d) {
 					tooltip.style("left", (d3.mouse(this)[0] - 80) + "px")
-					.style("top", (d3.mouse(this)[1] - 20) + "px");
+					.style("top", (d3.mouse(this)[1] - 30) + "px");
 				}
 				var hideTooltip = function(d) {
 					tooltip.transition()
