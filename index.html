@@ -141,6 +141,8 @@
 		
 		var debugTimestamp = new Date();
 		var sheetName = tableau.extensions.settings.get("worksheet");
+		console.log('Debug worksheets[0].name: ', worksheets[0].name);
+		//var sheetName = worksheets[0].name; // 04.08.19 New code
 		console.log('Debug sheetName ', debugTimestamp.toGMTString(), ' ',sheetName); 
 
 		dict_Settings = tableau.extensions.settings.getAll();
@@ -314,6 +316,7 @@
 				var showTooltip = function(d) {	
 					if( is_Small_Element(d) ){ // Show tooltip if data element is too small.
 						var xAdjust = (1 / d.data.name.length) + 40;
+						console.log('Debug xAdjust: ', xAdjust);
 						//var xAdjust = (1 / d.data.name.length) * 1.3 + 40;
 						
 						tooltip.transition()
