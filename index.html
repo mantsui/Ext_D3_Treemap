@@ -140,8 +140,8 @@
 		// reference.
 		
 		var debugTimestamp = new Date();
-		//var sheetName = tableau.extensions.settings.get("worksheet");
-		var sheetName = worksheets[0].name; // 04.08.19 New code
+		var sheetName = tableau.extensions.settings.get("worksheet");
+		//var sheetName = worksheets[0].name; // 04.08.19 New code
 		console.log('Debug sheetName ', debugTimestamp.toGMTString(), ' ',sheetName); 
 
 		dict_Settings = tableau.extensions.settings.getAll();
