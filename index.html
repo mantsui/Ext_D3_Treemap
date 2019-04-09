@@ -315,7 +315,8 @@
 				var showTooltip = function(d) {	
 					if( is_Small_Element(d) ){ // Show tooltip if data element is too small.
 						var xAdjust = (80 / d.data.name.length) + (d.data.name.length * 1.3) + 40;
-						xAdjust = d.data.name.length * 1.20 + 70;
+						xAdjust = d.data.name.length * 1.15 + 70;
+						var yAdjust = d.data.name.length * 0.20 + 30;
 						console.log(d.data.name);
 						console.log('Debug xAdjust: ', xAdjust);
 						console.log('Debug name.length: ', d.data.name.length);
@@ -326,20 +327,17 @@
 						tooltip.style("opacity", 0.70)
 							.html(d.data.name + '<br/>' + formatNumber(d.value))
 							.style("left", (d3.mouse(this)[0] - xAdjust) + "px")
-							//.style("right", (d3.mouse(this)[0] + 0) + "px")
-							.style("top", (d3.mouse(this)[1] - 30) + "px");
-							//.style("bottom", (d3.mouse(this)[1] - 0) + "px");
+							.style("top", (d3.mouse(this)[1] - yAdjust) + "px");
 					}
 				}
 				var moveTooltip = function(d) {
 					var xAdjust = (80 / d.data.name.length) + (d.data.name.length * 1.3) + 40;
-					xAdjust = d.data.name.length * 1.20 + 70;
+					xAdjust = d.data.name.length * 1.15 + 70;
+					var yAdjust = d.data.name.length * 0.20 + 30;
 					//var xAdjust = d.data.name.length * 1.3 + 40;
 					
 					tooltip.style("left", (d3.mouse(this)[0] - xAdjust) + "px")
-					//.style("right", (d3.mouse(this)[0] + 0) + "px")
 					.style("top", (d3.mouse(this)[1] - 30) + "px");
-					//.style("bottom", (d3.mouse(this)[1] - 0) + "px");
 				}
 				var hideTooltip = function(d) {
 					tooltip.transition()
