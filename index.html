@@ -233,7 +233,7 @@
 			var color;
 			//var arrStepColors = steppedColorArray(colorChromaticScale, uniqueElementCount);
 			//var color = d3.scaleOrdinal(arrStepColors);
-			if(colorChromaticScale = 'schemeSet3'){
+			if(colorChromaticScale == 'schemeSet3'){
 				color = d3.scaleOrdinal()
 						.range(d3.schemeSet3.map(function(c) { c = d3.rgb(c); c.opacity = 0.6; return c; }));
 				console.log('Debug running schemeSet3: ', colorChromaticScale);
