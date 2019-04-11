@@ -236,10 +236,12 @@
 			if(colorChromaticScale = 'schemeSet3'){
 				color = d3.scaleOrdinal()
 						.range(d3.schemeSet3.map(function(c) { c = d3.rgb(c); c.opacity = 0.6; return c; }));
+				console.log('Debug running schemeSet3: ', colorChromaticScale);
 			}
 			else{
 				var arrStepColors = steppedColorArray(colorChromaticScale, uniqueElementCount);
 				color = d3.scaleOrdinal(arrStepColors);
+				console.log('Debug running else step', colorChromaticScale);
 			}
 			
 			var margin = {top: 30, right: 0, bottom: 20, left: 0, vert_padding: 10},
@@ -326,12 +328,7 @@
 					if( is_Small_Element(d) ){ // Show tooltip if data element is too small.
 						var xAdjust = d.data.name.length * 3.00 + 70;
 						var yAdjust = d.data.name.length * 1.20 + 30;
-						
-						console.log(d.data.name);
-						console.log('Debug xAdjust: ', xAdjust);
-						console.log('Debug name.length: ', d.data.name.length);
-						//var xAdjust = (1 / d.data.name.length) * 1.3 + 40;
-						
+												
 						tooltip.transition()
 							.duration(200);
 						tooltip.style("opacity", 0.70)
