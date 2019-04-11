@@ -200,7 +200,7 @@
 
 			//Sunburst Code
 			//draw_D3(TableauTreeData, strDisplayName, Ordered_Dimensions, uniqEleCount, colorScale);
-			draw_D3(TableauTreeData);
+			draw_D3(TableauTreeData, 'schemeSet3');
 
 		});
 		}
@@ -225,15 +225,21 @@
 		
 		// Passing uniqueElementCount to help with the color contrast
 		//function draw_D3(nodeData, MeasureName, DimensionList, uniqueElementCount, colorChromaticScale){ //Sunburst code
-		function draw_D3(data){
+		function draw_D3(data, colorChromaticScale){
 			var divWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 			var divHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
 
-
+			var color;
 			//var arrStepColors = steppedColorArray(colorChromaticScale, uniqueElementCount);
 			//var color = d3.scaleOrdinal(arrStepColors);
-			var color = d3.scaleOrdinal()
-					.range(d3.schemeSet3.map(function(c) { c = d3.rgb(c); c.opacity = 0.6; return c; }));
+			if(colorChromaticScale = 'schemeSet3'){
+				color = d3.scaleOrdinal()
+						.range(d3.schemeSet3.map(function(c) { c = d3.rgb(c); c.opacity = 0.6; return c; }));
+			}
+			else{
+				var arrStepColors = steppedColorArray(colorChromaticScale, uniqueElementCount);
+				color = d3.scaleOrdinal(arrStepColors);
+			}
 			
 			var margin = {top: 30, right: 0, bottom: 20, left: 0, vert_padding: 10},
 			    width = divWidth,
