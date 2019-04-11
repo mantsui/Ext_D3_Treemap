@@ -190,7 +190,7 @@
 			var Tableau_Array_of_Objects = ReduceToObjectTablulated(sumdata);
 			console.log('----- Display Tableau_Array_of_Objects -----', Tableau_Array_of_Objects);	// Debug output
 						
-			//var uniqEleCount = uniqueElementCnt(Tableau_Array_of_Objects, Ordered_Dimensions); //Sunburst Code
+			var uniqEleCount = uniqueElementCnt(Tableau_Array_of_Objects, Ordered_Dimensions);
 			
 			// Reformat tableau data into tree-like/hierarchical structure for D3.
 			var TableauTreeData = Convert_To_TreeData(Tableau_Array_of_Objects, Ordered_Dimensions, strMeasureName, strDisplayName);
@@ -200,7 +200,7 @@
 
 			//Sunburst Code
 			//draw_D3(TableauTreeData, strDisplayName, Ordered_Dimensions, uniqEleCount, colorScale);
-			draw_D3(TableauTreeData, 'schemeSet3');
+			draw_D3(TableauTreeData, 'schemeSet3', uniqEleCount);
 
 		});
 		}
@@ -491,126 +491,6 @@
 				else {
 					return false;
 				}	
-			}
-
-			function steppedColorArray(ColorScaleType, uniqueElementCount) {
-				var steppedColorScale = [];
-				for(var RowIndex = 0; RowIndex < uniqueElementCount; RowIndex++){
-					//
-					switch(ColorScaleType) {
-						case 'Brown_BrightGreen':
-							steppedColorScale.push(d3.interpolateBrBG(RowIndex / uniqueElementCount));
-							break;
-						case 'Purple_Green':
-							steppedColorScale.push(d3.interpolatePRGn(RowIndex / uniqueElementCount));
-							break;
-						case 'Pink_YellowGreen':
-							steppedColorScale.push(d3.interpolatePiYG(RowIndex / uniqueElementCount));
-							break;
-						case 'Purple_Orange':
-							steppedColorScale.push(d3.interpolatePuOr(RowIndex / uniqueElementCount));
-							break;
-						case 'Red_Blue':
-							steppedColorScale.push(d3.interpolateRdBu(RowIndex / uniqueElementCount));
-							break;
-						case 'Red_Grey':
-							steppedColorScale.push(d3.interpolateRdGy(RowIndex / uniqueElementCount));
-							break;
-						case 'Red_Yellow_LightBlue':
-							steppedColorScale.push(d3.interpolateRdYlBu(RowIndex / uniqueElementCount));
-							break;
-						case 'Red_Yellow_LightGreen':
-							steppedColorScale.push(d3.interpolateRdYlGn(RowIndex / uniqueElementCount));
-							break;
-						case 'Spectral':
-							steppedColorScale.push(d3.interpolateSpectral(RowIndex / uniqueElementCount));
-							break;
-						case 'Blues':
-							steppedColorScale.push(d3.interpolateBlues(RowIndex / uniqueElementCount));
-							break;
-						case 'Greens':
-							steppedColorScale.push(d3.interpolateGreens(RowIndex / uniqueElementCount));
-							break;
-						case 'Greys':
-							steppedColorScale.push(d3.interpolateGreys(RowIndex / uniqueElementCount));
-							break;
-						case 'Oranges':
-							steppedColorScale.push(d3.interpolateOranges(RowIndex / uniqueElementCount));
-							break;
-						case 'Purples':
-							steppedColorScale.push(d3.interpolatePurples(RowIndex / uniqueElementCount));
-							break;
-						case 'Reds':
-							steppedColorScale.push(d3.interpolateReds(RowIndex / uniqueElementCount));
-							break;
-						case 'Viridis':
-							steppedColorScale.push(d3.interpolateViridis(RowIndex / uniqueElementCount));
-							break;
-						case 'Inferno':
-							steppedColorScale.push(d3.interpolateInferno(RowIndex / uniqueElementCount));
-							break;
-						case 'Magma':
-							steppedColorScale.push(d3.interpolateMagma(RowIndex / uniqueElementCount));
-							break;
-						case 'Plasma':
-							steppedColorScale.push(d3.interpolatePlasma(RowIndex / uniqueElementCount));
-							break;
-						case 'Warm':
-							steppedColorScale.push(d3.interpolateWarm(RowIndex / uniqueElementCount));
-							break;
-						case 'Cool':
-							steppedColorScale.push(d3.interpolateCool(RowIndex / uniqueElementCount));
-							break;
-						case 'Cube_Helix':
-							steppedColorScale.push(d3.interpolateCubehelixDefault(RowIndex / uniqueElementCount));
-							break;
-						case 'Blue_Green':
-							steppedColorScale.push(d3.interpolateBuGn(RowIndex / uniqueElementCount));
-							break;
-						case 'Blue_Purple':
-							steppedColorScale.push(d3.interpolateBuPu(RowIndex / uniqueElementCount));
-							break;
-						case 'Green_Blue':
-							steppedColorScale.push(d3.interpolateGnBu(RowIndex / uniqueElementCount));
-							break;
-						case 'Orange_Red':
-							steppedColorScale.push(d3.interpolateOrRd(RowIndex / uniqueElementCount));
-							break;
-						case 'Purple_Blue_Green':
-							steppedColorScale.push(d3.interpolatePuBuGn(RowIndex / uniqueElementCount));
-							break;
-						case 'Purple_Blue':
-							steppedColorScale.push(d3.interpolatePuBu(RowIndex / uniqueElementCount));
-							break;
-						case 'Purple_Red':
-							steppedColorScale.push(d3.interpolatePuRd(RowIndex / uniqueElementCount));
-							break;
-						case 'Red_Purple':
-							steppedColorScale.push(d3.interpolateRdPu(RowIndex / uniqueElementCount));
-							break;
-						case 'Yellow_Green_Blue':
-							steppedColorScale.push(d3.interpolateYlGnBu(RowIndex / uniqueElementCount));
-							break;
-						case 'Yellow_Green':
-							steppedColorScale.push(d3.interpolateYlGn(RowIndex / uniqueElementCount));
-							break;
-						case 'Yellow_Orange_Brown':
-							steppedColorScale.push(d3.interpolateYlOrBr(RowIndex / uniqueElementCount));
-							break;
-						case 'Yellow_Orange_Red':
-							steppedColorScale.push(d3.interpolateYlOrRd(RowIndex / uniqueElementCount));
-							break;
-						case 'Rainbow':
-							steppedColorScale.push(d3.interpolateRainbow(RowIndex / uniqueElementCount));
-							break;
-						case 'Sinebow':
-							steppedColorScale.push(d3.interpolateSinebow(RowIndex / uniqueElementCount));
-							break;
-						default:
-							steppedColorScale.push(d3.interpolateRainbow(RowIndex / uniqueElementCount));
-					}
-				}
-				return steppedColorScale;
 			}
 
 		} // function draw_D3(data) block end
