@@ -229,6 +229,9 @@
 			var divWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 			var divHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
 
+
+			//var arrStepColors = steppedColorArray(colorChromaticScale, uniqueElementCount);
+			//var color = d3.scaleOrdinal(arrStepColors);
 			var color = d3.scaleOrdinal()
 					.range(d3.schemeSet3.map(function(c) { c = d3.rgb(c); c.opacity = 0.6; return c; }));
 			
