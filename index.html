@@ -200,10 +200,7 @@
 
 			//Sunburst Code
 			//draw_D3(TableauTreeData, strDisplayName, Ordered_Dimensions, uniqEleCount, colorScale);
-			//draw_D3(TableauTreeData, uniqEleCount, 'Rainbow');
-			console.log('Debug colorScale: ', colorScale);
 			draw_D3(TableauTreeData, uniqEleCount, colorScale);
-			//Rainbow schemeSet3
 
 		});
 		}
@@ -330,11 +327,17 @@
 					if( is_Small_Element(d) ){ // Show tooltip if data element is too small.
 						var xAdjust = d.data.name.length * 3.00 + 70;
 						var yAdjust = d.data.name.length * 1.20 + 30;
-												
+
+						var DollarSign = "";
+						// Add dollar sign to tooltip from radio button in Config window
+						if( dict_Settings['isDollarSign'] == "true" ) {
+							DollarSign = "$";
+						}
+						
 						tooltip.transition()
 							.duration(200);
 						tooltip.style("opacity", 0.70)
-							.html(d.data.name + '<br/>' + formatNumber(d.value))
+							.html(d.data.name + '<br/>' + DollarSign + formatNumber(d.value))
 							.style("left", (d3.mouse(this)[0] - xAdjust) + "px")
 							.style("top", (d3.mouse(this)[1] - yAdjust) + "px");
 					}
@@ -342,7 +345,7 @@
 				var moveTooltip = function(d) {
 					var xAdjust = xAdjust = d.data.name.length * 3.00 + 70;
 					var yAdjust = d.data.name.length * 1.20 + 30;
-					
+
 					tooltip.style("left", (d3.mouse(this)[0] - xAdjust) + "px")
 					.style("top", (d3.mouse(this)[1] - yAdjust) + "px");
 				}
