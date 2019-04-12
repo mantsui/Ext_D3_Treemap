@@ -332,9 +332,7 @@
 						// Add dollar sign to tooltip from radio button in Config window
 						if( dict_Settings['isDollarSign'] == "true" ) {
 							DollarSign = "$";
-						}
-						console.log('Debug dict_Settings["isDollarSign"], ', dict_Settings['isDollarSign']);
-						
+						}						
 						
 						tooltip.transition()
 							.duration(200);
@@ -392,13 +390,21 @@
 						.append("xhtml:div")
 						.attr("dy", ".75em")
 						.html(function (d) {
+
+							var DollarSign = "";
+							// Add dollar sign to tooltip from radio button in Config window
+							if( dict_Settings['isDollarSign'] == "true" ) {
+								DollarSign = "$";
+							}
+							console.log('Debug dict_Settings["isDollarSign"], ', dict_Settings['isDollarSign']);
+
 							if( is_Small_Element(d) ){ // Hide label if data element is too small.
 								return ' ';
 							}
 							else {
 								return '' +
 								    '<p class="title"> ' + d.data.name + '</p>' +
-								    '<p>' + formatNumber(d.value) + '</p>';
+								    '<p>' + DollarSign + formatNumber(d.value) + '</p>';
 							}
 						})
 						.attr("class", "textdiv"); //textdiv class allows us to style the text easily with CSS
