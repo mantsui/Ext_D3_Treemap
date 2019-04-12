@@ -411,9 +411,21 @@
 
 				g.selectAll("rect").style("fill", function(d) { return color(d.data.name); });
 
-
 				function transition(d) {
 					tooltip.style("opacity", 0); // Clear potentially old residual tooltips.
+
+					console.log('Debug clicked transition(d): ', d);
+					var filterSheet = '';
+					if( tableau.extensions.settings.get("FilterSheet") != null) {
+						filterSheet = tableau.extensions.settings.get("FilterSheet");
+					}
+					var Filter_Dimensions = [];
+					for(var key in dict_Settings) {
+						var value = dict_Settings[key];
+						if (key.startsWith('FilterFieldName_')){
+							Filter_Dimensions.push(value);
+						}
+					}
 					
 					if (transitioning || !d) return;
 					transitioning = true;
