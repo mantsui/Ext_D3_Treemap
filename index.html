@@ -396,7 +396,6 @@
 							if( dict_Settings['isDollarSign'] == "true" ) {
 								DollarSign = "$";
 							}
-							console.log('Debug dict_Settings["isDollarSign"], ', dict_Settings['isDollarSign']);
 
 							if( is_Small_Element(d) ){ // Hide label if data element is too small.
 								return ' ';
@@ -414,7 +413,8 @@
 				function transition(d) {
 					tooltip.style("opacity", 0); // Clear potentially old residual tooltips.
 
-					console.log('Debug clicked transition(d): ', d);
+					console.log('Debug clicked transition(d): ', d); // Code Block Start: Tableau apply filter
+					var clickDepth = d.depth;
 					var filterSheet = '';
 					if( tableau.extensions.settings.get("FilterSheet") != null) {
 						filterSheet = tableau.extensions.settings.get("FilterSheet");
@@ -426,6 +426,21 @@
 							Filter_Dimensions.push(value);
 						}
 					}
+
+					if(clickDepth == 0) {
+						if(filterSheet != ''){
+							resetFilter( filterSheet, DimensionList.slice(clickDepth), Filter_Dimensions );
+						}
+					} else {
+						if(filterSheet != ''){
+							// Optional apply filter function to target sheet in dashboard
+							resetFilter( filterSheet, DimensionList.slice(clickDepth), Filter_Dimensions );
+							if( Filter_Dimensions.includes(DimensionList[clickDepth - 1]) ) {
+								setFilterTo( filterSheet, DimensionList[clickDepth - 1], arrValue);
+							}
+						}
+					}						// Code Block End: Tableau apply filter
+					
 					
 					if (transitioning || !d) return;
 					transitioning = true;
