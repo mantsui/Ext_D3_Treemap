@@ -200,7 +200,9 @@
 
 			//Sunburst Code
 			//draw_D3(TableauTreeData, strDisplayName, Ordered_Dimensions, uniqEleCount, colorScale);
-			draw_D3(TableauTreeData, uniqEleCount, 'Rainbow');
+			//draw_D3(TableauTreeData, uniqEleCount, 'Rainbow');
+			console.log('Debug colorScale: ', colorScale);
+			draw_D3(TableauTreeData, uniqEleCount, colorScale);
 			//Rainbow schemeSet3
 
 		});
