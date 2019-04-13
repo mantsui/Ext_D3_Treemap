@@ -427,6 +427,8 @@
 						}
 					}
 
+					console.log('Debug filterSheet: ', filterSheet);
+					console.log('Debug Filter_Dimensions: ', Filter_Dimensions);
 					if(typeof clickDepth !== "undefined"){
 						if(clickDepth == 0) {
 							if(filterSheet != ''){
@@ -441,7 +443,7 @@
 								}
 							}
 						}
-					}						// Code Block End: Tableau apply filter
+					} // Code Block End: Tableau apply filter
 					
 					
 					if (transitioning || !d) return;
@@ -494,7 +496,6 @@
 						.attr("y", function (d) { return y(d.y0); })
 						.attr("width", function (d) { return x(d.x1) - x(d.x0); })
 						.attr("height", function (d) { return y(d.y1) - y(d.y0); });
-						//.attr("fill", function (d) { return '#bbbbbb'; }); // 04.05.19 original code
 			}
 			function foreign(foreign) { /* added */
 				foreign.attr("x", function (d) { return x(d.x0); })
