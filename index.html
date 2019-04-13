@@ -200,7 +200,7 @@
 
 			//Sunburst Code
 			//draw_D3(TableauTreeData, strDisplayName, Ordered_Dimensions, uniqEleCount, colorScale);
-			draw_D3(TableauTreeData, uniqEleCount, colorScale);
+			draw_D3(TableauTreeData, Ordered_Dimensions, uniqEleCount, colorScale);
 
 		});
 		}
@@ -225,7 +225,7 @@
 		
 		// Passing uniqueElementCount to help with the color contrast
 		//function draw_D3(nodeData, MeasureName, DimensionList, uniqueElementCount, colorChromaticScale){ //Sunburst code
-		function draw_D3(data, uniqueElementCount, colorChromaticScale){
+		function draw_D3(data, DimensionList, uniqueElementCount, colorChromaticScale){
 			var divWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 			var divHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
 
