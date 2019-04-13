@@ -414,6 +414,8 @@
 					tooltip.style("opacity", 0); // Clear potentially old residual tooltips.
 
 					console.log('Debug clicked transition(d): ', d); // Code Block Start: Tableau apply filter
+					var arrValue = [];
+					arrValue.push(d.data.name);
 					var clickDepth = d.depth;
 					var filterSheet = '';
 					if( tableau.extensions.settings.get("FilterSheet") != null) {
