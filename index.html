@@ -427,16 +427,18 @@
 						}
 					}
 
-					if(clickDepth == 0) {
-						if(filterSheet != ''){
-							resetFilter( filterSheet, DimensionList.slice(clickDepth), Filter_Dimensions );
-						}
-					} else {
-						if(filterSheet != ''){
-							// Optional apply filter function to target sheet in dashboard
-							resetFilter( filterSheet, DimensionList.slice(clickDepth), Filter_Dimensions );
-							if( Filter_Dimensions.includes(DimensionList[clickDepth - 1]) ) {
-								setFilterTo( filterSheet, DimensionList[clickDepth - 1], arrValue);
+					if(typeof clickDepth !== "undefined"){
+						if(clickDepth == 0) {
+							if(filterSheet != ''){
+								resetFilter( filterSheet, DimensionList.slice(clickDepth), Filter_Dimensions );
+							}
+						} else {
+							if(filterSheet != ''){
+								// Optional apply filter function to target sheet in dashboard
+								resetFilter( filterSheet, DimensionList.slice(clickDepth), Filter_Dimensions );
+								if( Filter_Dimensions.includes(DimensionList[clickDepth - 1]) ) {
+									setFilterTo( filterSheet, DimensionList[clickDepth - 1], arrValue);
+								}
 							}
 						}
 					}						// Code Block End: Tableau apply filter
